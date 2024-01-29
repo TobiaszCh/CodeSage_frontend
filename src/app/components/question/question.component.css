@@ -1,0 +1,42 @@
+main {
+    width: 500px;
+    margin: auto;
+}
+h2 {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    padding-left: 40px;
+}
+li {
+    font-size: 20px;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+header {
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.point {
+    width: 10px;
+    height: 10px;
+    border: solid;
+    border-radius:50%;
+}
+.button1 {
+    width: 100px;
+    height: 20px;
+}

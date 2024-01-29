@@ -1,0 +1,12 @@
+<header>
+    <h1>Kurs Java - podstawy</h1>
+</header>
+<main>
+    <section>
+        <ul>
+            <li *ngFor="let subject of subjects">
+                <a a [routerLink] = "['/courses', subject.courseId, 'subjects', subject.id, '/questions']"  >{{subject.displayName}} </a>
+            </li>
+        </ul>
+    </section>
+</main>

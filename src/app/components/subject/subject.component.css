@@ -1,0 +1,36 @@
+main,header {
+    text-align: center;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin: auto;
+}
+
+ul {
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+li {
+    flex: 1;
+    margin: 100px 100px 100px 100px;
+    text-align: center;
+
+}
+
+a {
+    padding: 50px 50px 50px 50px;
+    border: 1px solid saddlebrown;
+    border-radius: 100%;
+    text-decoration: none;
+    display: block;
+}
+
+a:hover {
+    color: white;
+    background-color: saddlebrown;
+}
