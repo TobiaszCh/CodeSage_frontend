@@ -19,5 +19,6 @@ export class QuestionService {
 
 export interface Questions {
   id: number;
-  displayName: String;
+  displayName: string;
+  answers: string[];
 }
