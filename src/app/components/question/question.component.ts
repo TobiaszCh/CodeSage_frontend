@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService, Questions } from './question.service';
+import { Answer, QuestionService, Questions } from './question.service';
 
 @Component({
   selector: 'app-question',
@@ -8,12 +8,29 @@ import { QuestionService, Questions } from './question.service';
 })
 export class QuestionComponent implements OnInit{
 
-  questions: Questions[] = [];
+  questions!: Questions[];
+  numberQuestion = 0;
+  checkAnswer: Answer | undefined
 
   constructor(private questionService :QuestionService) {
     
   }
   ngOnInit(): void {
     this.questionService.getQuestions().subscribe(value => this.questions = value);
+  }
+
+  nextQuestion(): void {
+    if(this.numberQuestion < this.questions.length - 1) {
+      this.numberQuestion++;
+      this.checkAnswer = undefined;
+    }
+  }
+
+  beforeQuestion(): void {
+    if(this.numberQuestion > 0) {
+      this.numberQuestion--;
+      this.checkAnswer = undefined;
+
+    }
   }
 }

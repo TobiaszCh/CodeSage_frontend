@@ -20,5 +20,10 @@ export class QuestionService {
 export interface Questions {
   id: number;
   displayName: string;
-  answers: string[];
+  answers: Answer[];
+}
+
+export interface Answer {
+  displayName: string;
+  correct: boolean;
 }

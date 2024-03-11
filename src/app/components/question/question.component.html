@@ -11,32 +11,23 @@
     <div class = "point"></div>
 </header>
 <main>
-    <h2>Co możemy dziedziczyć w Javie?</h2>
-    <ul>
+    <h2>{{questions[numberQuestion].displayName}}</h2>
+    <ul *ngFor="let answer of questions[numberQuestion].answers">
         <li>
-            <input type="radio" name="a" value = "Metody">
-            Metody
-        </li>
-        <li>
-            <input type="radio" name="a" value = "Klasy">
-            Klasy
-        </li>
-        <li>
-            <input type="radio" name="a" value = "Interfejsy">
-            Interfejsy
-        </li>
-        <li>
-            <input type="radio" name = "a" value="Enumy">
-            Enumy
+            <form>
+                <input type="radio" name="a" [value] = "answer" [(ngModel)] = "checkAnswer">
+                {{answer.displayName}}
+            </form>
         </li>
     </ul>
     <div>
-        <button class="button1">
+        <button class="button1" (click)="beforeQuestion()">
             Wstecz
         </button>
-        <button class="button1">
+    <div>{{numberQuestion}}/10</div>
+        <button class="button1"  (click)="nextQuestion()">
             Dalej
         </button>
-        <div *ngFor="let q of questions"> {{q.displayName}} </div>
     </div>
+    <div>{{checkAnswer?.correct}}</div>
 </main>
