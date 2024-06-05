@@ -11,7 +11,7 @@ main {
     margin-right: auto;
 }
 
-h1, li {
+h1, li, input {
     text-align: center;
 }
 

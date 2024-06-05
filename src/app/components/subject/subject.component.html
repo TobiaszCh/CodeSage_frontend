@@ -5,7 +5,14 @@
     <section>
         <ul>
             <li *ngFor="let subject of subjects">
-                <a a [routerLink] = "['/courses', subject.courseId, 'subjects', subject.id, '/questions']"  >{{subject.displayName}} </a>
+                <section class="section">
+                    <div class="point"> </div>
+                    <div class="point"> </div>
+                    <div class="point"> </div>
+                    <div class="point"> </div>
+                    <div class="point"> </div>
+                </section>
+                <a (click)="startSession(subject.id)">{{subject.displayName}} </a>
             </li>
         </ul>
     </section>

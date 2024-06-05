@@ -11,13 +11,13 @@ export class QuestionService {
 
   }
 
-  public getQuestions(): Observable<Questions[]> {
-    return this.httpClienct.get<Questions[]>("http://localhost:8020/questions");
+  public getQuestions(nextQuestion: String): Observable<Question> {
+    return this.httpClienct.get<Question>("http://localhost:8020/questions/subjectId/" + nextQuestion);
   }
 
 }
 
-export interface Questions {
+export interface Question {
   id: number;
   displayName: string;
   answers: Answer[];
@@ -27,3 +27,4 @@ export interface Answer {
   displayName: string;
   correct: boolean;
 }
+

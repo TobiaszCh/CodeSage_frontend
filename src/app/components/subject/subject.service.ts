@@ -12,8 +12,12 @@ export class SubjectService {
   }
 
  public getSubject(): Observable<Subject[]> {
-   return this.httpClient.get<Subject[]>("http://localhost:8020/subjects")
+   return this.httpClient.get<Subject[]>("http://localhost:8020/subjects/courseId")
  }
+
+ public sendSubjectIdToAnswerSession(subjectId: number): Observable<any> {
+  return this.httpClient.post<any>("http://localhost:8020/questions/subjectId", {subjectId});
+}
 }
 
 export interface Subject {

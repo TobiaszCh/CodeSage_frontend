@@ -30,6 +30,20 @@ a {
     display: block;
 }
 
+.point {
+    display: flex;
+    width: 10px;
+    height: 10px;
+    border: 1px solid saddlebrown;
+    border-radius:50%;
+}
+.section {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 a:hover {
     color: white;
     background-color: saddlebrown;
