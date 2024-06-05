@@ -1,36 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { Answer, QuestionService, Questions } from './question.service';
+import { Answer, Question, QuestionService} from './question.service';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
+//zmien na AnswerSession
 export class QuestionComponent implements OnInit{
 
-  questions!: Questions[];
+  question?: Question;
   numberQuestion = 0;
-  checkAnswer: Answer | undefined
+  checkAnswer?: Answer;
+  courseId: any;
+  points = 0;
 
-  constructor(private questionService :QuestionService) {
-    
+  constructor(private questionService : QuestionService) {
   }
+
   ngOnInit(): void {
-    this.questionService.getQuestions().subscribe(value => this.questions = value);
-  }
+    //pobierz answerSession z Url
+    this.nextQuestion();
 
-  nextQuestion(): void {
-    if(this.numberQuestion < this.questions.length - 1) {
-      this.numberQuestion++;
-      this.checkAnswer = undefined;
-    }
+  }
+nextQuestion() {
+  //dodac paramentr answerSessionId
+  this.questionService.getQuestions("nextQuesion").subscribe(question => this.question = question);
+
+
+  }
+  finish(): void {
+
   }
 
   beforeQuestion(): void {
-    if(this.numberQuestion > 0) {
-      this.numberQuestion--;
-      this.checkAnswer = undefined;
 
-    }
   }
 }

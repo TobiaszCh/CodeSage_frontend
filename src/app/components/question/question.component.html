@@ -11,11 +11,11 @@
     <div class = "point"></div>
 </header>
 <main>
-    <h2>{{questions[numberQuestion].displayName}}</h2>
-    <ul *ngFor="let answer of questions[numberQuestion].answers">
+    <h2>{{question?.displayName}}</h2>
+    <ul *ngFor="let answer of question?.answers">
         <li>
             <form>
-                <input type="radio" name="a" [value] = "answer" [(ngModel)] = "checkAnswer">
+                <input type="radio" name = "a" [value] = "answer" [(ngModel)] = "checkAnswer">
                 {{answer.displayName}}
             </form>
         </li>
@@ -24,10 +24,11 @@
         <button class="button1" (click)="beforeQuestion()">
             Wstecz
         </button>
-    <div>{{numberQuestion}}/10</div>
+    <div>{{numberQuestion + 1}}/10</div>
         <button class="button1"  (click)="nextQuestion()">
             Dalej
         </button>
     </div>
     <div>{{checkAnswer?.correct}}</div>
+    <div>{{points}}</div>
 </main>

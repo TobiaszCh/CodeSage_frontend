@@ -9,6 +9,7 @@ import { CourseService, Courses} from './course.service';
 export class CourseComponent implements OnInit {
 
   courses: Courses[] = [];
+  phrase!: string;
 
   constructor(private courseService: CourseService) {
   }
@@ -17,4 +18,15 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourse().subscribe(value =>
        this.courses = value)
   }
-}
+
+  sendPhrase() {
+    this.courseService.sendPhrase(this.phrase);
+  }
+
+  sendCourseId(courseId: number) {
+    this.courseService.postCourseId(courseId).subscribe();
+    };
+  }
+
+
+

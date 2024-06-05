@@ -10,6 +10,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { AnswerComponent } from './components/answer/answer.component';
 import { UserSubjectComponent } from './components/user-subject/user-subject.component';
 import { FormsModule } from '@angular/forms';
+import { AnswerSessionComponent } from './components/answer-session/answer-session.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,16 @@ import { FormsModule } from '@angular/forms';
     LevelComponent,
     QuestionComponent,
     AnswerComponent,
-    UserSubjectComponent
+    UserSubjectComponent,
+    AnswerSessionComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
