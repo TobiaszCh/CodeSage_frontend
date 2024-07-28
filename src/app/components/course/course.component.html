@@ -4,7 +4,7 @@
 <main>
     <ul>
         <li *ngFor="let course of courses">
-            <a (click)="sendCourseId(course.id)" routerLink = "/subjects"> {{course.displayName}} </a>
+            <a (click)="nextTemplete(course.id)"> {{course.displayName}} </a>
         </li>
     </ul>
     <input [(ngModel)]="phrase" (ngModelChange)="sendPhrase()">
