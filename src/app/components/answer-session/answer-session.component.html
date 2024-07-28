@@ -1,12 +1,36 @@
-<div class="modal-background">
-  <div class="modal-container">
-    <section>
-      <h1>Czy chcesz zacząć Kurs?</h1>
-    </section>
-    <section class="modal-buttons">
-      <a [routerLink]="['/subjects', 9, 'levels', 33, 'questions']" class="modal-button">Tak</a>
-      <a [routerLink]="['/subjects']" class="modal-button">Nie</a>
-    </section>
-  </div>
-</div>
- 
+<header>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+    <div class="point"></div>
+</header>
+<main>
+    <h2>{{question?.displayName}}</h2>
+    <ul>
+        <li *ngFor="let answer of question?.answers">
+            <form>
+                <input type="radio" name="a" [value]="answer" [disabled]="blockAnswer" [(ngModel)]="checkAnswer">
+                {{answer?.displayName}}
+            </form>
+        </li>
+    </ul>
+    <div class="div-button">
+        <button class="button1" (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer!.id)" *ngIf="blockCheck">
+            Sprawdź
+        </button>
+        <button class="button1" (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">
+            Dalej
+        </button>
+        <button class="button1" (click)="nextTemplete()" *ngIf="blockEnd">
+            Zakończ
+        </button>
+    </div>
+    <div class="div-good-answer" *ngIf="showMeInform">{{informForUser()}} </div>
+    <div>{{checkAnswer?.id}}</div>
+</main>

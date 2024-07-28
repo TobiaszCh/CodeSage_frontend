@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AnswerSessionComponent } from './answer-session.component';
 
-describe('AnswerSessionComponent', () => {
+describe('QuestionComponent', () => {
   let component: AnswerSessionComponent;
   let fixture: ComponentFixture<AnswerSessionComponent>;
 
