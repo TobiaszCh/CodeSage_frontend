@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Answer, Question, AnswerSessionService } from './answer-session.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,6 +19,7 @@ export class AnswerSessionComponent implements OnInit {
   blockNext = false;
   blockCheck = true;
   blockEnd = false
+  hasUnsavedChanges = true;
  
 
   constructor(private answerSessionService: AnswerSessionService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -38,7 +39,9 @@ export class AnswerSessionComponent implements OnInit {
       this.showMeInform = false
       this.blockNext = false
       this.blockCheck = true
-      this.blockAnswer = false}
+      this.blockAnswer = false
+    
+    }
     
     else {
       this.blockNext = false;
@@ -76,6 +79,14 @@ export class AnswerSessionComponent implements OnInit {
       return ""
     }
   }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification(event: BeforeUnloadEvent) {
+    if (this.hasUnsavedChanges) {
+      event.preventDefault();
+    }
+  }
+  
 }
 
 
