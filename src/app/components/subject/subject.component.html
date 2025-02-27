@@ -1,11 +1,11 @@
 <header>
-    <h1>Kurs Java - podstawy</h1>
+    <h1>Kurs {{titleFromCourse.displayName}} - podstawy</h1>
 </header>
 <main>
     <section>
         <ul>
-            <li *ngFor="let subject of subjects">
-                <a (click)="startSession(subject.id)">{{subject.displayName}} </a>
+            <li *ngFor="let subject of subjects" >
+                <a [ngClass]="color(subject.id)" (click)="startSession(subject.id)">{{subject.displayName}} </a>
             </li>
         </ul>
     </section>

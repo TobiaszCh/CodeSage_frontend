@@ -14,14 +14,14 @@
     <h2>{{question?.displayName}}</h2>
     <ul>
         <li *ngFor="let answer of question?.answers">
-            <form>
-                <input type="radio" name="a" [value]="answer" [disabled]="blockAnswer" [(ngModel)]="checkAnswer">
+            <label>
+                <input type="radio" name="a" [value]="answer.id" [(ngModel)]="checkAnswer" [disabled]="blockAnswer" />
                 {{answer?.displayName}}
-            </form>
+            </label>
         </li>
     </ul>
     <div class="div-button">
-        <button class="button1" (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer!.id)" *ngIf="blockCheck">
+        <button class="button1" (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer)" *ngIf="blockCheck">
             Sprawdź
         </button>
         <button class="button1" (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">
@@ -32,4 +32,5 @@
         </button>
     </div>
     <div class="div-good-answer" *ngIf="showMeInform">{{informForUser()}} </div>
+
 </main>

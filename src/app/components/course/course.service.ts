@@ -17,11 +17,7 @@ export class CourseService {
     return this.httpClient.get<Courses[]>("http://localhost:8020/courses")
   }
 
-  public postCourseId(courseId: number): Observable<any> {
-    return this.httpClient.post<any>("http://localhost:8020/subjects/courseId", {courseId});
-  }
   
-
   sendPhrase(phrase: string) {
     this.phrase = phrase;
   }

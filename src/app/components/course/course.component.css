@@ -7,8 +7,8 @@ main {
     margin-bottom: 300px;
     margin-top: 50px;
     width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+
 }
 
 h1, li, input {
@@ -26,6 +26,7 @@ li {
 }
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 li:hover {
