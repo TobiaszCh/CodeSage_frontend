@@ -12,27 +12,23 @@ export class AnswerSessionService {
   }
 
   public getQuestions(answerSessionId: number): Observable<Question> {
+    console.log(answerSessionId)
     return this.httpClient.get<Question>("http://localhost:8020/questions/answerSessionId/" + answerSessionId);
   }
 
   public selectQuestionAnswer(answerSessionId: number, questionId: number, answerId: number): Observable<number> {
     const questionAnswerSelectDto: QuestionAnswerSelectDto = {
-      id: answerSessionId,
       questionId: questionId,
       answerId: answerId
     };
-    return this.httpClient.put<number>("http://localhost:8020/answer-session/selectQuestionAnswer/" + questionAnswerSelectDto.id,  questionAnswerSelectDto);
+    //console.log(answerSessionId);
+    //console.log(questionId);
+    console.log(answerId);
+    return this.httpClient.put<number>("http://localhost:8020/answer-session/selectQuestionAnswer/" + answerSessionId,  questionAnswerSelectDto);
   }
 
-  public updateAnswerSessionStatus(answerSessionId: number): Observable<AnswerSessionStatusIdDto> {
-    const answerSessionStatusIdDto: AnswerSessionStatusIdDto = {
-      id: answerSessionId
-    }
-    console.log("Updating answer session status for ID in service:", answerSessionId);
-    console.log("Updating answer session status for ID in service Object:", answerSessionStatusIdDto.id);
-    console.log(answerSessionStatusIdDto);
-    return this.httpClient.put<AnswerSessionStatusIdDto>("http://localhost:8020/answer-session/updateStatus/" + answerSessionStatusIdDto.id, answerSessionStatusIdDto);
-
+  public updateAnswerSessionStatus(answerSessionId: number, answerSessionStatusIdDto?: AnswerSessionStatusIdDto) {
+     this.httpClient.put<number>("http://localhost:8020/answer-session/updateStatus/" + answerSessionId, answerSessionStatusIdDto).subscribe();
   }
 }
 
@@ -56,7 +52,6 @@ export interface Answer {
 }
 
 export interface QuestionAnswerSelectDto {
-  id: number,
   questionId: number,
   answerId: number
 }

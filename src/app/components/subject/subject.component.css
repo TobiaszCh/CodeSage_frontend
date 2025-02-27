@@ -28,6 +28,7 @@ a {
     border-radius: 100%;
     text-decoration: none;
     display: block;
+    cursor: pointer;
 }
 
 .point {
@@ -48,3 +49,12 @@ a:hover {
     color: white;
     background-color: green;
 }
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+

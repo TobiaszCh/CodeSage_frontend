@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AnswerSessionComponent implements OnInit {
 
   question?: Question;
-  checkAnswer?: Answer;
+  checkAnswer!: number;
   answerSessionId!: number;
   correctAnswerId?: number;
   blockAnswer = false;
@@ -52,7 +52,7 @@ export class AnswerSessionComponent implements OnInit {
 
   }
 
-  selectQuestionAnswer(answerSessionId: number, questionId: number, answerId: number): void {
+  selectQuestionAnswer(answerSessionId: number, questionId: number, answerId: number) {
     this.answerSessionService.selectQuestionAnswer(answerSessionId, questionId, answerId).subscribe(correctAnswerId =>
       this.correctAnswerId = correctAnswerId);
     this.showMeInform = true
@@ -70,39 +70,33 @@ export class AnswerSessionComponent implements OnInit {
 
 
   informForUser(): String {
-    if (this.checkAnswer?.id === this.correctAnswerId) {
-      return "This response was correct :)"
-    }
-    else if (this.checkAnswer?.id !== this.correctAnswerId) {
-      return "This response wasn't correct. Correct answer is: " + this.question?.answers
-        .filter(idAnswer => idAnswer.id == this.correctAnswerId).map(response => response.displayName).join();
+    let informAboutResponse: string;
+    if (this.checkAnswer === this.correctAnswerId) {
+      informAboutResponse = "This response was correct :)";
+      
     }
     else {
-      return ""
+      informAboutResponse = "This response wasn't correct. Correct answer is: " + this.question?.answers
+      .filter(idAnswer => idAnswer.id == this.correctAnswerId).map(response => response.displayName).join();
     }
+    return informAboutResponse;
   }
 
 
   @HostListener('window:beforeunload', ['$event'])
-  beforeUnloadHandler(event: BeforeUnloadEvent) {
+  beforeUnloadHandler(event: BeforeUnloadEvent): void {
     event.preventDefault();
-  }
-
-  @HostListener('window:unload') 
-  unloadHandler(): void {
     this.updateAnswerSessionStatus(this.answerSessionId);
-    
   }
-
 
   @HostListener('window:popstate')
   stoppedBackAndForth(): void {
-    confirm("Wpowadzone zmiany mogą nie zostać zapisane :(")
+    confirm("Wpowadzone zmiany nie zostać zapisane :(")
     this.updateAnswerSessionStatus(this.answerSessionId);
   }
 
   updateAnswerSessionStatus(answerSessionId: number): void {
-    this.answerSessionService.updateAnswerSessionStatus(answerSessionId).subscribe();
+    this.answerSessionService.updateAnswerSessionStatus(answerSessionId);
 
   }
 

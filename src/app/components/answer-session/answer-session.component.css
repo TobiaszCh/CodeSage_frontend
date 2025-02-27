@@ -36,6 +36,10 @@ header {
     justify-content: space-around;
 }
 
+label {
+    cursor: pointer;
+}
+
 .point {
     width: 10px;
     height: 10px;
@@ -43,6 +47,7 @@ header {
     border-radius:50%;
 }
 .button1 {
+    cursor: pointer;
     width: 100px;
     height: 20px;
 }
