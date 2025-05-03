@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CourseComponent } from "./components/course/course.component";
 import { SubjectComponent } from "./components/subject/subject.component";
 import { AnswerSessionComponent } from "./components/answer-session/answer-session.component";
+import { LoginComponent } from "./components/login/login.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'courses', component: CourseComponent },
     { path: 'courses/:courseId', component: SubjectComponent},
     { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent},
+    { path: 'login', component: LoginComponent},
     { path: '', redirectTo: 'courses', pathMatch: 'full' }
   ];
   

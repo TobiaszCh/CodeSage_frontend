@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SubjectComponent implements OnInit {
 
   subjects: Subject[] = [];
-  titleFromCourse!: Course;
+  titleFromCourse?: Course;
   checkCompletedSessions: CheckCompletedSessions[] = [];
   answerSessionId!: AnswerSession;
 
