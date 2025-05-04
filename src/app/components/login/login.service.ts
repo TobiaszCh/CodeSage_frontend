@@ -17,7 +17,7 @@ export class LoginService {
       password: password
     }
     console.info(userDto.password, userDto.username);
-    return this.http.post("http://localhost:8020/api/login", userDto, {withCredentials: true});
+    return this.http.post("http://localhost:8020/api/login", userDto);
   
   }
   
