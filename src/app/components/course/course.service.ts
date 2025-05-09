@@ -14,7 +14,7 @@ export class CourseService {
    }
 
   public getCourse(): Observable<Courses[]> {
-    return this.httpClient.get<Courses[]>("http://localhost:8020/courses", {withCredentials: true})
+    return this.httpClient.get<Courses[]>("http://localhost:8020/courses");
   }
   
   sendPhrase(phrase: string) {

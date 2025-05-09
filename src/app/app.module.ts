@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseComponent } from './components/course/course.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SubjectComponent } from './components/subject/subject.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AnswerSessionComponent } from './components/answer-session/answer-session.component';
 import { LoginComponent } from './components/login/login.component';
+import { CredentialsInterceptor } from './credentials.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,11 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CredentialsInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

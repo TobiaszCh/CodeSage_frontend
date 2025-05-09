@@ -12,7 +12,7 @@ export class SubjectService {
   }
 
   public getSubject(courseId: number): Observable<Subject[]> {
-    return this.httpClient.get<Subject[]>("http://localhost:8020/subjects/" + courseId, {withCredentials: true});
+    return this.httpClient.get<Subject[]>("http://localhost:8020/subjects/" + courseId);
   }
 
   public sendSubjectIdToAnswerSession(subjectId: number): Observable<number> {
@@ -20,15 +20,15 @@ export class SubjectService {
       id: subjectId
     }
     console.log(subjectIdToAnswerSessionDto.id)
-    return this.httpClient.post<number>("http://localhost:8020/answer-session/subjectId", subjectIdToAnswerSessionDto, {withCredentials: true});
+    return this.httpClient.post<number>("http://localhost:8020/answer-session/subjectId", subjectIdToAnswerSessionDto);
   }
 
   public getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId: number): Observable<CheckCompletedSessions[]> {
-    return this.httpClient.get<CheckCompletedSessions[]>("http://localhost:8020/subjects/correctAnswersAtLeast80Percent/" + courseId, {withCredentials: true});
+    return this.httpClient.get<CheckCompletedSessions[]>("http://localhost:8020/subjects/correctAnswersAtLeast80Percent/" + courseId);
   }
 
   public getCourseById(courseId: number): Observable<Course> {
-    return this.httpClient.get<Course>("http://localhost:8020/courses/search/" + courseId, {withCredentials: true});
+    return this.httpClient.get<Course>("http://localhost:8020/courses/search/" + courseId);
   }
 }
 
