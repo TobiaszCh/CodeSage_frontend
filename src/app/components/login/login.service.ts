@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-    urlToLog: String = ""
+    private baseUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) { }
 
@@ -17,7 +18,7 @@ export class LoginService {
       password: password
     }
     console.info(userDto.password, userDto.username);
-    return this.http.post("http://localhost:8020/api/login", userDto);
+    return this.http.post(`${this.baseUrl}/api/login`, userDto);
   
   }
   
