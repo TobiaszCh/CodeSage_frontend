@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnswerSessionService {
 
-  constructor(private httpClient: HttpClient) { 
+  private baseUrl = environment.apiUrl;
+
+  constructor(private httpClient: HttpClient) {
 
   }
 
   public getQuestions(answerSessionId: number): Observable<Question> {
-    console.log(answerSessionId)
-    return this.httpClient.get<Question>("http://localhost:8020/questions/answerSessionId/" + answerSessionId);
+    return this.httpClient.get<Question>(`${this.baseUrl}/questions/answerSessionId/${answerSessionId}`);
   }
 
   public selectQuestionAnswer(answerSessionId: number, questionId: number, answerId: number): Observable<number> {
@@ -21,16 +23,13 @@ export class AnswerSessionService {
       questionId: questionId,
       answerId: answerId
     };
-    //console.log(answerSessionId);
-    //console.log(questionId);
-    console.log(answerId);
-    return this.httpClient.put<number>("http://localhost:8020/answer-session/selectQuestionAnswer/" + answerSessionId,  questionAnswerSelectDto);
+    return this.httpClient.put<number>(`${this.baseUrl}/answer-session/selectQuestionAnswer/${answerSessionId}`, questionAnswerSelectDto);
   }
 
   public updateAnswerSessionStatus(answerSessionId: number, answerSessionStatusIdDto?: AnswerSessionStatusIdDto) {
-     this.httpClient.put<number>("http://localhost:8020/answer-session/updateStatus/" + answerSessionId, answerSessionStatusIdDto).subscribe();
+    this.httpClient.put<number>(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto).subscribe();
 
-}
+  }
 }
 
 export interface AnswerSession {
@@ -56,6 +55,7 @@ export interface QuestionAnswerSelectDto {
   questionId: number,
   answerId: number
 }
+
 export interface AnswerSessionStatusIdDto {
   id: number
 }
