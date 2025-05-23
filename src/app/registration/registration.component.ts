@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -9,6 +10,10 @@ export class RegistrationComponent {
   username: string = "";
   password: string = "";
   passwordRepeat!: string;
+
+  constructor(private registrationService: RegistrationService) {
+
+  }
 
   public signsMoreThenSevenButLessThenfifteenInPassword(): boolean {
     return 7 < this.password.length && this.password.length < 15;
@@ -30,6 +35,20 @@ export class RegistrationComponent {
     && this.onlyLettersInUsername()
     && this.password == this.passwordRepeat;
   }
+
+  public sendRegisterDetails(): void {
+    this.registrationService.sendRegisterDetails(this.username, this.password, this.passwordRepeat).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
+
+  }
+
+
 
 
 

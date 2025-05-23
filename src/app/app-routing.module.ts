@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'courses/:courseId', component: SubjectComponent},
     { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'registration', component: RegistrationComponent},
+    { path: 'register', component: RegistrationComponent},
     { path: '', redirectTo: 'courses', pathMatch: 'full' }
   ];
   

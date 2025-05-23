@@ -12,12 +12,11 @@ export class LoginService {
 
     constructor(private http: HttpClient) { }
 
-  public sendDatesLogs(username: String, password: String): Observable<any> {
+  public sendDatesLogs(username: string, password: string): Observable<any> {
     const userDto: UserDto = {
       username: username,
       password: password
     }
-    console.info(userDto.password, userDto.username);
     return this.http.post(`${this.baseUrl}/api/login`, userDto);
   
   }

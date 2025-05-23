@@ -1,7 +1,7 @@
 <form autocomplete="off">
     <h1>Rejestracja</h1> 
     <div>
-        <label>Użytkownik</label>
+        <label>Login</label>
         <input type="text" name="username" [(ngModel)] = "username"/>
     </div>
     <div>
@@ -12,9 +12,9 @@
         <label>Powtórz hasło</label>
         <input type="password" name = "password" [(ngModel)] = "passwordRepeat"/>
     </div>
-    <div><span> {{signsMoreThenSevenButLessThenfifteenInPassword() ? "✅" : "❌"}} </span>Hasło musi mieć przynajmniej 8 znaków, ale nie więcej niż 15</div>
-    <div><span> {{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span>Hasło musi mieć przynajmniej 1 dużą literę i znak specjalny</div>
-    <div><span>{{onlyLettersInUsername() ? "✅" : "❌"}}</span>Login może zawierać tylko litery bez znaków diakrytycznych, cyfry, myślnik I podłogę </div>
-    <div><span>{{activeRegistration() ? "✅" : "❌"}}</span>Po odpowiednim wypełnieniu formularza oraz właściwym powtórzeniu hasła pojawi się przycisk rejestracji</div>
-    <button *ngIf = "activeRegistration()"> Zarejestruj </button>
+    <div><span>{{signsMoreThenSevenButLessThenfifteenInPassword() ? "✅" : "❌"}} </span> Hasło musi mieć przynajmniej 8 znaków, ale nie więcej niż 15</div>
+    <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 1 dużą literę i znak specjalny</div>
+    <div><span>{{onlyLettersInUsername() ? "✅" : "❌"}}</span> Login może zawierać tylko litery bez znaków diakrytycznych, cyfry, myślnik I podłogę </div>
+    <div><span>{{activeRegistration() ? "✅" : "❌"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym powtórzeniu hasła pojawi się przycisk rejestracji</div>
+    <button *ngIf = "activeRegistration()" (click) = "sendRegisterDetails()"> Zarejestruj </button>
 </form>

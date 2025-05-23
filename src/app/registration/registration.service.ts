@@ -1,9 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
 
-  constructor() { }
+  private baseUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
+
+  public sendRegisterDetails(username: string, password: string, passwordRepeat: string): Observable<any> {
+    const userRegisterDto: UserRegisterDto = {
+      username: username,
+      password: password,
+      passwordRepeat: passwordRepeat
+    }
+    return this.http.post(`${this.baseUrl}/register`, userRegisterDto);
+  }
+}
+
+export interface UserRegisterDto {
+  username: string;
+  password: string;
+  passwordRepeat: string;
 }
