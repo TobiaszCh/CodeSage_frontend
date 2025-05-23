@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CourseComponent } from './components/course/course.component';
+import { CourseComponent } from './course/course.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { SubjectComponent } from './components/subject/subject.component';
+import { SubjectComponent } from './subject/subject.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AnswerSessionComponent } from './components/answer-session/answer-session.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { CredentialsInterceptor } from './credentials.interceptor';
+import { AnswerSessionComponent } from './answer-session/answer-session.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CredentialsInterceptor } from './credentials.interceptor';
     SubjectComponent,
     AnswerSessionComponent,
     LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     HttpClientModule,

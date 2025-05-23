@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CourseComponent } from "./components/course/course.component";
-import { SubjectComponent } from "./components/subject/subject.component";
-import { AnswerSessionComponent } from "./components/answer-session/answer-session.component";
-import { LoginComponent } from "./components/login/login.component";
+import { CourseComponent } from "./course/course.component";
+import { SubjectComponent } from "./subject/subject.component";
+import { AnswerSessionComponent } from "./answer-session/answer-session.component";
+import { LoginComponent } from "./login/login.component";
+import { RegistrationComponent } from "./registration/registration.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'courses/:courseId', component: SubjectComponent},
     { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent},
     { path: 'login', component: LoginComponent},
+    { path: 'registration', component: RegistrationComponent},
     { path: '', redirectTo: 'courses', pathMatch: 'full' }
   ];
   
