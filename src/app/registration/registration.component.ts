@@ -9,7 +9,9 @@ import { RegistrationService } from './registration.service';
 export class RegistrationComponent {
   username: string = "";
   password: string = "";
-  passwordRepeat!: string;
+  repeatedPassword: string = "";
+  response: string = ""
+  error: string = ""
 
   constructor(private registrationService: RegistrationService) {
 
@@ -25,32 +27,27 @@ export class RegistrationComponent {
     return hasUpperCase && hasSpecialChar;
   }
   public onlyLettersInUsername(): boolean {
-    const letters = /^[A-Za-z]+$/.test(this.username);
+    const letters = /^[0-9A-Za-z_-]+$/.test(this.username);
     return letters;
   }
 
   public activeRegistration(): boolean {
     return this.signsMoreThenSevenButLessThenfifteenInPassword()
-    && this.atLeastOneUpperLetterAndSpecialInPassword()
-    && this.onlyLettersInUsername()
-    && this.password == this.passwordRepeat;
+      && this.atLeastOneUpperLetterAndSpecialInPassword()
+      && this.onlyLettersInUsername()
+      && this.password == this.repeatedPassword;
   }
 
   public sendRegisterDetails(): void {
-    this.registrationService.sendRegisterDetails(this.username, this.password, this.passwordRepeat).subscribe({
-      next: (response) => {
-        console.log(response);
+    this.registrationService.sendRegisterDetails(this.username.trim(), this.password, this.repeatedPassword).subscribe({
+      next: response => {
+        this.error = "";
+        this.response = response.message;
       },
-      error: (error) => {
-        console.log(error);
+      error: error => {
+        this.response = "";
+        this.error = error.error.message;
       }
     })
-
   }
-
-
-
-
-
-
 }

@@ -13,17 +13,17 @@ export class LoginService {
     constructor(private http: HttpClient) { }
 
   public sendDatesLogs(username: string, password: string): Observable<any> {
-    const userDto: UserDto = {
+    const userDto: LoginDto = {
       username: username,
       password: password
     }
-    return this.http.post(`${this.baseUrl}/api/login`, userDto);
+    return this.http.post(`${this.baseUrl}/login`, userDto);
   
   }
   
 }
 
-export interface UserDto {
+export interface LoginDto {
   username: String;
   password: String
 }

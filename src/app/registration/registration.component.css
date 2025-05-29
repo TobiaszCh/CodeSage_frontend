@@ -21,7 +21,7 @@ form input {
     box-sizing: border-box;
     width: 300px;
     height: 30px;
-    border-radius: 10px;     
+    border-radius: 10px;
 }
 
 form button {
@@ -33,7 +33,7 @@ form button {
     padding-inline: 0px;
     background-color: black;
     cursor: pointer;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 form button:hover {
@@ -42,4 +42,12 @@ form button:hover {
 
 form input:focus {
     background-color: rgb(216, 211, 211);
+}
+
+.error {
+    color: red;
+}
+
+.response {
+    color: rgb(3, 177, 3);
 }

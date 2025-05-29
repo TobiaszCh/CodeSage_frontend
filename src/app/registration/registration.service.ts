@@ -12,11 +12,11 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) { }
 
-  public sendRegisterDetails(username: string, password: string, passwordRepeat: string): Observable<any> {
+  public sendRegisterDetails(username: string, password: string, repeatedPassword: string): Observable<any> {
     const userRegisterDto: UserRegisterDto = {
       username: username,
       password: password,
-      passwordRepeat: passwordRepeat
+      repeatedPassword: repeatedPassword
     }
     return this.http.post(`${this.baseUrl}/register`, userRegisterDto);
   }
@@ -25,5 +25,5 @@ export class RegistrationService {
 export interface UserRegisterDto {
   username: string;
   password: string;
-  passwordRepeat: string;
+  repeatedPassword: string;
 }
