@@ -1,0 +1,53 @@
+form {
+    border-radius: 10px;
+    border: 1px solid;
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 5%;
+    box-shadow: 0px 4px 15px rgb(0, 0, 0);
+
+}
+
+form h1 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+form input {
+    box-sizing: border-box;
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+form button {
+    box-sizing: border-box;
+    color: white;
+    width: 300px;
+    height: 30px;
+    margin-top: 20px;
+    padding-inline: 0px;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+form button:hover {
+    background-color: rgb(28, 59, 59);
+}
+
+form input:focus {
+    background-color: rgb(216, 211, 211);
+}
+
+.error {
+    color: red;
+}
+
+.response {
+    color: rgb(3, 177, 3);
+}

@@ -1,0 +1,26 @@
+<form autocomplete="off">
+    <h1>Rejestracja</h1>
+    <div class="error" *ngIf="error">{{error}}</div>
+    <div class="response" *ngIf="response">{{response}}</div>
+    <div>
+        <label>Login</label>
+        <input type="text" name="username" [(ngModel)]="username" />
+    </div>
+    <div>
+        <label>Hasło</label>
+        <input type="password" name="password" [(ngModel)]="password" />
+    </div>
+    <div>
+        <label>Powtórz hasło</label>
+        <input type="password" name="password" [(ngModel)]="repeatedPassword" />
+    </div>
+    <div><span>{{signsMoreThenSevenButLessThenfifteenInPassword() ? "✅" : "❌"}} </span> Hasło musi mieć przynajmniej 8
+        znaków, ale nie więcej niż 15</div>
+    <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 1 dużą
+        literę i znak specjalny</div>
+    <div><span>{{onlyLettersInUsername() ? "✅" : "❌"}}</span> Login może zawierać tylko litery, cyfry, myślnik i podłogę
+        bez znaków diakrytycznych.</div>
+    <div><span>{{activeRegistration() ? "✅" : "❌"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
+        powtórzeniu hasła pojawi się przycisk rejestracji</div>
+    <button *ngIf="activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
+</form>
