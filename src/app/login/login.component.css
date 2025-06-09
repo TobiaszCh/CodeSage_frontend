@@ -43,3 +43,7 @@ form button:hover {
 form input:focus {
     background-color: rgb(216, 211, 211);
 }
+
+.error {
+    color: red;
+}

@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegistrationComponent},
-    { path: '', redirectTo: 'courses', pathMatch: 'full' }
+    { path: '', redirectTo: 'login', pathMatch: 'full' }
   ];
   
   @NgModule({
