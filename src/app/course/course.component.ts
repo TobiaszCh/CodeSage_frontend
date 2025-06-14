@@ -1,5 +1,5 @@
-import { Component, OnInit  } from '@angular/core';
-import { CourseService, Courses} from './course.service';
+import { Component, OnInit } from '@angular/core';
+import { CourseService, Courses } from './course.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,25 +11,39 @@ import { Router } from '@angular/router';
 export class CourseComponent implements OnInit {
 
   courses: Courses[] = [];
-  phrase!: string;
+  phrase: string = "";
 
   constructor(private courseService: CourseService, private router: Router) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.courseService.getCourses().subscribe(value =>
-       this.courses = value)
+      this.courses = value)
   }
 
-  nextTemplete(courseId: number): void {
+  public logout(): void {
+    this.courseService.logout().subscribe({
+      next: response => {
+        console.log(response.message);
+        this.router.navigate(["/login"]);
+      
+      },
+      error: error => {
+        console.log(error.error.message);
+      }
+    })
+
+  }
+
+  public nextTemplete(courseId: number): void {
     this.router.navigate(['/courses', courseId]);
   }
 
-  sendPhrase() {
+  public sendPhrase(): void {
     this.courseService.sendPhrase(this.phrase);
   }
-  
-  }
+
+}
 
 
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +8,9 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username!: string;
-  password!: string;
+  username: string = "";
+  password: string = "";
+  error: string = ""
 
   constructor(private loginService: LoginService, private router: Router) {
 
@@ -17,15 +18,20 @@ export class LoginComponent {
 
   public login(): void {
     this.loginService.sendDatesLogs(this.username, this.password).subscribe({
-      next: () => {
-      console.info("Zalogowano poprawnie");
-      this.router.navigate(['/courses']);
+      next: (response) => {
+        console.info(response.message);
+        this.router.navigate(['/courses']);
       },
-      error: (err) => {
-        console.error("Błąd w logowaniu", err)
+      error: (error) => {
+        this.error = "";
+        this.error = error.error.message;
       }
-  });
-    
+    });
+
+  }
+
+  public goToRegistration(): void {
+    this.router.navigate(["/register"]);
   }
 
 }

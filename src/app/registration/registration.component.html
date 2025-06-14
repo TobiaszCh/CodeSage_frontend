@@ -18,9 +18,10 @@
         znaków, ale nie więcej niż 15</div>
     <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 1 dużą
         literę i znak specjalny</div>
-    <div><span>{{onlyLettersInUsername() ? "✅" : "❌"}}</span> Login może zawierać tylko litery, cyfry, myślnik i podłogę
+    <div><span>{{lettersWithDashAndFloorInUsername() ? "✅" : "❌"}}</span> Login może zawierać tylko litery, cyfry, myślnik i podłogę
         bez znaków diakrytycznych.</div>
     <div><span>{{activeRegistration() ? "✅" : "❌"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
         powtórzeniu hasła pojawi się przycisk rejestracji</div>
-    <button *ngIf="activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
+    <button *ngIf="activeRegistration() && !activeLoginButton" (click)="sendRegisterDetails()"> Zarejestruj </button>
+    <button *ngIf="activeLoginButton" (click)="goToLogin()"> Logowanie </button>
 </form>

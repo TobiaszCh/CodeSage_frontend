@@ -8,7 +8,7 @@ import { environment } from 'src/enviroments/environment';
 })
 export class CourseService {
 
-  phrase?: string = "";
+  phrase: string = "";
   private baseUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient ) {
@@ -18,6 +18,10 @@ export class CourseService {
   public getCourses(): Observable<Courses[]> {
     console.log(this.baseUrl);
     return this.httpClient.get<Courses[]>(`${this.baseUrl}/courses`);
+  }
+
+  public logout(): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/logout`, {});
   }
   
   sendPhrase(phrase: string) {
