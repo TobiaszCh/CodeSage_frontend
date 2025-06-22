@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RegistrationService } from './registration.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-registration',
@@ -11,27 +14,32 @@ export class RegistrationComponent {
   username: string = "";
   password: string = "";
   repeatedPassword: string = "";
-  response: string = "";
   error: string = "";
   activeLoginButton: boolean = false;
-  static ADD_INFO_ABOUT_CORRECT_REGISTRATION: string = ". Proszę przejść do logowania";
 
-
-
-  constructor(private registrationService: RegistrationService, private router: Router) {
-
+  constructor(private registrationService: RegistrationService, private router: Router, private loginService: LoginService,
+    private toastr: ToastrService) {
+      
   }
 
   public sendRegisterDetails(): void {
     this.registrationService.sendRegisterDetails(this.username.trim(), this.password, this.repeatedPassword).subscribe({
       next: response => {
-        this.response = response.message + RegistrationComponent.ADD_INFO_ABOUT_CORRECT_REGISTRATION;
-        this.activeLoginButton = true;
+        const messageToToastr = response.message;
+        this.showSuccess(messageToToastr);
+        this.loginService.sendDatesLogs(this.username, this.password).subscribe({
+          next: () => {
+            this.router.navigate(["/courses"]);
+          },
+          error: (error) => {
+            this.error = "";
+            this.error = error.error.message;
+          }
+        });
         this.error = "";
       },
       error: error => {
         this.error = error.error.message;
-        this.response = "";
       }
     })
   }
@@ -51,15 +59,15 @@ export class RegistrationComponent {
     return letters;
   }
 
-  public goToLogin(): void {
-    this.router.navigate(["/login"]);
-  }
-
   public activeRegistration(): boolean {
     return this.signsMoreThenSevenButLessThenfifteenInPassword()
       && this.atLeastOneUpperLetterAndSpecialInPassword()
       && this.lettersWithDashAndFloorInUsername()
       && this.password == this.repeatedPassword;
+  }
+  
+  public showSuccess(messageToToastr: string) {
+    this.toastr.success(messageToToastr, "Sukces!");
   }
 
 }

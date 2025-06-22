@@ -18,9 +18,7 @@ export class LoginService {
       password: password
     }
     return this.http.post(`${this.baseUrl}/login`, userDto);
-  
   }
-  
 }
 
 export interface LoginDto {

@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { CredentialsInterceptor } from './credentials.interceptor';
 import { AnswerSessionComponent } from './answer-session/answer-session.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,17 @@ import { RegistrationComponent } from './registration/registration.component';
     SubjectComponent,
     AnswerSessionComponent,
     LoginComponent,
-    RegistrationComponent,
+    RegistrationComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
