@@ -45,7 +45,7 @@ export class RegistrationComponent {
   }
 
   public signsMoreThenSevenButLessThenfifteenInPassword(): boolean {
-    return 7 < this.password.length && this.password.length < 15;
+    return 7 < this.password.length && this.password.length <= 100;
   }
 
   public atLeastOneUpperLetterAndSpecialInPassword(): boolean {
