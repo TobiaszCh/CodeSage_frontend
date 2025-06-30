@@ -1,0 +1,20 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/enviroments/environment";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+    private baseUrl = environment.apiUrl;
+ 
+    constructor(private http: HttpClient ) {
+    }
+
+    public amILogged(): Observable<boolean> {
+        return this.http.get<boolean>(`${this.baseUrl}/me`);
+    }
+
+}

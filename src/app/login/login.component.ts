@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent {
   username: string = "";
   password: string = "";
-  error: string = ""
+  error: string = "";
 
   constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) {
 
@@ -24,10 +24,9 @@ export class LoginComponent {
         this.router.navigate(['/courses']);
       },
       error: (error) => {
-        this.error = "";
         this.error = error.error.message;
-      }
-    });
+      },
+    }); .
   }
 
   public goToRegistration(): void {

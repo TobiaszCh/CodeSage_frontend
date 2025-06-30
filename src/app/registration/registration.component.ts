@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -32,15 +31,13 @@ export class RegistrationComponent {
             this.router.navigate(["/courses"]);
           },
           error: (error) => {
-            this.error = "";
             this.error = error.error.message;
           }
         });
-        this.error = "";
       },
       error: error => {
         this.error = error.error.message;
-      }
+      },
     })
   }
 
