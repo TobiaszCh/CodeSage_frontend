@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService, Courses } from './course.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-course',
@@ -13,7 +14,7 @@ export class CourseComponent implements OnInit {
   courses: Courses[] = [];
   phrase: string = "";
 
-  constructor(private courseService: CourseService, private router: Router) {
+  constructor(private courseService: CourseService, private router: Router, private toastr: ToastrService) {
   }
 
   public ngOnInit(): void {
@@ -24,7 +25,7 @@ export class CourseComponent implements OnInit {
   public logout(): void {
     this.courseService.logout().subscribe({
       next: response => {
-        console.log(response.message);
+        this.showSuccess(response.message);
         this.router.navigate(["/login"]);
       
       },
@@ -41,6 +42,10 @@ export class CourseComponent implements OnInit {
 
   public sendPhrase(): void {
     this.courseService.sendPhrase(this.phrase);
+  }
+
+  public showSuccess(messageToToastr: string) {
+    this.toastr.success(messageToToastr, "Sukces!");
   }
 
 }

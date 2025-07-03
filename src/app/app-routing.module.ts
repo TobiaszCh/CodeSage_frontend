@@ -5,6 +5,7 @@ import { SubjectComponent } from "./subject/subject.component";
 import { AnswerSessionComponent } from "./answer-session/answer-session.component";
 import { LoginComponent } from "./login/login.component";
 import { RegistrationComponent } from "./registration/registration.component";
+import { authGuard } from "./auth-guard/auth.guard";
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
     //SubjectComponent -> CourseDetailsComponent url: chcemy id
     // /course/5
     // /answersession/315
-    { path: 'courses', component: CourseComponent },
+    { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
     { path: 'courses/:courseId', component: SubjectComponent},
     { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent},
     { path: 'login', component: LoginComponent},
