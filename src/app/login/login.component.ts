@@ -26,7 +26,7 @@ export class LoginComponent {
       error: (error) => {
         this.error = error.error.message;
       },
-    }); .
+    }); 
   }
 
   public goToRegistration(): void {
