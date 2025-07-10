@@ -13,7 +13,7 @@ export class AuthService {
     constructor(private http: HttpClient ) {
     }
 
-    public amILogged(): Observable<boolean> {
+    public isUserLoggedIn(): Observable<boolean> {
         return this.http.get<boolean>(`${this.baseUrl}/me`);
     }
 
