@@ -14,7 +14,6 @@ export class RegistrationComponent {
   password: string = "";
   repeatedPassword: string = "";
   error: string = "";
-  activeLoginButton: boolean = false;
 
   constructor(private registrationService: RegistrationService, private router: Router, private loginService: LoginService,
     private toastr: ToastrService) {
