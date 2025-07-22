@@ -66,4 +66,8 @@ export class RegistrationComponent {
     this.toastr.success(messageToToastr, "Sukces!");
   }
 
+  public goToLogin(): void {
+    this.router.navigate(["/login"]);
+  }
+
 }
