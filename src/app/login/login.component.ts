@@ -25,6 +25,7 @@ export class LoginComponent {
       },
       error: (error) => {
         this.error = error.error.message;
+        this.password = "";
       },
     }); 
   }
