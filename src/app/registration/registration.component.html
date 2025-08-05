@@ -21,5 +21,6 @@
         bez znaków diakrytycznych.</div>
     <div><span>{{activeRegistration() ? "✅" : "❌"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
         powtórzeniu hasła pojawi się przycisk rejestracji.</div>
-    <button *ngIf="activeRegistration() && !activeLoginButton" (click)="sendRegisterDetails()"> Zarejestruj </button>
+    <button [disabled]="!activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
+    <button (click) = "goToLogin()"> Logowanie </button>
 </form>
