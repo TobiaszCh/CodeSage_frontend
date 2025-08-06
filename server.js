@@ -9,4 +9,4 @@ app.get("/*", (req, resp) => {
     resp.sendFile(__dirname+"/dist/educator_frontend/index.html");
 });
 
-app.listen(process.env.PORT || 8080); 
+app.listen(process.env.PORT || 8080);
