@@ -51,3 +51,8 @@ form input:focus {
 .response {
     color: rgb(3, 177, 3);
 }
+
+button:disabled {
+    pointer-events: none;
+    opacity: 0.3;
+}

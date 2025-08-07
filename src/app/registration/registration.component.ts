@@ -14,7 +14,6 @@ export class RegistrationComponent {
   password: string = "";
   repeatedPassword: string = "";
   error: string = "";
-  activeLoginButton: boolean = false;
 
   constructor(private registrationService: RegistrationService, private router: Router, private loginService: LoginService,
     private toastr: ToastrService) {
@@ -37,6 +36,7 @@ export class RegistrationComponent {
       },
       error: error => {
         this.error = error.error.message;
+        this.password = "";
       },
     })
   }
@@ -51,20 +51,24 @@ export class RegistrationComponent {
     return hasUpperCase && hasSpecialChar;
   }
 
-  public lettersWithDashAndFloorInUsername(): boolean {
-    const letters = /^[0-9A-Za-z_-]+$/.test(this.username);
+  public isItEmail(): boolean {
+    const letters = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$/.test(this.username);
     return letters;
   }
 
   public activeRegistration(): boolean {
     return this.signsMoreThenSevenButLessThenfifteenInPassword()
       && this.atLeastOneUpperLetterAndSpecialInPassword()
-      && this.lettersWithDashAndFloorInUsername()
+      && this.isItEmail()
       && this.password == this.repeatedPassword;
   }
   
   public showSuccess(messageToToastr: string) {
-    this.toastr.success(messageToToastr, "Sukces!");
+    this.toastr.success(messageToToastr + ". Sprawdź skrzynkę mailową!", "Sukces!");
+  }
+
+  public goToLogin(): void {
+    this.router.navigate(["/login"]);
   }
 
 }

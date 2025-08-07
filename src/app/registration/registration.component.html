@@ -2,8 +2,8 @@
     <h1>Rejestracja</h1>
     <div class="error" *ngIf="error">{{error}}</div>
     <div>
-        <label>Login</label>
-        <input type="text" name="username" [(ngModel)]="username" />
+        <label>Email</label>
+        <input type="email" name="username" [(ngModel)]="username" />
     </div>
     <div>
         <label>Hasło</label>
@@ -17,9 +17,9 @@
         znaków.</div>
     <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 1 dużą
         literę i znak specjalny.</div>
-    <div><span>{{lettersWithDashAndFloorInUsername() ? "✅" : "❌"}}</span> Login może zawierać tylko litery, cyfry, myślnik i podłogę
-        bez znaków diakrytycznych.</div>
+    <div><span>{{isItEmail() ? "✅" : "❌"}}</span> Email musi mieć przynajmniej 1 znak przed i po małpie.</div>
     <div><span>{{activeRegistration() ? "✅" : "❌"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
         powtórzeniu hasła pojawi się przycisk rejestracji.</div>
-    <button *ngIf="activeRegistration() && !activeLoginButton" (click)="sendRegisterDetails()"> Zarejestruj </button>
+    <button [disabled]="!activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
+    <button (click) = "goToLogin()"> Logowanie </button>
 </form>
