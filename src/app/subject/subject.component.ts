@@ -46,13 +46,13 @@ export class SubjectComponent implements OnInit {
   public getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId: number) {
     this.subjectService.getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId).subscribe(
       value => {
-        this.checkCompletedSessions = value
+        this.checkCompletedSessions = value;
         console.log(value);
 
       });
   }
 
-  public color(idSubject: number): String {
+  public color(idSubject: number): string {
     for (const checkCompletedSession of this.checkCompletedSessions) {
       if (checkCompletedSession.id == idSubject) {
         switch (checkCompletedSession.subjectCompletedAge) {
@@ -68,5 +68,8 @@ export class SubjectComponent implements OnInit {
     return ''
   }
 
+  public backToCourses(): void {
+    this.router.navigate(["/courses"]);
+  }
 
 }

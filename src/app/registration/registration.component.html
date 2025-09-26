@@ -13,7 +13,7 @@
         <label>Powtórz hasło</label>
         <input type="password" name="password" [(ngModel)]="repeatedPassword" />
     </div>
-    <div><span>{{signsMoreThenSevenButLessThenfifteenInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 8
+    <div><span>{{signsNoMoreThenHundredInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 8
         znaków.</div>
     <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 1 dużą
         literę i znak specjalny.</div>

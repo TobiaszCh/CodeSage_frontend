@@ -2,10 +2,14 @@
     <h1>Kursy jęzków programowania </h1>
 </header>
 <main>
-    <ul>
-        <li *ngFor="let course of courses">
-            <a (click)="nextTemplete(course.id)"> {{course.displayName}} </a>
-        </li>
+    <section>
+        <ul>
+            <li *ngFor="let course of courses">
+                <a (click)="nextTemplete(course.id)"> {{course.displayName}} </a>
+            </li>
+        </ul>
+    </section>
+    <section class="section-button">
         <button (click)="logout()">Wyloguj</button>
-    </ul>
+    </section>
 </main>
