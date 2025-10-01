@@ -40,14 +40,75 @@ label {
     cursor: pointer;
 }
 
+hr {
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.401);
+}
+
 .point {
     width: 10px;
     height: 10px;
     border: solid;
     border-radius:50%;
 }
+
 .button1 {
+    width: 100%;
+    max-width: 300px;
+    color: white;
+    margin-top: 20px;
+    padding: 7px 0px 7px 0px;
+    background-color: black;
     cursor: pointer;
-    width: 100px;
-    height: 20px;
+    border-radius: 10px;
+} 
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    animation: fadeIn 2s;
+    overflow-x: auto;
+    overflow-x: hidden;
+
+
 }
+
+.section1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 150px 0 150px 0;
+}
+
+.section2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    width: 100%;
+    max-width: 300px;
+    color: white;
+    margin-top: 20px;
+    padding: 7px 0px 7px 0px;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 10px; 
+}
+
+.emoji{
+    font-size: 100px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Question, AnswerSessionService } from './answer-session.service';
+import { Question, AnswerSessionService, AllPointsAnswerSessionDto } from './answer-session.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,16 +10,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class AnswerSessionComponent implements OnInit {
 
-  question?: Question;
+  question!: Question;
+  allPointsAnswerSessionDto!: AllPointsAnswerSessionDto;
   checkAnswer!: number;
   answerSessionId!: number;
-  correctAnswerId?: number;
+  correctAnswerId!: number;
   informAboutResponse: string = "";
   blockAnswer = false;
   showMeInform = false;
   blockNext = false;
   blockCheck = true;
   blockEnd = false;
+  showResult = false;
 
   constructor(private answerSessionService: AnswerSessionService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
@@ -33,6 +35,7 @@ export class AnswerSessionComponent implements OnInit {
 
   public nextQuestion(answerSessionId: number) {
     this.informAboutResponse = "";
+    this.getPoints(answerSessionId);
     this.answerSessionService.getQuestions(answerSessionId).subscribe(question => {
       if (question !== null) {
         this.question = question
@@ -42,7 +45,6 @@ export class AnswerSessionComponent implements OnInit {
         this.blockAnswer = false
 
       }
-
       else {
         this.blockNext = false;
         this.blockCheck = false;
@@ -60,7 +62,7 @@ export class AnswerSessionComponent implements OnInit {
       this.blockNext = true
       this.blockCheck = false
       this.blockAnswer = true
-    })
+    });
   }
 
   public nextTemplete(): void {
@@ -69,7 +71,7 @@ export class AnswerSessionComponent implements OnInit {
     this.router.navigate(['/courses']);
   }
 
-  public informForUser(): String {
+  public informForUser(): string {
     if (this.checkAnswer === this.correctAnswerId) {
       this.informAboutResponse = "Ta odpowiedź jest prawidłowa :)";
     }
@@ -95,6 +97,15 @@ export class AnswerSessionComponent implements OnInit {
   public updateAnswerSessionStatus(answerSessionId: number): void {
     this.answerSessionService.updateAnswerSessionStatus(answerSessionId);
 
+  }
+
+  public getPoints(answerSessionId:number) {
+    return this.answerSessionService.getPoints(answerSessionId).subscribe(allPointsAnswerSessionDto =>
+       this.allPointsAnswerSessionDto = allPointsAnswerSessionDto);
+  }
+
+  public outcome(): boolean {
+    return this.allPointsAnswerSessionDto?.correctAnswers/this.allPointsAnswerSessionDto?.allAnswers >= 0.8;
   }
 
 }

@@ -30,13 +30,10 @@ export class AnswerSessionService {
     this.httpClient.put<number>(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto).subscribe();
 
   }
-}
 
-export interface AnswerSession {
-  id: number,
-  userPoints: number,
-  userId: number,
-  subjectId: number
+  public getPoints(answerSessionId: number): Observable<AllPointsAnswerSessionDto> {
+    return this.httpClient.get<AllPointsAnswerSessionDto>(`${this.baseUrl}/answer-session/${answerSessionId}`);
+  }
 }
 
 export interface Question {
@@ -58,5 +55,10 @@ export interface QuestionAnswerSelectDto {
 
 export interface AnswerSessionStatusIdDto {
   id: number
+}
+
+export interface AllPointsAnswerSessionDto {
+  allAnswers: number;
+  correctAnswers: number;
 }
 
