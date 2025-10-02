@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Question, AnswerSessionService, AllPointsAnswerSessionDto } from './answer-session.service';
+import { Question, AnswerSessionService, AllPointsAnswerSession } from './answer-session.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AnswerSessionComponent implements OnInit {
 
   question!: Question;
-  allPointsAnswerSessionDto!: AllPointsAnswerSessionDto;
+  allPointsAnswerSession!: AllPointsAnswerSession;
   checkAnswer!: number;
   answerSessionId!: number;
   correctAnswerId!: number;
@@ -100,12 +100,12 @@ export class AnswerSessionComponent implements OnInit {
   }
 
   public getPoints(answerSessionId:number) {
-    return this.answerSessionService.getPoints(answerSessionId).subscribe(allPointsAnswerSessionDto =>
-       this.allPointsAnswerSessionDto = allPointsAnswerSessionDto);
+    return this.answerSessionService.getPoints(answerSessionId).subscribe(allPointsAnswerSession =>
+       this.allPointsAnswerSession = allPointsAnswerSession);
   }
 
   public outcome(): boolean {
-    return this.allPointsAnswerSessionDto?.correctAnswers/this.allPointsAnswerSessionDto?.allAnswers >= 0.8;
+    return this.allPointsAnswerSession?.correctAnswers/this.allPointsAnswerSession?.allAnswers >= 0.8;
   }
 
 }

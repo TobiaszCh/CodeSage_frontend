@@ -4,7 +4,7 @@ main,header {
 
 ul {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 75px;              
   padding: 0;
   list-style: none;  
@@ -14,8 +14,14 @@ ul {
              
 }
 
+li {
+  display: flex;
+  justify-content: center;
+}
+
 a { 
-  width: 100%;   
+  width: 100%;
+  max-width: 300px;   
   display: flex;
   justify-content: center;
   align-items: center;

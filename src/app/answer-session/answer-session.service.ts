@@ -31,8 +31,8 @@ export class AnswerSessionService {
 
   }
 
-  public getPoints(answerSessionId: number): Observable<AllPointsAnswerSessionDto> {
-    return this.httpClient.get<AllPointsAnswerSessionDto>(`${this.baseUrl}/answer-session/${answerSessionId}`);
+  public getPoints(answerSessionId: number): Observable<AllPointsAnswerSession> {
+    return this.httpClient.get<AllPointsAnswerSession>(`${this.baseUrl}/answer-session/${answerSessionId}`);
   }
 }
 
@@ -57,7 +57,7 @@ export interface AnswerSessionStatusIdDto {
   id: number
 }
 
-export interface AllPointsAnswerSessionDto {
+export interface AllPointsAnswerSession {
   allAnswers: number;
   correctAnswers: number;
 }
