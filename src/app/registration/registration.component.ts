@@ -41,7 +41,7 @@ export class RegistrationComponent {
     })
   }
 
-  public signsMoreThenSevenButLessThenfifteenInPassword(): boolean {
+  public signsNoMoreThenHundredInPassword(): boolean {
     return 7 < this.password.length && this.password.length <= 100;
   }
 
@@ -57,7 +57,7 @@ export class RegistrationComponent {
   }
 
   public activeRegistration(): boolean {
-    return this.signsMoreThenSevenButLessThenfifteenInPassword()
+    return this.signsNoMoreThenHundredInPassword()
       && this.atLeastOneUpperLetterAndSpecialInPassword()
       && this.isItEmail()
       && this.password == this.repeatedPassword;
