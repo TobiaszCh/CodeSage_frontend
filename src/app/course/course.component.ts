@@ -13,14 +13,22 @@ export class CourseComponent implements OnInit {
 
   courses: Courses[] = [];
   phrase: string = "";
+  editingId?: number;
+  changeedDisplayName?:string
+
 
   constructor(private courseService: CourseService, private router: Router, private toastr: ToastrService) {
   }
 
   public ngOnInit(): void {
+    this.getCourses();
+  }
+
+  public getCourses(): void {
     this.courseService.getCourses().subscribe(value =>
       this.courses = value)
   }
+
 
   public logout(): void {
     this.courseService.logout().subscribe({
@@ -40,12 +48,30 @@ export class CourseComponent implements OnInit {
     this.router.navigate(['/courses', courseId]);
   }
 
-  public sendPhrase(): void {
-    this.courseService.sendPhrase(this.phrase);
-  }
-
   public showSuccess(messageToToastr: string) {
     this.toastr.success(messageToToastr, "Sukces!");
+  }
+
+  public deleteCourseById(courseId: number) {
+    if(confirm("Czy na pewno chcesz usunąć ten kurs?")) {
+      this.courseService.deleteCourseById(courseId).subscribe(() => {
+        this.courses = this.courses.filter(course => course.id != courseId);
+      });
+    }
+  }
+
+  public updateCourse(courseId: number, displayName: string) {
+    this.editingId = undefined;
+    this.courseService.updateCourse(courseId, displayName).subscribe({
+      error: () => {
+        this.getCourses();
+      }
+    });
+  }
+
+  public escapeFromEdit(): void {
+    this.editingId = undefined;
+    this.getCourses();
   }
 
 }

@@ -23,9 +23,17 @@ export class CourseService {
   public logout(): Observable<any> {
     return this.httpClient.post<any>(`${this.baseUrl}/logout`, {});
   }
-  
-  sendPhrase(phrase: string) {
-    this.phrase = phrase;
+
+  public deleteCourseById(courseId: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/courses/delete/${courseId}`);
+  }
+
+  public updateCourse(courseId: number, displayName: string): Observable<any> {
+    const courses: Courses = {
+      id: courseId,
+      displayName:displayName
+    }
+    return this.httpClient.patch(`${this.baseUrl}/courses/update/${courseId}`, courses)
   }
 
 }

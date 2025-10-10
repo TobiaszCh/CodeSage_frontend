@@ -6,25 +6,30 @@ h1, li {
     text-align: center;
 }
 
-
 li {
+    position: relative;
     margin-bottom: 20px;
-    padding: 7px 0px 7px 0px;
     border: 1px solid green;
     text-decoration: none;
     list-style: none;
     border-radius: 25px;
 }
-a {
+
+a, input {
+    font: inherit;  
+    display:inline-block;
     text-decoration: none;
+    width: 100%;
+    border: none;
+    text-align: center;
+    border-radius: 25px;
+    padding: 7px 0px 7px 0px;
+}
+
+a {
     cursor: pointer;
 }
 
-li:hover {
-    color: white;
-    background-color: green;
-
-}
 ul {
     padding: 0;
     margin-bottom: 300px;
@@ -34,7 +39,7 @@ ul {
 
 }
 
-button {
+.log-out {
     width: 100%;
     max-width: 300px;
     padding: 7px 0px 7px 0px;
@@ -44,6 +49,28 @@ button {
     border-radius: 10px; 
 }
 
-button:hover {
+.log-out:hover {
     background-color: rgb(28, 59, 59);
+}
+
+span {
+    padding: 7px 0px 7px 0px;
+    position: absolute;
+    right: -70px;
+    opacity: 0;
+}
+span button {
+    background-color: white;
+    padding: auto;
+    border: 0;
+    cursor: pointer;
+}
+
+li:hover {
+    color: white;
+    background-color: green;
+}
+
+li:hover span {
+    opacity: 1;
 }
