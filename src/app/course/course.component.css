@@ -1,55 +1,76 @@
-header {
-    width: 500px;
-    margin: auto;
-}
-
-main {
-    margin-bottom: 300px;
-    margin-top: 50px;
-    width: 300px;
-    margin: auto;
-
-}
-
-h1, li, input {
+main, header {
     text-align: center;
 }
 
+h1, li {
+    text-align: center;
+}
 
 li {
-    font-size: 18px;
+    position: relative;
     margin-bottom: 20px;
-    border: 1px solid saddlebrown;
+    border: 1px solid green;
     text-decoration: none;
     list-style: none;
     border-radius: 25px;
 }
-a {
+
+a, input {
+    font: inherit;  
+    display:inline-block;
     text-decoration: none;
+    width: 100%;
+    border: none;
+    text-align: center;
+    border-radius: 25px;
+    padding: 7px 0px 7px 0px;
+}
+
+a {
     cursor: pointer;
 }
 
-li:hover {
-    color: white;
-    background-color: saddlebrown;
-
-}
 ul {
     padding: 0;
-    align-items: center;
+    margin-bottom: 300px;
+    margin-top: 50px;
+    max-width: 300px;
+    margin: auto;
+
 }
 
-button {
-    box-sizing: border-box;
+.log-out {
+    width: 100%;
+    max-width: 300px;
+    padding: 7px 0px 7px 0px;
     color: white;
-    width: 300px;
-    height: 30px;
-    padding-inline: 0px;
     background-color: black;
     cursor: pointer;
     border-radius: 10px; 
 }
 
-button:hover {
+.log-out:hover {
     background-color: rgb(28, 59, 59);
+}
+
+span {
+    padding: 7px 0px 7px 0px;
+    position: absolute;
+    right: -70px;
+    opacity: 0;
+}
+span button {
+    background-color: white;
+    padding: auto;
+    border: 0;
+    cursor: pointer;
+}
+
+li:hover {
+    color: white;
+    background-color: green;
+}
+
+li:hover span {
+    opacity: 1;
 }

@@ -2,10 +2,24 @@
     <h1>Kursy jęzków programowania </h1>
 </header>
 <main>
-    <ul>
-        <li *ngFor="let course of courses">
-            <a (click)="nextTemplete(course.id)"> {{course.displayName}} </a>
-        </li>
-        <button (click)="logout()">Wyloguj</button>
-    </ul>
+    <section>
+        <ul>
+            <li *ngFor="let course of courses">
+                <a *ngIf = "editingId != course.id" (click)="nextTemplete(course.id)"> {{course.displayName}} </a>
+                <input *ngIf = "editingId == course.id"
+                [(ngModel)] = "course.displayName"
+                (keyup.enter)="updateCourse(course.id, course.displayName)"
+                (blur)="updateCourse(course.id, course.displayName)"
+                (keyup.escape)="escapeFromEdit()"
+                />
+                <span>
+                    <button (click)="editingId = course.id">✏️</button>
+                    <button (click)="deleteCourseById(course.id)">🗑️</button>
+                </span>
+            </li>
+        </ul>
+    </section>
+    <section class="section-button">
+        <button class="log-out" (click)="logout()">Wyloguj</button>
+    </section>
 </main>

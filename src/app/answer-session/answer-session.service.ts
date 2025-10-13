@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/enviroments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +30,10 @@ export class AnswerSessionService {
     this.httpClient.put<number>(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto).subscribe();
 
   }
-}
 
-export interface AnswerSession {
-  id: number,
-  userPoints: number,
-  userId: number,
-  subjectId: number
+  public getPoints(answerSessionId: number): Observable<AllPointsAnswerSession> {
+    return this.httpClient.get<AllPointsAnswerSession>(`${this.baseUrl}/answer-session/${answerSessionId}`);
+  }
 }
 
 export interface Question {
@@ -58,5 +55,10 @@ export interface QuestionAnswerSelectDto {
 
 export interface AnswerSessionStatusIdDto {
   id: number
+}
+
+export interface AllPointsAnswerSession {
+  allAnswers: number;
+  correctAnswers: number;
 }
 
