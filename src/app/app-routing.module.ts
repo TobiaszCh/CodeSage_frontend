@@ -29,8 +29,8 @@ const routes: Routes = [
       children: [
         { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
         { path: 'courses/:courseId', component: SubjectComponent},
-        { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent}
       ]},
+      { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent}
   ];
   
   @NgModule({

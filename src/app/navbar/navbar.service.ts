@@ -9,14 +9,17 @@ import { environment } from 'src/environments/environment';
 export class NavbarService {
   private baseUrl = environment.apiUrl;
 
-  constructor(private httpClinent: HttpClient) {
+  constructor(private httpClient: HttpClient) {
 
   }
 
   public getUserName(): Observable<UsernameDto> {
-    return this.httpClinent.get<UsernameDto>(`${this.baseUrl}/username`);
+    return this.httpClient.get<UsernameDto>(`${this.baseUrl}/username`);
   }
-  
+
+  public logout(): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/logout`, {});
+    }
 }
 
 export interface UsernameDto {

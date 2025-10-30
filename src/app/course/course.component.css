@@ -39,16 +39,6 @@ ul {
 
 }
 
-.log-out {
-    width: 100%;
-    max-width: 300px;
-    padding: 7px 0px 7px 0px;
-    color: white;
-    background-color: black;
-    cursor: pointer;
-    border-radius: 10px; 
-}
-
 .log-out:hover {
     background-color: rgb(28, 59, 59);
 }

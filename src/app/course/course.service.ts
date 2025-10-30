@@ -20,10 +20,6 @@ export class CourseService {
     return this.httpClient.get<Courses[]>(`${this.baseUrl}/courses`);
   }
 
-  public logout(): Observable<any> {
-    return this.httpClient.post<any>(`${this.baseUrl}/logout`, {});
-  }
-
   public deleteCourseById(courseId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/courses/delete/${courseId}`);
   }
