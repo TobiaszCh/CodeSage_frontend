@@ -13,6 +13,8 @@ import { AnswerSessionComponent } from './answer-session/answer-session.componen
 import { RegistrationComponent } from './registration/registration.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SubjectComponent,
     AnswerSessionComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    NavbarComponent,
+    AuthComponent
   ],
   imports: [
     HttpClientModule,
