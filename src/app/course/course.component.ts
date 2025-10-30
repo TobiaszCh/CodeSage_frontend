@@ -29,21 +29,6 @@ export class CourseComponent implements OnInit {
       this.courses = value)
   }
 
-
-  public logout(): void {
-    this.courseService.logout().subscribe({
-      next: response => {
-        this.showSuccess(response.message);
-        this.router.navigate(["/login"]);
-      
-      },
-      error: error => {
-        console.log(error.error.message);
-      }
-    })
-
-  }
-
   public nextTemplete(courseId: number): void {
     this.router.navigate(['/courses', courseId]);
   }
