@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course } from './subject.service';
+import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSucject } from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -15,6 +15,11 @@ export class SubjectComponent implements OnInit {
   titleFromCourse?: Course;
   checkCompletedSessions: CheckCompletedSessions[] = [];
   answerSessionId!: AnswerSession;
+  courseId!: number;
+  addSubject: boolean = false;
+  newSubject: CreateSucject = {
+    displayName: "",
+  }
 
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -22,13 +27,17 @@ export class SubjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
-      const courseId = param["courseId"];
-      this.subjectService.getSubject(courseId).subscribe(value =>
-        this.subjects = value);
-      this.getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId);
-      this.subjectService.getCourseById(courseId).subscribe(value => this.titleFromCourse = value);
+      this.courseId = param["courseId"];
+      this.getSubjects(this.courseId);
+      this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
+      this.subjectService.getCourseById(this.courseId).subscribe(value => this.titleFromCourse = value);
 
     })
+  }
+
+  public getSubjects(courseId: number) {
+    this.subjectService.getSubject(courseId).subscribe(value =>
+        this.subjects = value);
   }
 
   public startSession(subjectId: number) {
@@ -70,6 +79,18 @@ export class SubjectComponent implements OnInit {
 
   public backToCourses(): void {
     this.router.navigate(["/courses"]);
+  }
+
+  public createSubject(displayName: string, courseId: number): void {
+    this.subjectService.createSucject(displayName, courseId).subscribe(() => {
+        this.getSubjects(courseId);
+        this.escapeFromInput();
+      }
+    );
+  }
+
+  public escapeFromInput(): void {
+    this.addSubject = false;
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, Courses } from './course.service';
+import { CourseService, Course, CreateCourse } from './course.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,16 +11,19 @@ import { ToastrService } from 'ngx-toastr';
 //zmiana na Courses 
 export class CourseComponent implements OnInit {
 
-  courses: Courses[] = [];
+  courses: Course[] = [];
   phrase: string = "";
   editingId?: number;
-  changeedDisplayName?:string
-
+  addCourse: boolean = false;
+  newCourse: CreateCourse = {
+    displayName: ''
+  };
+  
 
   constructor(private courseService: CourseService, private router: Router, private toastr: ToastrService) {
   }
 
-  public ngOnInit(): void {
+  public ngOnInit(): void { 
     this.getCourses();
   }
 
@@ -54,9 +57,18 @@ export class CourseComponent implements OnInit {
     });
   }
 
-  public escapeFromEdit(): void {
+  public escapeFromEditAndCreate(): void {
     this.editingId = undefined;
+    this.addCourse = false;
     this.getCourses();
+  }
+
+  public createCourse(displayName: string): void {
+    this.courseService.createCourse(displayName).subscribe(() => {
+        this.addCourse = false;
+        this.getCourses();
+      }
+    );
   }
 
 }

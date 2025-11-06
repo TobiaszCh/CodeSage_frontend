@@ -7,9 +7,18 @@
             <li *ngFor="let subject of subjects" >
                 <a [ngClass]="color(subject.id)" (click)="startSession(subject.id)">{{subject.displayName}} </a>
             </li>
+            <li *ngIf="subjects.length == 0 || addSubject">  
+                <input
+                [(ngModel)] = "newSubject.displayName"
+                (keyup.enter)="createSubject(newSubject.displayName, courseId)"
+                (blur)="escapeFromInput()"
+                (keyup.escape)="escapeFromInput()"
+            >
+            </li>
         </ul>
+        <button class="add-subject" (click)="addSubject = true">Dodaj temat</button>
     </section>
     <section>
-        <button (click)="backToCourses()"> Kursy </button>
+        <button class="come-to-course" (click)="backToCourses()"> Kursy </button>
     </section>
 </main>

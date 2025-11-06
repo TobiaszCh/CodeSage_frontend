@@ -33,6 +33,14 @@ export class SubjectService {
   public getCourseById(courseId: number): Observable<Course> {
     return this.httpClient.get<Course>(`${this.baseUrl}/courses/search/${courseId}`);
   }
+
+  public createSucject(displayName:string, courseId:number,): Observable<any> {
+    const createSubject: CreateSucject = {
+      courseId: courseId,
+      displayName:displayName
+    }
+    return this.httpClient.post(`${this.baseUrl}/subjects`, createSubject)
+  }
 }
 
 export interface Subject {
@@ -63,4 +71,9 @@ export enum SubjectCompletedAge {
 export interface Course {
   id: number;
   displayName: string;
+}
+
+export interface CreateSucject {
+  displayName: string,
+  courseId?: number
 }

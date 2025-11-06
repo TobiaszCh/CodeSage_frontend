@@ -26,6 +26,10 @@ a, input {
     padding: 7px 0px 7px 0px;
 }
 
+.input-add {
+    border: 2px solid black;
+}
+
 a {
     cursor: pointer;
 }
@@ -39,21 +43,22 @@ ul {
 
 }
 
-.log-out:hover {
-    background-color: rgb(28, 59, 59);
-}
-
 span {
     padding: 7px 0px 7px 0px;
     position: absolute;
     right: -70px;
     opacity: 0;
 }
+
 span button {
     background-color: white;
     padding: auto;
     border: 0;
     cursor: pointer;
+}
+
+ul button {
+    opacity: 0;
 }
 
 li:hover {
@@ -62,5 +67,9 @@ li:hover {
 }
 
 li:hover span {
+    opacity: 1;
+}
+
+section:hover button {
     opacity: 1;
 }
