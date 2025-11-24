@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
+import { CreateQuestionComponent } from './create-question/create-question.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthComponent } from './auth/auth.component';
     LoginComponent,
     RegistrationComponent,
     NavbarComponent,
-    AuthComponent
+    AuthComponent,
+    CreateQuestionComponent
   ],
   imports: [
     HttpClientModule,

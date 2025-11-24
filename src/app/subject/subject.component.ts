@@ -93,4 +93,23 @@ export class SubjectComponent implements OnInit {
     this.addSubject = false;
   }
 
+  public goToCreateQuestion(subjectId: number): void {
+    if (confirm("Temat nie zawiera w sobie żadnych pytań lub nie jest skończony. Chcesz wejść?")) {
+      this.router.navigate(["/create-question", subjectId]);
+    }
+  }
+
+  public startAnswerSessionOrCreateQuestions(subjectId: number): void {
+    this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result => {
+      if(result) {
+        this.startSession(subjectId)
+      }
+      else {
+        this.goToCreateQuestion(subjectId);
+      }
+
+    })
+  }
+
 }
+ 

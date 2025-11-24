@@ -41,6 +41,10 @@ export class SubjectService {
     }
     return this.httpClient.post(`${this.baseUrl}/subjects`, createSubject)
   }
+
+  public hasQuestionsInSubject(subjestId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/questions/subjectId/${subjestId}`);
+  }
 }
 
 export interface Subject {

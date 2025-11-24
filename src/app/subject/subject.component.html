@@ -5,7 +5,7 @@
     <section>
         <ul>
             <li *ngFor="let subject of subjects" >
-                <a [ngClass]="color(subject.id)" (click)="startSession(subject.id)">{{subject.displayName}} </a>
+                <a [ngClass]="color(subject.id)" (click)="startAnswerSessionOrCreateQuestions(subject.id)">{{subject.displayName}} </a>
             </li>
             <li *ngIf="subjects.length == 0 || addSubject">  
                 <input
