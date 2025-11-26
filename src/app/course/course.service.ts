@@ -15,9 +15,9 @@ export class CourseService {
 
    }
 
-  public getCourses(): Observable<Courses[]> {
+  public getCourses(): Observable<Course[]> {
     console.log(this.baseUrl);
-    return this.httpClient.get<Courses[]>(`${this.baseUrl}/courses`);
+    return this.httpClient.get<Course[]>(`${this.baseUrl}/courses`);
   }
 
   public deleteCourseById(courseId: number): Observable<any> {
@@ -25,17 +25,29 @@ export class CourseService {
   }
 
   public updateCourse(courseId: number, displayName: string): Observable<any> {
-    const courses: Courses = {
+    const courses: Course = {
       id: courseId,
       displayName:displayName
     }
     return this.httpClient.patch(`${this.baseUrl}/courses/update/${courseId}`, courses)
   }
 
+  public createCourse(displayName:string): Observable<any> {
+    const createCourse: CreateCourse = {
+      displayName:displayName
+    }
+
+    return this.httpClient.post(`${this.baseUrl}/courses`, createCourse)
+  }
+
 }
 
-export interface Courses {
+export interface Course {
   id: number;
+  displayName: string;
+}
+
+export interface CreateCourse {
   displayName: string;
 }
 

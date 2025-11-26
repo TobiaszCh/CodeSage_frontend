@@ -19,7 +19,7 @@ li {
   justify-content: center;
 }
 
-a { 
+a, input { 
   width: 100%;
   max-width: 300px;   
   display: flex;
@@ -31,11 +31,6 @@ a {
   cursor: pointer;
 }
 
-a:hover {
-  color: white;
-  background-color: green;
-}
-
 .green {
   background-color: green;
 }
@@ -44,7 +39,7 @@ a:hover {
   background-color: yellow;
 }
 
-button {
+.come-to-course {
   width: 100%;
   max-width: 300px;
   padding: 7px 0px 7px 0px;
@@ -56,7 +51,26 @@ button {
 
 }
 
-button:hover {
+input {
+  text-align: center;
+  border: 1px solid black;
+  cursor: text;
+}
+
+.come-to-course:hover {
   background-color: rgb(28, 59, 59);
 }
 
+a:hover {
+  color: white;
+  background-color: green;
+}
+
+.add-subject {
+  opacity: 0;
+
+}
+
+section:hover .add-subject {
+  opacity: 1;
+}

@@ -71,10 +71,7 @@ hr {
     bottom: 0;
     background: white;
     animation: fadeIn 2s;
-    overflow-x: auto;
     overflow-x: hidden;
-
-
 }
 
 .section1 {

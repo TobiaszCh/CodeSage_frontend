@@ -13,7 +13,7 @@
 <main>
     <h2>{{question.displayName}}</h2>
     <ul>
-        <li *ngFor="let answer of question?.answers">
+        <li *ngFor="let answer of question!.answers">
             <label>
                 <input type="radio" name="a" [value]="answer.id" [(ngModel)]="checkAnswer" [disabled]="blockAnswer" />
                 {{answer?.displayName}}
