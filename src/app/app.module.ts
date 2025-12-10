@@ -6,7 +6,6 @@ import { CourseComponent } from './course/course.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SubjectComponent } from './subject/subject.component';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { CredentialsInterceptor } from './credentials.interceptor';
 import { AnswerSessionComponent } from './answer-session/answer-session.component';
@@ -16,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,10 +33,10 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
 
+    MatIconModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

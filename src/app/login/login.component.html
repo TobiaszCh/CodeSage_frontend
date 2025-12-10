@@ -1,14 +1,19 @@
-<form autocomplete="on">
-    <h1>Login</h1> 
-    <div class="error" *ngIf="error">{{error}}</div>
-    <div>
-        <label>Email</label>
-        <input type="email" name="username" [(ngModel)] = "username"/>
-    </div>
-    <div>
-        <label>Hasło</label>
-        <input type="password" name ="password" [(ngModel)] = "password"/>
-    </div>
-    <button (click) = "login()"> Zaloguj </button>
-    <button (click) = "goToRegistration()"> Rejestracja </button>
-</form>
+<main>
+    <form autocomplete="on">
+        <h1>Login</h1> 
+        <div class="error" *ngIf="error">{{error}}</div>
+        <div>
+            <label>Email</label>
+            <input class="email-input" type="email" name="username" [(ngModel)] = "username"/>
+        </div>
+        <div>
+            <label>Hasło</label>
+            <div class="div-visibility">
+                <input class = "password-input" [type]="hide ? 'password': 'text'" name ="password" [(ngModel)] = "password"/>
+                <mat-icon class="mat-icon" (click) = "showPassword()">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </div>
+        </div>
+        <button (click) = "login()"> Zaloguj </button>
+        <button (click) = "goToRegistration()"> Rejestracja </button>
+    </form>
+</main>

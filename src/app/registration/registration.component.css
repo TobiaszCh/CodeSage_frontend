@@ -1,11 +1,11 @@
 form {
+    background-color: white;
     border-radius: 10px;
     border: 1px solid;
     max-width: 300px;
-    margin: 50px auto;
-    padding: 60px 60px;
-    box-shadow: 0px 4px 15px rgb(0, 0, 0);
-
+    margin: auto;
+    padding: 20px 60px 40px 60px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.141);
 }
 
 form h1 {
@@ -19,8 +19,11 @@ form div {
 
 form input {
     width: 100%;
-    padding: 7px 0px 7px 0px;
     border-radius: 10px;
+    border: 2px solid black;
+    outline: none;
+    padding: 7px 0px 7px 0px;
+    background-color: rgb(216, 211, 211);     
 }
 
 form button {
@@ -37,10 +40,6 @@ form button:hover {
     background-color: rgb(28, 59, 59);
 }
 
-form input:focus {
-    background-color: rgb(216, 211, 211);
-}
-
 .error {
     color: red;
 }
@@ -51,5 +50,9 @@ form input:focus {
 
 button:disabled {
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.4;
+}
+
+main {
+    padding-top: 50px;
 }
