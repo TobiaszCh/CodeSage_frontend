@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, Course, CreateCourse } from './course.service';
-import {MatDialog} from '@angular/material/dialog';
+import { CourseService, Course} from './course.service';
+import { MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
 import { CourseEditDialogComponent } from './dialogs/edit/course-add-dialog.component';
 import { CourseAddDialogComponent } from './dialogs/add/course-add-dialog.component';
@@ -17,10 +16,8 @@ export class CourseComponent implements OnInit {
 
   courses: Course[] = [];
 
-  constructor(private courseService: CourseService, private router: Router, private toastr: ToastrService
-    ,private dialog: MatDialog
-  ) {
-  }
+  constructor(private courseService: CourseService, private router: Router, private dialog: MatDialog
+  ) {}
 
   public ngOnInit(): void { 
     this.getCourses();
@@ -35,9 +32,6 @@ export class CourseComponent implements OnInit {
     this.router.navigate(['/courses', courseId]);
   }
 
-  public showSuccess(messageToToastr: string) {
-    this.toastr.success(messageToToastr, "Sukces!");
-  }
 
   public deleteCourseById(courseId: number) {
     this.courseService.deleteCourseById(courseId).subscribe(() => {
@@ -87,7 +81,7 @@ export class CourseComponent implements OnInit {
         name: displayName
       }
     }).afterClosed().subscribe(result => {
-      if (result) {
+      if(result) {
         this.updateCourse(courseId, result);
       }
     });
