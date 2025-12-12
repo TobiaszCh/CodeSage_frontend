@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Edytuj kurs</h1>
+  <mat-form-field class="example-full-width">
+    <mat-label>Nazwa kursu</mat-label>
+    <input matInput [(ngModel)] = "displayName">
+  </mat-form-field>
+<div mat-dialog-actions class="buttons">
+  <button mat-raised-button color = "primary" [mat-dialog-close] = "displayName" cdkFocusInitial>Zapisz</button>
+  <button mat-raised-button [mat-dialog-close] = "false">Anuluj</button>
+</div>

@@ -15,7 +15,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
+import { CourseDeleteDialogComponent } from './course/dialogs/delete/course-delete-dialog.component';
+import { CourseEditDialogComponent } from './course/dialogs/edit/course-add-dialog.component';
+
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule} from '@angular/material/button';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatInputModule} from '@angular/material/input';
+import { CourseAddDialogComponent } from './course/dialogs/add/course-add-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +36,11 @@ import { MatIconModule } from '@angular/material/icon';
     RegistrationComponent,
     NavbarComponent,
     AuthComponent,
-    CreateQuestionComponent
+
+    CreateQuestionComponent,
+    CourseDeleteDialogComponent,
+    CourseAddDialogComponent,
+    CourseEditDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -36,7 +50,13 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
 
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatInputModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

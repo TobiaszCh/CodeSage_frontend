@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  phrase: string = "";
   private baseUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient ) {
-
-   }
+  }
 
   public getCourses(): Observable<Course[]> {
     console.log(this.baseUrl);
@@ -36,10 +37,8 @@ export class CourseService {
     const createCourse: CreateCourse = {
       displayName:displayName
     }
-
     return this.httpClient.post(`${this.baseUrl}/courses`, createCourse)
   }
-
 }
 
 export interface Course {
