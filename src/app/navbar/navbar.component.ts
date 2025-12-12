@@ -9,16 +9,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  
   username: String = ""
 
   constructor(private navbarService: NavbarService, private router: Router, private toastr: ToastrService) {
-
   }
   
   ngOnInit(): void {
     this.navbarService.getUserName().subscribe({
       next: (result) => {
-      this.username = result.username;
+        this.username = result.username;
       },
       error: () => {
         this.username = ""
@@ -31,16 +31,14 @@ export class NavbarComponent {
       next: response => {
         this.showSuccess(response.message);
         this.router.navigate(["/login"]);
-      
       },
       error: error => {
         console.log(error.error.message);
       }
-    })
+    });
   }
 
   public showSuccess(messageToToastr: string) {
     this.toastr.success(messageToToastr, "Sukces!");
   }
-
 }

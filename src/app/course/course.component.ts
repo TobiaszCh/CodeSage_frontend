@@ -3,7 +3,7 @@ import { CourseService, Course} from './course.service';
 import { MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
-import { CourseEditDialogComponent } from './dialogs/edit/course-add-dialog.component';
+import { CourseEditDialogComponent } from './dialogs/edit/course-edit-dialog.component';
 import { CourseAddDialogComponent } from './dialogs/add/course-add-dialog.component';
 
 @Component({
