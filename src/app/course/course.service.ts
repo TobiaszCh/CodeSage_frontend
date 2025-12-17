@@ -19,22 +19,22 @@ export class CourseService {
   }
 
   public deleteCourseById(courseId: number): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/courses/delete/${courseId}`);
+    return this.httpClient.delete(`${this.baseUrl}/courses/${courseId}`);
   }
 
   public updateCourse(courseId: number, displayName: string): Observable<any> {
-    const courses: Course = {
+    const course: Course = {
       id: courseId,
-      displayName:displayName
+      displayName: displayName
     }
-    return this.httpClient.patch(`${this.baseUrl}/courses/update/${courseId}`, courses)
+    return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, course);
   }
 
   public createCourse(displayName:string): Observable<any> {
     const createCourse: CreateCourse = {
       displayName:displayName
     }
-    return this.httpClient.post(`${this.baseUrl}/courses`, createCourse)
+    return this.httpClient.post(`${this.baseUrl}/courses`, createCourse);
   }
 }
 

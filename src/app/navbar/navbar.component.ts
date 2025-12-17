@@ -41,4 +41,8 @@ export class NavbarComponent {
   public showSuccess(messageToToastr: string) {
     this.toastr.success(messageToToastr, "Sukces!");
   }
+
+  public backToCourses(): void {
+    this.router.navigate(["/courses"]);
+  }
 }

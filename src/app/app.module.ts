@@ -26,6 +26,9 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule} from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SubjectAddDialogComponent } from './subject/dialogs/add/subject-add-dialog.component';
+import { SubjectDeleteDialogComponent } from './subject/dialogs/delete/subject-delete-dialog.component';
+import { SubjectEditDialogComponent } from './subject/dialogs/edit/subject-edit-dialog.component';
 
 
 @NgModule({
@@ -43,6 +46,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     CourseDeleteDialogComponent,
     CourseAddDialogComponent,
     CourseEditDialogComponent,
+    SubjectAddDialogComponent,
+    SubjectDeleteDialogComponent,
+    SubjectEditDialogComponent
   ],
   imports: [
     HttpClientModule,
