@@ -1,32 +1,35 @@
 header {
-    background-color: black;
+    background-color: #1f2937;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 12px 14px;
     align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 8px 8px;
 }
 
-h3 {
+a, h2 {
     grid-column-start: 2;
     text-align: center;
     color: white;
-    margin: 0;
+    margin: 0px;
+    cursor: pointer;
 }
 
 header div {
     display: flex;
-    align-self: center;
     justify-content: right;
     color: white;
 }
 
-button {
-    cursor: pointer;
-    border: 0;
-    border-left: 1px solid rgb(140, 138, 138);
-    border-right: 1px solid rgb(140, 138, 138);
-    background-color: black;
-    margin-right: 20px;
-    font-size: 20px;
+.button-icon {
+    display: flex;
+    align-items: center;
+    padding-right: 0px;
 }
+
+.user-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+}
+
 

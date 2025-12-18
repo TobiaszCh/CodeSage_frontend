@@ -5,27 +5,38 @@
     <section>
         <ul>
             <li *ngFor="let course of courses">
-                <a *ngIf = "editingId != course.id" (click)="nextTemplete(course.id)"> {{course.displayName}} </a>
-                <input class="input-add"
-                *ngIf = "editingId == course.id"
-                [(ngModel)] = "course.displayName"
-                (keyup.enter)="updateCourse(course.id, course.displayName)"
-                (blur)="escapeFromEditAndCreate()"
-                (keyup.escape)="escapeFromEditAndCreate()"
-                />
-                <span>
-                    <button (click)="editingId = course.id">✏️</button>
-                    <button (click)="deleteCourseById(course.id)">🗑️</button>
-                </span>
+                <div class="course-wrapper"> 
+                    <button
+                        mat-raised-button
+                        class="course-button"
+                        (click)="nextTemplete(course.id)" 
+                    >
+                        {{ course.displayName }}
+                    </button>
+                    <button
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                        class="more-horiz"                  
+                        (click)="$event.stopPropagation()"  
+                    >
+                        <mat-icon>more_horiz</mat-icon>
+                    </button>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openEditDialog(course.id, course.displayName)">
+                        <mat-icon>edit</mat-icon>
+                        Edytuj kurs
+                    </button>
+                    <button mat-menu-item (click)="openDeleteDialog(course.id)">
+                        <mat-icon>delete</mat-icon>
+                        Usuń kurs
+                    </button>
+                </mat-menu>  
             </li>
-            <input class="input-add" 
-            *ngIf="addCourse"
-            [(ngModel)] = "newCourse.displayName"
-            (keyup.enter)="createCourse(newCourse.displayName)"
-            (blur)="escapeFromEditAndCreate()"
-            (keyup.escape)="escapeFromEditAndCreate()"
-            >
-            <button (click)="addCourse = true"> Dodaj kurs</button>
+            <button mat-flat-button class="create-button" (click)="openAddDialog()">
+                <mat-icon>add</mat-icon>
+                 Dodaj kurs
+            </button>
         </ul>
     </section>
 </main>

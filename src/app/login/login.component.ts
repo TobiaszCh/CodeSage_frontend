@@ -12,6 +12,7 @@ export class LoginComponent {
   username: string = "";
   password: string = "";
   error: string = "";
+  hide: boolean = true;
 
   constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) {
 
@@ -38,4 +39,7 @@ export class LoginComponent {
     this.toastr.success(messageToToastr, "Sukces!");
   }
 
+  public showPassword() {
+    this.hide = !this.hide;
+  }
 }

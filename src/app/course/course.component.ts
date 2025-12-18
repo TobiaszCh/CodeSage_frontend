@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, Course, CreateCourse } from './course.service';
+import { CourseService, Course} from './course.service';
+import { MatDialog} from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
+import { CourseEditDialogComponent } from './dialogs/edit/course-edit-dialog.component';
+import { CourseAddDialogComponent } from './dialogs/add/course-add-dialog.component';
 
 @Component({
   selector: 'app-course',
@@ -12,16 +15,9 @@ import { ToastrService } from 'ngx-toastr';
 export class CourseComponent implements OnInit {
 
   courses: Course[] = [];
-  phrase: string = "";
-  editingId?: number;
-  addCourse: boolean = false;
-  newCourse: CreateCourse = {
-    displayName: ''
-  };
-  
 
-  constructor(private courseService: CourseService, private router: Router, private toastr: ToastrService) {
-  }
+  constructor(private courseService: CourseService, private router: Router, private dialog: MatDialog
+  ) {}
 
   public ngOnInit(): void { 
     this.getCourses();
@@ -36,39 +32,59 @@ export class CourseComponent implements OnInit {
     this.router.navigate(['/courses', courseId]);
   }
 
-  public showSuccess(messageToToastr: string) {
-    this.toastr.success(messageToToastr, "Sukces!");
-  }
 
   public deleteCourseById(courseId: number) {
-    if(confirm("Czy na pewno chcesz usunąć ten kurs?")) {
-      this.courseService.deleteCourseById(courseId).subscribe(() => {
-        this.courses = this.courses.filter(course => course.id != courseId);
-      });
-    }
-  }
-
-  public updateCourse(courseId: number, displayName: string) {
-    this.editingId = undefined;
-    this.courseService.updateCourse(courseId, displayName).subscribe({
-      error: () => {
-        this.getCourses();
-      }
+    this.courseService.deleteCourseById(courseId).subscribe(() => {
+      this.courses = this.courses.filter(course => course.id != courseId);
     });
   }
 
-  public escapeFromEditAndCreate(): void {
-    this.editingId = undefined;
-    this.addCourse = false;
-    this.getCourses();
+  public updateCourse(courseId: number, displayName: string) {
+    this.courseService.updateCourse(courseId, displayName).subscribe(() => {
+      this.getCourses();
+    });
   }
 
   public createCourse(displayName: string): void {
     this.courseService.createCourse(displayName).subscribe(() => {
-        this.addCourse = false;
-        this.getCourses();
+      this.getCourses();
+    });
+  }
+
+  public openDeleteDialog(courseId: number): void {
+    this.dialog.open(CourseDeleteDialogComponent, {
+      width: '550px',
+      height: "300"
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.deleteCourseById(courseId);
       }
-    );
+    });
+  }
+
+  public openAddDialog(): void {
+    this.dialog.open(CourseAddDialogComponent, {
+      width: '550px',
+      height: "300"
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.createCourse(result);
+      }
+    });
+  }
+
+  public openEditDialog(courseId: number, displayName: string): void {
+    this.dialog.open(CourseEditDialogComponent, {
+      width: '550px',
+      height: "300",
+      data: {
+        name: displayName
+      }
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.updateCourse(courseId, result);
+      }
+    });
   }
 
 }

@@ -7,10 +7,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class NavbarService {
+  
   private baseUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) {
-
   }
 
   public getUserName(): Observable<UsernameDto> {
@@ -19,7 +19,7 @@ export class NavbarService {
 
   public logout(): Observable<any> {
     return this.httpClient.post<any>(`${this.baseUrl}/logout`, {});
-    }
+  }
 }
 
 export interface UsernameDto {

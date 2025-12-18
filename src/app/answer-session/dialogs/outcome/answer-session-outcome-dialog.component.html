@@ -1,0 +1,13 @@
+<div>
+  <h1>
+    Wynik {{outcome() ? '😀' : '😢'}}
+  </h1>
+  <mat-divider></mat-divider>
+  <p>{{outcome() ? "Gratulacje! Odpowiedziałeś poprawnie na wymaganą ilość pytań" : 
+      "Niestety nie odpowiedziałeś poprawnie na wymaganą liczbę pytań" }}. Twój wynik to:</p>
+  <h2>{{data.correctAnswers + "/" + data.allAnswers}}</h2>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions>
+    <button mat-raised-button color = "primary" [mat-dialog-close] = "true" cdkFocusInitial>Wróć do kursów</button>
+  </div>
+</div>
