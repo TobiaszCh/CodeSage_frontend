@@ -137,6 +137,7 @@ export class AnswerSessionComponent implements OnInit {
       data: this.allPointsAnswerSession
     }).afterClosed().subscribe(result => {
       if(result) {
+        this.updateAnswerSessionStatus(this.answerSessionId);
         this.backToCourses();
       }
     });
