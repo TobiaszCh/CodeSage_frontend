@@ -1,5 +1,5 @@
 header {
-    background-color: black;
+    background-color: #1f2937;
     display: grid;
     align-items: center;
     grid-template-columns: repeat(3, 1fr);

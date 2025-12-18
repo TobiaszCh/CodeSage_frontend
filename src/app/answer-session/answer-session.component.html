@@ -1,36 +1,39 @@
 <header>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
-    <div class="point"></div>
+    <mat-icon class="close" (click)="openExitDialog()">close</mat-icon>
 </header>
 <main>
-    <h2>{{question.displayName}}</h2>
-    <ul>
-        <li *ngFor="let answer of question!.answers">
-            <label>
-                <input type="radio" name="a" [value]="answer.id" [(ngModel)]="checkAnswer" [disabled]="blockAnswer" />
+    <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
+    <h1>{{question.displayName}}</h1>
+    <mat-radio-group class="radio-group" [(ngModel)]="checkAnswer">
+        <div
+            class="radio-button"
+            *ngFor="let answer of question!.answers"
+            (click)="blockCheck && checkAnswer = answer.id"
+            [ngClass]="{
+                'correct-answer': showResult && answer.id == correctAnswerId, 
+                'wrong-answer': showResult && answer.id != correctAnswerId && answer.id == sendedAsnwerId,
+                'block-cursor': blockNext 
+                }"
+            >
+            <mat-radio-button 
+                [value]="answer.id" 
+                [disabled]="blockAnswer">
                 {{answer?.displayName}}
-            </label>
-        </li>
-    </ul>
-    <div class="div-button">
-        <button class="button1" (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer)" *ngIf="blockCheck">
+            </mat-radio-button>
+        </div>
+    </mat-radio-group>
+    <div>
+        <button mat-raised-button color = "primary"
+            (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer);"
+            *ngIf="blockCheck">
             Sprawdź
         </button>
-        <button class="button1" (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">
+        <button mat-raised-button color = "primary" (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">
             Dalej
         </button>
     </div>
-    <div class="div-good-answer" *ngIf="showMeInform">{{informForUser()}} </div>
+    <div class="feedback" *ngIf="showMeInform">{{informForUser()}} </div>
 </main>
-
 <div class="overlay" *ngIf="blockEnd">
     <section class="section1">    
         <h1>{{outcome() ? "Gratulacje! Odpowiedziałeś poprawnie na wymaganą ilość pytań" : 

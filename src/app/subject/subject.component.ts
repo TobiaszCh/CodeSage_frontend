@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
 import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.component';
 import { SubjectEditDialogComponent } from './dialogs/edit/subject-edit-dialog.component';
+import { SubjectInfoDialogComponent } from './dialogs/info/subject-info-dialog.component';
+import { SubjectStartSessionDialogComponent } from './dialogs/start-session/subject-start-session-dialog.component';
 
 
 @Component({
@@ -25,8 +27,6 @@ export class SubjectComponent implements OnInit {
     displayName: "",
   }
 
-
-
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
   }
@@ -44,12 +44,6 @@ export class SubjectComponent implements OnInit {
   public getSubjects(courseId: number) {
     this.subjectService.getSubjects(courseId).subscribe(value =>
         this.subjects = value);
-  }
-
-  public startSession(subjectId: number) {
-    if (confirm('Czy chcesz rozpocząć sesję?')) {
-      this.sendSubjectIdToAnswerSession(subjectId);
-    }
   }
 
   public sendSubjectIdToAnswerSession(subjectId: number): void {
@@ -100,18 +94,16 @@ export class SubjectComponent implements OnInit {
   }
 
   public goToCreateQuestion(subjectId: number): void {
-    if (confirm("Temat nie zawiera w sobie żadnych pytań lub nie jest skończony. Chcesz wejść?")) {
       this.router.navigate(["/create-question", subjectId]);
-    }
   }
 
   public startAnswerSessionOrCreateQuestions(subjectId: number): void {
     this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result => {
       if(result) {
-        this.startSession(subjectId)
+        this.openStartSessionDialog(subjectId);
       }
       else {
-        this.goToCreateQuestion(subjectId);
+        this.openInfoDialog();
       }
 
     })
@@ -162,5 +154,20 @@ export class SubjectComponent implements OnInit {
     });
   }
 
+  public openInfoDialog(): void {
+    this.dialog.open(SubjectInfoDialogComponent, {
+      width: '550px',
+    })
+  }
+
+    public openStartSessionDialog(subjectId: number): void {
+    this.dialog.open(SubjectStartSessionDialogComponent, {
+      width: '550px',
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.sendSubjectIdToAnswerSession(subjectId);
+      }
+    });
+  }
 }
  

@@ -1,11 +1,10 @@
 <form *ngFor="let question of questions">
     <h3>{{question.displayName}}</h3>
-    <div *ngIf="showAll">
-            <div *ngFor="let answer of question.answers">
-                {{answer.displayName}}
-            </div>
+    <div>
+        <div *ngFor="let answer of question.answers">
+            {{answer.displayName}}
+        </div>
     </div>
-    <button class="button2" (click)="changeShowAll()">{{showAll ? "➖" : "➕" }} </button>
 </form>
 <button class="button1" (click)="backToCourses()" *ngIf="tenQuestions">Przejdź do kursów</button>
 <form *ngIf="!tenQuestions">
@@ -16,7 +15,7 @@
      placeholder = "Pytanie"
      [(ngModel)] = "basicQuestion.displayName"
      >
-     <div *ngIf="showAll">
+     <div>
         <h2>Dodaj odpowiedzi</h2>
         <div *ngFor="let answer of basicQuestion.answers">
             <input class="input1"
@@ -28,28 +27,14 @@
             <label class="responses">
                 <input class="input2"
                 type="radio"
-                name= "all" 
-                (click)="goodAnswer = answer.displayName"
+                name= "all"
+                [(ngModel)] = "goodAnswer" 
+                [value]="answer.displayName"
                 >
-            Dobra odpowiedź
+                Dobra odpowiedź
             </label>
         </div>
         <button class="button1" (click)="createQuestion()" (click)="subjectHasTenQuestions()">Utwórz pytanie</button>
     </div>
-    <div class="right">
-        <button class="button2" (click)="changeShowAll()">{{showAll ? "➖" : "➕" }} </button>
-    </div>
     <div class="error">{{error}}</div>
 </form>
-
-<div class="overlay" *ngIf="blockInstruction">
-    <section class="section1">    
-        <h1> Instrukcja </h1>
-        <p> Aby przejść przez dany temat musisz stworzyć 10 pytań gdzie na każde z nich jest to wyboru tylko 1 dobra odpwoiedź. </p>
-        <h1>Baw się dobrze !</h1>
-    </section>
-    <section  class="section2">
-        <hr>
-        <button (click)="blockInstruction = false">Zaczynamy</button>
-    </section>
-</div>

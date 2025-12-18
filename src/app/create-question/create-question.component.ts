@@ -22,7 +22,8 @@ export class CreateQuestionComponent implements OnInit {
   }
   blockInstruction = true;
   showAll: boolean = false;
-  error!: string;;
+  error!: string;
+  options: any;
   goodAnswer!: string;
   tenQuestions: boolean = false
   

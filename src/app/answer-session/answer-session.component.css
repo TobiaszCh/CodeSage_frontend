@@ -1,111 +1,64 @@
+header {
+    text-align: end;
+}
+
 main {
     max-width: 650px;
+    padding: 0px 5px;
     margin: auto;
-}
-h2 {
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
+    margin-top: 80px;
+    text-align: center;
 }
 
-.div-button {
-    display: flex;
-    justify-content: center;
-}
-
-.div-good-answer {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-ul {
-    padding-left: 40px;
-}
-li {
-    font-size: 20px;
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-header {
-    max-width: 500px;
-    margin: auto;
-    margin-top: 50px;
-    display: flex;
-    justify-content: space-around;
-}
-
-label {
+.close {
+    padding: 5px 5px 0px 0px;
     cursor: pointer;
 }
 
-hr {
-    width: 100%;
-    border-top: 1px solid rgba(0, 0, 0, 0.401);
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
 }
 
-.point {
-    width: 10px;
-    height: 10px;
-    border: solid;
-    border-radius:50%;
-}
-
-.button1 {
+.radio-button {
+    display: flex;
+    align-items: flex-start;
     width: 100%;
-    max-width: 300px;
-    color: white;
-    margin-top: 20px;
-    padding: 7px 0px 7px 0px;
-    background-color: black;
-    cursor: pointer;
+    border: 1px solid black;
     border-radius: 10px;
-} 
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: white;
-    animation: fadeIn 2s;
-    overflow-x: hidden;
+    cursor: pointer;
+    margin: 8px 0px;
 }
 
-.section1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 150px 0 150px 0;
+.radio-button:hover {
+    background-color: rgb(220, 218, 218);
 }
 
-.section2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.correct-answer {
+     background-color: #2e7d32
+}
+
+.wrong-answer {
+    background-color: #c62828;
+}
+
+.block-cursor {
+    cursor: default;
+}
+
+.feedback {
+    margin-top: 44px;
+    padding: 8px 0px;
+    border-radius: 10px;
+    background-color: rgb(220, 218, 218);
+    border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 button {
     width: 100%;
     max-width: 300px;
-    color: white;
     margin-top: 20px;
-    padding: 7px 0px 7px 0px;
-    background-color: black;
-    cursor: pointer;
     border-radius: 10px; 
 }
-
-.emoji{
-    font-size: 100px;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
