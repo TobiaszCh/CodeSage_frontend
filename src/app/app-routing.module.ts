@@ -6,6 +6,9 @@ import { AnswerSessionComponent } from "./answer-session/answer-session.componen
 import { LoginComponent } from "./login/login.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { authGuard } from "./auth-guard/auth.guard";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { AuthComponent } from "./auth/auth.component";
+import { CreateQuestionComponent } from "./create-question/create-question.component";
 
 
 const routes: Routes = [
@@ -13,12 +16,23 @@ const routes: Routes = [
     //SubjectComponent -> CourseDetailsComponent url: chcemy id
     // /course/5
     // /answersession/315
-    { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
-    { path: 'courses/:courseId', component: SubjectComponent},
-    { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'register', component: RegistrationComponent},
-    { path: '', redirectTo: 'login', pathMatch: 'full' }
+    {
+      path: '',
+      component: AuthComponent,
+      children: [
+        { path: 'login', component: LoginComponent},
+        { path: 'register', component: RegistrationComponent},
+        { path: '' , redirectTo: 'login', pathMatch: 'full'}
+      ]},
+    {         
+      path: '',
+      component: NavbarComponent,
+      children: [
+        { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
+        { path: 'courses/:courseId', component: SubjectComponent},
+        { path: 'create-question/:subjectId', component: CreateQuestionComponent}
+      ]},
+      { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent}
   ];
   
   @NgModule({

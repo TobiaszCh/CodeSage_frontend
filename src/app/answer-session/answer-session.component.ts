@@ -1,6 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Question, AnswerSessionService, AllPointsAnswerSession } from './answer-session.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AnswerSessionDeleteDialogComponent } from './dialogs/exit/answer-session-exit-dialog.component';
+import { AnswerSessionOutcomeDialogComponent } from './dialogs/outcome/answer-session-outcome-dialog.component';
 
 @Component({
   selector: 'app-answer-session',
@@ -22,13 +25,15 @@ export class AnswerSessionComponent implements OnInit {
   blockCheck = true;
   blockEnd = false;
   showResult = false;
+  sendedAsnwerId!: number;
 
-  constructor(private answerSessionService: AnswerSessionService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private answerSessionService: AnswerSessionService, private activatedRoute: ActivatedRoute, private router: Router,
+    private dialog: MatDialog) {
   }
 
   public ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.answerSessionId = params['answerSessionId']
+      this.answerSessionId = params['answerSessionId'];
       this.nextQuestion(this.answerSessionId);
     })
   }
@@ -38,18 +43,17 @@ export class AnswerSessionComponent implements OnInit {
     this.getPoints(answerSessionId);
     this.answerSessionService.getQuestions(answerSessionId).subscribe(question => {
       if (question !== null) {
-        this.question = question
-        this.showMeInform = false
-        this.blockNext = false
-        this.blockCheck = true
-        this.blockAnswer = false
-
+        this.question = question;
+        this.showMeInform = false;
+        this.blockNext = false;
+        this.blockCheck = true;
+        this.blockAnswer = false;
       }
       else {
         this.blockNext = false;
         this.blockCheck = false;
-        this.blockEnd = true;
-        this.showMeInform = false
+        this.openOutcometDialog();
+        this.showMeInform = false;
 
       }
     });
@@ -57,11 +61,13 @@ export class AnswerSessionComponent implements OnInit {
 
   public selectQuestionAnswer(answerSessionId: number, questionId: number, answerId: number) {
     this.answerSessionService.selectQuestionAnswer(answerSessionId, questionId, answerId).subscribe(correctAnswerId => {
-      this.correctAnswerId = correctAnswerId
-      this.showMeInform = true
-      this.blockNext = true
-      this.blockCheck = false
-      this.blockAnswer = true
+      this.correctAnswerId = correctAnswerId;
+      this.sendedAsnwerId = answerId;
+      this.showMeInform = true;
+      this.blockNext = true;
+      this.blockCheck = false;
+      this.blockAnswer = true;
+      this.showResult = true
     });
   }
 
@@ -76,27 +82,24 @@ export class AnswerSessionComponent implements OnInit {
       this.informAboutResponse = "Ta odpowiedź jest prawidłowa :)";
     }
     else {
-      this.informAboutResponse = "Przykro mi, ta odpowiedź jest nieprawidłowa. Poprawna odpowiedź to: " + this.question?.answers
-        .filter(idAnswer => idAnswer.id == this.correctAnswerId).map(response => response.displayName).join();
+      this.informAboutResponse = "Przykro mi, ta odpowiedź jest błędna :("
     }
     return this.informAboutResponse;
   }
 
   @HostListener('window:beforeunload', ['$event'])
   public beforeUnloadHandler(event: BeforeUnloadEvent): void {
-    event.preventDefault();
     this.updateAnswerSessionStatus(this.answerSessionId);
   }
 
   @HostListener('window:popstate')
   public stoppedBackAndForth(): void {
-    confirm("Wpowadzone zmiany nie zostać zapisane :(")
+    confirm("Sesja trwa. Ta operacja może spowodować jej niezapisanie :(")
     this.updateAnswerSessionStatus(this.answerSessionId);
   }
 
   public updateAnswerSessionStatus(answerSessionId: number): void {
     this.answerSessionService.updateAnswerSessionStatus(answerSessionId);
-
   }
 
   public getPoints(answerSessionId:number) {
@@ -108,6 +111,36 @@ export class AnswerSessionComponent implements OnInit {
     return this.allPointsAnswerSession?.correctAnswers/this.allPointsAnswerSession?.allAnswers >= 0.8;
   }
 
+  public progress(): number {
+    return this.allPointsAnswerSession.allAnswers/10 * 100;
+  }
+
+  public backToCourses(): void {
+    this.router.navigate(["/courses"]);
+  }
+
+  public openExitDialog(): void {
+    this.dialog.open(AnswerSessionDeleteDialogComponent, {
+      width: '550px'
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.backToCourses();
+        this.updateAnswerSessionStatus(this.answerSessionId);
+      }
+    });
+  }
+
+  public openOutcometDialog(): void {
+    this.dialog.open(AnswerSessionOutcomeDialogComponent, {
+      width: '550px',
+      disableClose: true,
+      data: this.allPointsAnswerSession
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.backToCourses();
+      }
+    });
+  }
 }
 
 

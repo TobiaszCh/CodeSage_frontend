@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course } from './subject.service';
+import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSucject } from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
+import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.component';
+import { SubjectEditDialogComponent } from './dialogs/edit/subject-edit-dialog.component';
+import { SubjectInfoDialogComponent } from './dialogs/info/subject-info-dialog.component';
+import { SubjectStartSessionDialogComponent } from './dialogs/start-session/subject-start-session-dialog.component';
 
 
 @Component({
@@ -15,26 +21,29 @@ export class SubjectComponent implements OnInit {
   titleFromCourse?: Course;
   checkCompletedSessions: CheckCompletedSessions[] = [];
   answerSessionId!: AnswerSession;
+  courseId!: number;
+  addSubject: boolean = false;
+  newSubject: CreateSucject = {
+    displayName: "",
+  }
 
-
-  constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
+    private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
-      const courseId = param["courseId"];
-      this.subjectService.getSubject(courseId).subscribe(value =>
-        this.subjects = value);
-      this.getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId);
-      this.subjectService.getCourseById(courseId).subscribe(value => this.titleFromCourse = value);
+      this.courseId = param["courseId"];
+      this.getSubjects(this.courseId);
+      this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
+      this.subjectService.getCourseById(this.courseId).subscribe(value => this.titleFromCourse = value);
 
     })
   }
 
-  public startSession(subjectId: number) {
-    if (confirm('Czy chcesz rozpocząć sesję?')) {
-      this.sendSubjectIdToAnswerSession(subjectId);
-    }
+  public getSubjects(courseId: number) {
+    this.subjectService.getSubjects(courseId).subscribe(value =>
+        this.subjects = value);
   }
 
   public sendSubjectIdToAnswerSession(subjectId: number): void {
@@ -72,4 +81,93 @@ export class SubjectComponent implements OnInit {
     this.router.navigate(["/courses"]);
   }
 
+  public createSubject(displayName: string, courseId: number): void {
+    this.subjectService.createSucject(displayName, courseId).subscribe(() => {
+        this.getSubjects(courseId);
+        this.escapeFromInput();
+      }
+    );
+  }
+
+  public escapeFromInput(): void {
+    this.addSubject = false;
+  }
+
+  public goToCreateQuestion(subjectId: number): void {
+      this.router.navigate(["/create-question", subjectId]);
+  }
+
+  public startAnswerSessionOrCreateQuestions(subjectId: number): void {
+    this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result => {
+      if(result) {
+        this.openStartSessionDialog(subjectId);
+      }
+      else {
+        this.openInfoDialog();
+      }
+
+    })
+  }
+
+  public deleteSubjectById(subjectId: number) {
+    this.subjectService.deleteSubjectById(subjectId).subscribe(() => {
+      this.subjects = this.subjects.filter(subject => subject.id != subjectId);
+    });
+  }
+
+  public updateSubject(subjectId: number, displayName: string) {
+    this.subjectService.updateSubject(subjectId, displayName).subscribe(() => {
+      this.getSubjects(this.courseId);
+    });
+  }
+
+  public openDeleteDialog(subjectId: number): void {
+    this.dialog.open(SubjectDeleteDialogComponent, {
+      width: '550px',
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.deleteSubjectById(subjectId);
+      }
+    });
+  }
+
+  public openAddDialog(): void {
+    this.dialog.open(SubjectAddDialogComponent, {
+      width: '550px',
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.createSubject(result, this.courseId);
+      }
+    });
+  }
+
+  public openEditDialog(subjectId: number, displayName: string): void {
+    this.dialog.open(SubjectEditDialogComponent, {
+      width: '550px',
+      data: {
+        name: displayName
+      }
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.updateSubject(subjectId, result);
+      }
+    });
+  }
+
+  public openInfoDialog(): void {
+    this.dialog.open(SubjectInfoDialogComponent, {
+      width: '550px',
+    })
+  }
+
+    public openStartSessionDialog(subjectId: number): void {
+    this.dialog.open(SubjectStartSessionDialogComponent, {
+      width: '550px',
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.sendSubjectIdToAnswerSession(subjectId);
+      }
+    });
+  }
 }
+ 

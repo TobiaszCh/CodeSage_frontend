@@ -1,0 +1,40 @@
+<form *ngFor="let question of questions">
+    <h3>{{question.displayName}}</h3>
+    <div>
+        <div *ngFor="let answer of question.answers">
+            {{answer.displayName}}
+        </div>
+    </div>
+</form>
+<button class="button1" (click)="backToCourses()" *ngIf="tenQuestions">Przejdź do kursów</button>
+<form *ngIf="!tenQuestions">
+    <h2>Zadaj pytanie</h2>
+    <input class="input1"
+     type = "text"
+     name="pytania"
+     placeholder = "Pytanie"
+     [(ngModel)] = "basicQuestion.displayName"
+     >
+     <div>
+        <h2>Dodaj odpowiedzi</h2>
+        <div *ngFor="let answer of basicQuestion.answers">
+            <input class="input1"
+             type="text"
+             name="odpowiedzi"
+             placeholder="Odpowiedź"
+             [(ngModel)] = "answer.displayName"
+             >
+            <label class="responses">
+                <input class="input2"
+                type="radio"
+                name= "all"
+                [(ngModel)] = "goodAnswer" 
+                [value]="answer.displayName"
+                >
+                Dobra odpowiedź
+            </label>
+        </div>
+        <button class="button1" (click)="createQuestion()" (click)="subjectHasTenQuestions()">Utwórz pytanie</button>
+    </div>
+    <div class="error">{{error}}</div>
+</form>

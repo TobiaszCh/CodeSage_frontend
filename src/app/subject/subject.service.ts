@@ -14,8 +14,8 @@ export class SubjectService {
 
   }
 
-  public getSubject(courseId: number): Observable<Subject[]> {
-    return this.httpClient.get<Subject[]>(`${this.baseUrl}/subjects/${courseId}`);
+  public getSubjects(courseId: number): Observable<Subject[]> {
+    return this.httpClient.get<Subject[]>(`${this.baseUrl}/subjects/by-course/${courseId}`);
   }
 
   public sendSubjectIdToAnswerSession(subjectId: number): Observable<number> {
@@ -27,11 +27,34 @@ export class SubjectService {
   }
 
   public getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId: number): Observable<CheckCompletedSessions[]> {
-    return this.httpClient.get<CheckCompletedSessions[]>(`${this.baseUrl}/subjects/correctAnswersAtLeast80Percent/${courseId}`);
+    return this.httpClient.get<CheckCompletedSessions[]>(`${this.baseUrl}/subjects/correct-answers-at-least-80/${courseId}`);
   }
 
   public getCourseById(courseId: number): Observable<Course> {
-    return this.httpClient.get<Course>(`${this.baseUrl}/courses/search/${courseId}`);
+    return this.httpClient.get<Course>(`${this.baseUrl}/courses/${courseId}`);
+  }
+
+  public createSucject(displayName:string, courseId:number,): Observable<any> {
+    const createSubject: CreateSucject = {
+      courseId: courseId,
+      displayName:displayName
+    }
+    return this.httpClient.post(`${this.baseUrl}/subjects`, createSubject)
+  }
+
+  public updateSubject(subjectId: number, displayName: string): Observable<any> {
+    const subject: UpdateSucject = {
+      displayName: displayName
+    }
+    return this.httpClient.patch(`${this.baseUrl}/subjects/${subjectId}`, subject);
+  }
+
+  public deleteSubjectById(subjectId: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/subjects/${subjectId}`);
+  }
+
+  public hasQuestionsInSubject(subjestId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/questions/subjectId/${subjestId}`);
   }
 }
 
@@ -63,4 +86,13 @@ export enum SubjectCompletedAge {
 export interface Course {
   id: number;
   displayName: string;
+}
+
+export interface CreateSucject {
+  displayName: string,
+  courseId?: number
+}
+
+export interface UpdateSucject {
+  displayName: string
 }

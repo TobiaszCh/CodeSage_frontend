@@ -1,0 +1,35 @@
+header {
+    background-color: #1f2937;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 8px 8px;
+}
+
+a, h2 {
+    grid-column-start: 2;
+    text-align: center;
+    color: white;
+    margin: 0px;
+    cursor: pointer;
+}
+
+header div {
+    display: flex;
+    justify-content: right;
+    color: white;
+}
+
+.button-icon {
+    display: flex;
+    align-items: center;
+    padding-right: 0px;
+}
+
+.user-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+}
+
+
