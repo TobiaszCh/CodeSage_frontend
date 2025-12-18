@@ -25,6 +25,13 @@ li {
   justify-content: center;
 }
 
+@media (max-width: 768px) {
+  li {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 .subject-button {
   padding: 0; 
   width: 100%;
