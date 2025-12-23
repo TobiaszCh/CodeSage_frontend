@@ -25,6 +25,7 @@ li {
   justify-content: center;
 }
 
+
 .subject-button {
   padding: 0; 
   width: 100%;
@@ -98,4 +99,11 @@ section:hover .add-subject {
   left: 85%;
   top: 50%;
   transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+  li {
+    max-width: none;
+    width: 100%;
+  }
 }
