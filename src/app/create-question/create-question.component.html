@@ -1,40 +1,48 @@
-<form *ngFor="let question of questions">
-    <h3>{{question.displayName}}</h3>
+
+<div class="add">
+    <button mat-raised-button color = "primary" (click)="createQuestions(newQuestions)"> Opublikuj zestaw pytań </button>
+</div>
+<mat-card class="card" *ngFor="let createQuestion of newQuestions; let j = index">
+
+    <mat-form-field>
+        <mat-label>Pytanie</mat-label>
+        <input matInput [(ngModel)] = "createQuestion.displayName"/>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <div class="answers">
+        <div *ngFor="let answer of createQuestion.answers; let i = index">
+            <mat-radio-button disabled></mat-radio-button>
+            <mat-form-field>
+                <mat-label>Odpowiedź {{i + 1}}</mat-label>
+                <input matInput [(ngModel)] = "answer.displayName">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="correct">
+        <h3 class="correct-title">Wskaż dobrą odpowiedź</h3>
+    </div>
+
     <div>
-        <div *ngFor="let answer of question.answers">
-            {{answer.displayName}}
-        </div>
+        <mat-radio-group class="correct-group"
+        [(ngModel)] = "correctAnswerIndex"
+        (change)="correctAnswer(j)"
+         >
+            <mat-radio-button class="correct-option"
+                *ngFor="let answer of createQuestion.answers; let i = index"
+                [value] = "i">
+                Odpowiedź {{i + 1}}
+            </mat-radio-button>
+        </mat-radio-group>
+        {{newQuestions[0].answers[0].isCorrect}}
+        {{newQuestions[0].answers[1].isCorrect}}
+        {{newQuestions[0].answers[2].isCorrect}}
+        {{newQuestions[0].answers[3].isCorrect}}
+        {{newQuestions[0].subjectId}}
     </div>
-</form>
-<button class="button1" (click)="backToCourses()" *ngIf="tenQuestions">Przejdź do kursów</button>
-<form *ngIf="!tenQuestions">
-    <h2>Zadaj pytanie</h2>
-    <input class="input1"
-     type = "text"
-     name="pytania"
-     placeholder = "Pytanie"
-     [(ngModel)] = "basicQuestion.displayName"
-     >
-     <div>
-        <h2>Dodaj odpowiedzi</h2>
-        <div *ngFor="let answer of basicQuestion.answers">
-            <input class="input1"
-             type="text"
-             name="odpowiedzi"
-             placeholder="Odpowiedź"
-             [(ngModel)] = "answer.displayName"
-             >
-            <label class="responses">
-                <input class="input2"
-                type="radio"
-                name= "all"
-                [(ngModel)] = "goodAnswer" 
-                [value]="answer.displayName"
-                >
-                Dobra odpowiedź
-            </label>
-        </div>
-        <button class="button1" (click)="createQuestion()" (click)="subjectHasTenQuestions()">Utwórz pytanie</button>
-    </div>
-    <div class="error">{{error}}</div>
-</form>
+    <div>{{correctAnswerIndex}}</div>
+</mat-card>

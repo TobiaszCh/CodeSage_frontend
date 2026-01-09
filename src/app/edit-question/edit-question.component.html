@@ -1,0 +1,16 @@
+<button mat-raised-button color = "primary" (click)="updateQuestions(questions)"> Edytuj zestaw pytań </button>
+
+<mat-card class="card" *ngFor="let question of questions; let j = index">
+    <div>
+        <h1>{{question.displayName}}</h1>
+        <button mat-menu-item (click)="openEditQuestionDialog(j, question.displayName)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div class="answer" *ngFor="let answer of question.answers; let i = index">
+        <div >{{answer.displayName}}</div>
+        <button mat-menu-item (click)="openEditAnswerDialog(j, i, answer.displayName)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+</mat-card>

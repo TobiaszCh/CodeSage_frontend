@@ -9,6 +9,7 @@ import { authGuard } from "./auth-guard/auth.guard";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthComponent } from "./auth/auth.component";
 import { CreateQuestionComponent } from "./create-question/create-question.component";
+import { EditQuestionComponent } from "./edit-question/edit-question.component";
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
       children: [
         { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
         { path: 'courses/:courseId', component: SubjectComponent},
-        { path: 'create-question/:subjectId', component: CreateQuestionComponent}
+        { path: 'subjects/:subjectId/questions/new', component: CreateQuestionComponent},
+        { path: 'subjects/:subjectId/questions/edit', component: EditQuestionComponent}
       ]},
       { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent}
   ];
