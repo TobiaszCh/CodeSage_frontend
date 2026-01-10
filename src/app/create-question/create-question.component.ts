@@ -10,21 +10,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateQuestionComponent implements OnInit {
   
-  questions!: Questions[];
   newQuestions!: Questions[];
-  blockInstruction = true;
-  showAll: boolean = false;
   error!: string;
-  options: any;
-  goodAnswer!: string;
-  tenQuestions: boolean = false;
   correctAnswerIndex?: number;
   subjectId!: number;
   
   constructor(private createQuestionService: CreateQuestionService, private activatedRoute: ActivatedRoute,
      private router: Router, private toastr: ToastrService) {
-
-  }
+      
+     }
+  
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
       this.subjectId = param["subjectId"];
@@ -32,19 +27,16 @@ export class CreateQuestionComponent implements OnInit {
     })
   }
 
-  public changeShowAll(): void {
-    if(this.showAll) {
-       this.showAll = false
-    }
-    else if(!this.showAll) {
-       this.showAll = true
-    }
-  }
-
-  public subjectHasTenQuestions(): void {
-    if(this.questions.length == 9) {
-      this.tenQuestions = true;
-    }
+  public createQuestions(newQuestions: Questions[]): void {
+    this.createQuestionService.createQuestions(newQuestions).subscribe({
+      next: (courseId) => {
+        this.router.navigate(["courses", courseId]);
+        this.showSuccess("Pytania do tematu zostały stworzone");
+      },
+      error: error => {
+        this.showError(error.error.message);
+      }
+    })
   }
 
   public backToCourses(): void {
@@ -68,18 +60,6 @@ export class CreateQuestionComponent implements OnInit {
     const questions = this.newQuestions[questionIndex];
     questions.answers.forEach((result, index) => result.isCorrect = index === this.correctAnswerIndex);
     this.correctAnswerIndex = undefined;    
-  }
-
-  public createQuestions(newQuestions: Questions[]): void {
-    this.createQuestionService.createQuestions(newQuestions).subscribe({
-      next: (courseId) => {
-        this.router.navigate(["courses", courseId]);
-        this.showSuccess("Pytania do tematu zostały stworzone");
-      },
-      error: error => {
-        this.showError(error.error.message);
-      }
-    })
   }
 
   public showSuccess(messageToToastr: string) {

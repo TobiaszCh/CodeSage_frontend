@@ -3,7 +3,6 @@
     <button mat-raised-button color = "primary" (click)="createQuestions(newQuestions)"> Opublikuj zestaw pytań </button>
 </div>
 <mat-card class="card" *ngFor="let createQuestion of newQuestions; let j = index">
-
     <mat-form-field>
         <mat-label>Pytanie</mat-label>
         <input matInput [(ngModel)] = "createQuestion.displayName"/>
@@ -38,11 +37,5 @@
                 Odpowiedź {{i + 1}}
             </mat-radio-button>
         </mat-radio-group>
-        {{newQuestions[0].answers[0].isCorrect}}
-        {{newQuestions[0].answers[1].isCorrect}}
-        {{newQuestions[0].answers[2].isCorrect}}
-        {{newQuestions[0].answers[3].isCorrect}}
-        {{newQuestions[0].subjectId}}
     </div>
-    <div>{{correctAnswerIndex}}</div>
 </mat-card>
