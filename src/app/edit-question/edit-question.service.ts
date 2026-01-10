@@ -10,7 +10,9 @@ export class EditQuestionService {
 
 private baseUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+    
+  }
 
   public getQuestionsBySubjectId(subjectId: number): Observable<Questions[]> {
     return this.httpClient.get<Questions[]>(`${this.baseUrl}/questions/${subjectId}`);

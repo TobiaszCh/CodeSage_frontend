@@ -10,7 +10,9 @@ export class CreateQuestionService {
 
   private baseUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+    
+  }
 
   public createQuestions(questions: Questions[]): Observable<number> {
     return this.httpClient.post<number>(`${this.baseUrl}/questions`, questions);

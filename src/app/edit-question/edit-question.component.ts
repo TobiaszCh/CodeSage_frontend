@@ -11,11 +11,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit-question.component.css']
 })
 export class EditQuestionComponent implements OnInit {
+
   questions!: Questions[];
   subjectId!: number;
 
   constructor(private activatedRoute: ActivatedRoute, private editQuestionService: EditQuestionService,
-    private dialog: MatDialog, private router: Router, private toastr: ToastrService) {}
+    private dialog: MatDialog, private router: Router, private toastr: ToastrService) {
+
+    }
   
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
