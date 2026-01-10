@@ -26,6 +26,7 @@ export class SubjectComponent implements OnInit {
   newSubject: CreateSucject = {
     displayName: "",
   }
+  openEdit!: boolean;
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
@@ -94,10 +95,14 @@ export class SubjectComponent implements OnInit {
   }
 
   public goToCreateQuestion(subjectId: number): void {
-      this.router.navigate(["/create-question", subjectId]);
+      this.router.navigate(["subjects", subjectId, "questions", "new"]);
   }
 
-  public startAnswerSessionOrCreateQuestions(subjectId: number): void {
+  public goToEditQuestion(subjectId: number): void {
+      this.router.navigate(["subjects", subjectId, "questions", "edit"]);
+  }
+
+  public startAnswerSession(subjectId: number): void {
     this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result => {
       if(result) {
         this.openStartSessionDialog(subjectId);
@@ -105,8 +110,7 @@ export class SubjectComponent implements OnInit {
       else {
         this.openInfoDialog();
       }
-
-    })
+    });
   }
 
   public deleteSubjectById(subjectId: number) {
@@ -119,6 +123,11 @@ export class SubjectComponent implements OnInit {
     this.subjectService.updateSubject(subjectId, displayName).subscribe(() => {
       this.getSubjects(this.courseId);
     });
+  }
+
+  public disabledEdit(subjectId: number): void {
+    this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result =>
+      this.openEdit = result);
   }
 
   public openDeleteDialog(subjectId: number): void {
