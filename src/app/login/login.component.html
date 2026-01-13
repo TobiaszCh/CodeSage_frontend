@@ -13,7 +13,11 @@
                 <mat-icon class="mat-icon" (click) = "showPassword()">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             </div>
         </div>
-        <button (click) = "login()"> Zaloguj </button>
-        <button (click) = "goToRegistration()"> Rejestracja </button>
+        <button class = "login-and-registration-button" (click) = login()> Zaloguj </button>
+        <button class = "login-and-registration-button" (click) = "goToRegistration()"> Rejestracja </button>
+        <button class="goolge-button" (click) = "loginByGoogle()">
+            <img class="google-icon" src="assets\icons8-google-48.png">
+            <span>Google</span>
+        </button>
     </form>
 </main>

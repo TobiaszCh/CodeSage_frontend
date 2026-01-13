@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth-guard/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent {
   error: string = "";
   hide: boolean = true;
 
-  constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) {
+  constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService
+    , private authService: AuthService) {
 
   }
 
@@ -29,6 +31,10 @@ export class LoginComponent {
         this.password = "";
       },
     }); 
+  }
+
+  public loginByGoogle() {
+    this.loginService.loginByGoogle();
   }
 
   public goToRegistration(): void {

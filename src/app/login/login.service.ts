@@ -19,6 +19,10 @@ export class LoginService {
     }
     return this.http.post(`${this.baseUrl}/login`, userDto);
   }
+
+  public loginByGoogle() {
+    window.location.href = `${this.baseUrl}/oauth2/authorization/google`;
+  }
 }
 
 export interface LoginDto {

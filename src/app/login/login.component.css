@@ -26,7 +26,7 @@ form div {
     background-color: rgb(216, 211, 211);     
 }
 
-form button {
+.login-and-registration-button {
     width: 100%;
     color: white;
     margin-top: 20px;
@@ -36,7 +36,7 @@ form button {
     border-radius: 10px; 
 }
 
-form button:hover {
+.login-and-registration-button:hover{
     background-color: rgb(28, 59, 59);
 }
 
@@ -73,4 +73,26 @@ main {
     padding-top: 50px;
 }
 
+.goolge-button {
+    border-radius: 10px; 
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
 
+.google-icon {
+    margin: 4px 4px 4px 4px;
+    width: 20px;
+}
+
+span {
+    display: flex;
+    align-items: center;
+}
+
+.goolge-button:hover {
+    background-color: rgba(202, 202, 202, 0.841);
+}
