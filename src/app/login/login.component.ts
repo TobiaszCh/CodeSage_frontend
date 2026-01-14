@@ -31,6 +31,10 @@ export class LoginComponent {
     }); 
   }
 
+  public loginByGoogle() {
+    this.loginService.loginByGoogle();
+  }
+
   public goToRegistration(): void {
     this.router.navigate(["/register"]);
   }
@@ -42,4 +46,18 @@ export class LoginComponent {
   public showPassword() {
     this.hide = !this.hide;
   }
+
+  public createRandomUser(): void {
+    this.loginService.createRandomUser().subscribe({
+      next: response => {
+        this.showSuccess(response.message + ". Witam w wersji demo :)");
+        this.router.navigate(["/courses"]);
+      },
+      error: error => {
+        this.error = error.error.message;
+        this.password = "";
+      },
+    })
+  }
+
 }
