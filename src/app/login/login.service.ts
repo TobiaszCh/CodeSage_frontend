@@ -23,6 +23,11 @@ export class LoginService {
   public loginByGoogle() {
     window.location.href = `${this.baseUrl}/oauth2/authorization/google`;
   }
+
+  public createRandomUser(): Observable<any> {
+    return this.http.post(`${this.baseUrl}/random-register`, {});
+  }
+
 }
 
 export interface LoginDto {

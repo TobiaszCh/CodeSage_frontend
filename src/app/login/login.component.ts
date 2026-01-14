@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../auth-guard/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +14,7 @@ export class LoginComponent {
   error: string = "";
   hide: boolean = true;
 
-  constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService
-    , private authService: AuthService) {
+  constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) {
 
   }
 
@@ -48,4 +46,18 @@ export class LoginComponent {
   public showPassword() {
     this.hide = !this.hide;
   }
+
+  public createRandomUser(): void {
+    this.loginService.createRandomUser().subscribe({
+      next: response => {
+        this.showSuccess(response.message + ". Witam w wersji demo :)");
+        this.router.navigate(["/courses"]);
+      },
+      error: error => {
+        this.error = error.error.message;
+        this.password = "";
+      },
+    })
+  }
+
 }
