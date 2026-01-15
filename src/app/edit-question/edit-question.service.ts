@@ -21,6 +21,10 @@ private baseUrl = environment.apiUrl;
   public updateQuestions(questions: Questions[]): Observable<number> {
     return this.httpClient.patch<number>(`${this.baseUrl}/questions`, questions);
   }
+
+  public getCoursId(subjectId: number): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/subjects/${subjectId}/course-id`);
+  }
 }
 
 export interface Questions {
