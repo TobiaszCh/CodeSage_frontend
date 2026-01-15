@@ -28,3 +28,16 @@
     font-size: 20px;
     height: 20px;
 }
+
+@media (max-width: 768px) {
+    .buttons {
+        margin: 20px auto;
+        display: grid;
+        justify-content:space-around;
+        max-width: 720px;
+    }
+
+    .back-button  {
+        margin-top: 15px;
+    }
+}
