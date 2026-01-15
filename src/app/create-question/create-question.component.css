@@ -1,15 +1,62 @@
 .card {
-  max-width: 600px;
-  margin: 16px auto;
-  padding: 18px 18px 12px;
-  border-radius: 12px;
-  border-left: 6px solid #3f51b5;
+    max-width: 720px;
+    margin: 25px auto;
+    padding: 18px 18px 12px 12px;
+    border-radius: 12px;
+    border-left: 6px solid #3f51b5;
+}
+
+.back-button, .publish-button  {
+    min-width: 220px;
+}
+
+.buttons {
+    margin: 40px auto;
+    display: flex;
+    justify-content:space-around;
+    max-width: 720px;
+}
+
+h3 {
+    margin-bottom: 5px;
 }
 
 .answers {
+  width: 100%;
+  padding-top: 6px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 10px;
+}
+
+.section-title h4 {
+  margin: 0;
+}
+
+.helper {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.input {
     width: 100%;
 }
 
-.add {
-    text-align: center;
+.group-answers {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+.correct-answer-backround {
+    background-color: #A5D6A7 !important;
+}
+
+
+

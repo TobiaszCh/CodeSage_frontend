@@ -33,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
 import { AnswerSessionDeleteDialogComponent } from './answer-session/dialogs/exit/answer-session-exit-dialog.component';
 import { AnswerSessionOutcomeDialogComponent } from './answer-session/dialogs/outcome/answer-session-outcome-dialog.component';
 import { SubjectInfoDialogComponent } from './subject/dialogs/info/subject-info-dialog.component';
@@ -94,7 +95,8 @@ import { QuestionEditDialogComponent } from './edit-question/dialogs/edit/questi
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatListModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

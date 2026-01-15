@@ -1,5 +1,10 @@
 <header>
-    <h2>Kurs {{titleFromCourse?.displayName}} - podstawy</h2>
+    <div class="back">
+        <button mat-icon-button (click)="backToCourses()" aria-label="Wróć do kursów">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2>{{titleFromCourse?.displayName}} - podstawy</h2>
+    </div>
     <button mat-flat-button color="primary" (click)="openAddDialog()">
         <mat-icon>add</mat-icon>
         Dodaj temat

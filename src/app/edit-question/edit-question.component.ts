@@ -40,6 +40,10 @@ export class EditQuestionComponent implements OnInit {
     });
   }
 
+  public backToCourses(): void {
+    this.router.navigate(["/courses"]);
+  }
+
   public showSuccess(messageToToastr: string) {
     this.toastr.success(messageToToastr, "Sukces!");
   }
