@@ -15,21 +15,15 @@ main {
     cursor: pointer;
 }
 
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0;
-    align-items: flex-start;
-}
-
 .radio-button {
     display: flex;
     align-items: flex-start;
+    align-items: center;
     width: 100%;
     border: 1px solid black;
     border-radius: 10px;
     cursor: pointer;
-    margin: 8px 0px;
+    margin: 15px 0px;
 }
 
 .radio-button:hover {
@@ -37,11 +31,11 @@ main {
 }
 
 .correct-answer {
-     background-color: #2e7d32
+    background-color: #A5D6A7;
 }
 
 .wrong-answer {
-    background-color: #c62828;
+    background-color: #F1B0B7;
 }
 
 .block-cursor {

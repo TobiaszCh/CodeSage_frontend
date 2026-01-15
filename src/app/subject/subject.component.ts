@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSucject } from './subject.service';
+import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject} from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
@@ -23,9 +23,10 @@ export class SubjectComponent implements OnInit {
   answerSessionId!: AnswerSession;
   courseId!: number;
   addSubject: boolean = false;
-  newSubject: CreateSucject = {
+  newSubject: CreateSubject = {
     displayName: "",
   }
+  openEdit!: boolean;
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
@@ -94,10 +95,14 @@ export class SubjectComponent implements OnInit {
   }
 
   public goToCreateQuestion(subjectId: number): void {
-      this.router.navigate(["/create-question", subjectId]);
+      this.router.navigate(["subjects", subjectId, "questions", "new"]);
   }
 
-  public startAnswerSessionOrCreateQuestions(subjectId: number): void {
+  public goToEditQuestion(subjectId: number): void {
+      this.router.navigate(["subjects", subjectId, "questions", "edit"]);
+  }
+
+  public startAnswerSession(subjectId: number): void {
     this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result => {
       if(result) {
         this.openStartSessionDialog(subjectId);
@@ -105,8 +110,7 @@ export class SubjectComponent implements OnInit {
       else {
         this.openInfoDialog();
       }
-
-    })
+    });
   }
 
   public deleteSubjectById(subjectId: number) {
@@ -119,6 +123,11 @@ export class SubjectComponent implements OnInit {
     this.subjectService.updateSubject(subjectId, displayName).subscribe(() => {
       this.getSubjects(this.courseId);
     });
+  }
+
+  public disabledEdit(subjectId: number): void {
+    this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result =>
+      this.openEdit = result);
   }
 
   public openDeleteDialog(subjectId: number): void {

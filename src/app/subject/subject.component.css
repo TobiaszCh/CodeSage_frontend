@@ -7,6 +7,16 @@ header {
   justify-content: space-between;
 }
 
+main {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+}
+
 ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -19,23 +29,15 @@ ul {
              
 }
 
-li {
-  max-width: 316px;
-  display: flex;
-  justify-content: center;
-}
-
-
 .subject-button {
-  padding: 0; 
-  width: 100%;
-  height: inherit;   
+  padding: 0;
+  height: 100px; 
+  width: 100%;  
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  border-radius: 100%;
-  aspect-ratio: 3/1;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 6px 0 rgba(0,0,0,0.3);
 }
@@ -50,13 +52,13 @@ li {
 }
 
 .green {
-  border: 1px solid green;
-  background-color: green !important;
+  border: 1px solid #43A047;
+  background-color: #43A047 !important;
 }
 
 .yellow {
-  border: 1px solid rgb(255, 170, 0);
-  background-color: rgb(255, 170, 0) !important;
+  border: 1px solid #FFD166;
+  background-color: #FFD166 !important;
 }
 
 .come-to-course {

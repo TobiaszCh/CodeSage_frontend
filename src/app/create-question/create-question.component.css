@@ -1,104 +1,62 @@
-.overlay {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: white;
-    overflow-x: hidden;
+.card {
+    max-width: 720px;
+    margin: 25px auto;
+    padding: 18px 18px 12px 12px;
+    border-radius: 12px;
+    border-left: 6px solid #3f51b5;
 }
 
-hr {
-    width: 100%;
-    border-top: 1px solid rgba(0, 0, 0, 0.401);
+.back-button, .publish-button  {
+    min-width: 220px;
 }
 
-.section1 {
+.buttons {
+    margin: 40px auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 150px 0 200px 0;
-}
- 
-.section2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content:space-around;
+    max-width: 720px;
 }
 
-
-form {
-    background-color: rgb(218, 215, 215);
-    text-align: center;
-    margin: 10px auto;
-    padding-top: 20px; 
-    max-width: 500px;
-    border: 3px solid black;
-    border-radius: 10px;
-}
-
-.button1 {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 300px;
-    color: white;
-    margin-top: 20px;
-    padding: 7px 0px 7px 0px;
-    background-color: black;
-    cursor: pointer;
-    border-radius: 10px; 
-}
-
-.input1 {
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
-    height: 30px;
-    margin: 10px 0px;
-    padding: 0;
-    border: 2px solid black;
-    border-radius: 10px;
-}
-
-h2 {
-    text-align: left;
-    margin: 0;
-    margin-left: 50px;
-}
-
-.right {
-    display: flex;
-    justify-content: right;
-}
-
-.button2 {
-    border: 0;
-    padding: 0;
-    margin-right: 5px;
+h3 {
     margin-bottom: 5px;
-    cursor: pointer;
-    background-color: rgb(218, 215, 215);
 }
 
-label {
-    display: block;
-    cursor: pointer;
+.answers {
+  width: 100%;
+  padding-top: 6px;
 }
 
-.error { 
-    color: red;
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 10px;
 }
 
-.responses {
+.section-title h4 {
+  margin: 0;
+}
+
+.helper {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.input {
+    width: 100%;
+}
+
+.group-answers {
+    width: 100%;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
 }
 
-.input2 {
-    margin: 0;
-    margin-right: 5px;
+.correct-answer-backround {
+    background-color: #A5D6A7 !important;
 }
+
+
+

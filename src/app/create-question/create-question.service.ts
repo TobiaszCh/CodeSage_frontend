@@ -10,20 +10,12 @@ export class CreateQuestionService {
 
   private baseUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
-
-  public createQuestion(basicQuestion: Questions) {
-    const createQuestion: Questions = {
-      displayName: basicQuestion.displayName,
-      subjectId: basicQuestion.subjectId,
-      answers: basicQuestion.answers
-    } 
-    return this.httpClient.post(`${this.baseUrl}/questions`, createQuestion);
-
+  constructor(private httpClient: HttpClient) { 
+    
   }
 
-    public getQuestionsBySubjectId(subjectId: number): Observable<Questions[]>   {
-      return this.httpClient.get<Questions[]>(`${this.baseUrl}/questions/${subjectId}`);
+  public createQuestions(questions: Questions[]): Observable<number> {
+    return this.httpClient.post<number>(`${this.baseUrl}/questions`, questions);
   }
 }
 

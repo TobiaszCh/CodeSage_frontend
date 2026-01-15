@@ -33,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
 import { AnswerSessionDeleteDialogComponent } from './answer-session/dialogs/exit/answer-session-exit-dialog.component';
 import { AnswerSessionOutcomeDialogComponent } from './answer-session/dialogs/outcome/answer-session-outcome-dialog.component';
 import { SubjectInfoDialogComponent } from './subject/dialogs/info/subject-info-dialog.component';
@@ -40,6 +41,8 @@ import { SubjectStartSessionDialogComponent } from './subject/dialogs/start-sess
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
+import { QuestionEditDialogComponent } from './edit-question/dialogs/edit/question-edit-dialog.component';
 
 
 
@@ -53,8 +56,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     RegistrationComponent,
     NavbarComponent,
     AuthComponent,
-
+    EditQuestionComponent,
     CreateQuestionComponent,
+
+
     CourseDeleteDialogComponent,
     CourseAddDialogComponent,
     CourseEditDialogComponent,
@@ -64,7 +69,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AnswerSessionDeleteDialogComponent,
     AnswerSessionOutcomeDialogComponent,
     SubjectInfoDialogComponent,
-    SubjectStartSessionDialogComponent
+    SubjectStartSessionDialogComponent,
+    QuestionEditDialogComponent
+    
+    
   ],
   imports: [
     HttpClientModule,
@@ -87,7 +95,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatListModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

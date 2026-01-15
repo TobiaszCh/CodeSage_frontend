@@ -4,7 +4,7 @@
 <main>
     <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
     <h1>{{question.displayName}}</h1>
-    <mat-radio-group class="radio-group" [(ngModel)]="checkAnswer">
+    <mat-radio-group class="e" [(ngModel)]="checkAnswer">
         <div
             class="radio-button"
             *ngFor="let answer of question!.answers"
@@ -18,8 +18,8 @@
             <mat-radio-button 
                 [value]="answer.id" 
                 [disabled]="blockAnswer">
-                {{answer?.displayName}}
             </mat-radio-button>
+            {{answer?.displayName}}
         </div>
     </mat-radio-group>
     <div>
@@ -34,15 +34,3 @@
     </div>
     <div class="feedback" *ngIf="showMeInform">{{informForUser()}} </div>
 </main>
-<div class="overlay" *ngIf="blockEnd">
-    <section class="section1">    
-        <h1>{{outcome() ? "Gratulacje! Odpowiedziałeś poprawnie na wymaganą ilość pytań" : 
-        "Niestety nie odpowiedziałeś na wymaganą liczbę pytań" }}. Twój wynik to:</h1>
-        <div class="emoji">{{outcome() ? '😀' : '😢'}}</div>
-        <h2>{{allPointsAnswerSession.correctAnswers + "/" + allPointsAnswerSession.allAnswers}}</h2>
-    </section>
-    <section  class="section2">
-        <hr>
-        <button (click)="nextTemplete()">Wróć do Kursów</button>
-    </section>
-</div>
