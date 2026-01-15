@@ -35,7 +35,7 @@ export class SubjectService {
   }
 
   public createSucject(displayName:string, courseId:number,): Observable<any> {
-    const createSubject: CreateSucject = {
+    const createSubject: CreateSubject = {
       courseId: courseId,
       displayName:displayName
     }
@@ -43,7 +43,7 @@ export class SubjectService {
   }
 
   public updateSubject(subjectId: number, displayName: string): Observable<any> {
-    const subject: UpdateSucject = {
+    const subject: UpdateSubject = {
       displayName: displayName
     }
     return this.httpClient.patch(`${this.baseUrl}/subjects/${subjectId}`, subject);
@@ -53,8 +53,12 @@ export class SubjectService {
     return this.httpClient.delete(`${this.baseUrl}/subjects/${subjectId}`);
   }
 
-  public hasQuestionsInSubject(subjestId: number): Observable<boolean> {
-    return this.httpClient.get<boolean>(`${this.baseUrl}/questions/subjectId/${subjestId}`);
+  public hasQuestionsInSubject(subjectId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/questions/subjectId/${subjectId}`);
+  }
+
+  public getCourseId(courseId: number): Observable<Subject[]> {
+    return this.httpClient.get<Subject[]>(`${this.baseUrl}/subjects/by-course/${courseId}`);
   }
 }
 
@@ -88,11 +92,11 @@ export interface Course {
   displayName: string;
 }
 
-export interface CreateSucject {
+export interface CreateSubject {
   displayName: string,
   courseId?: number
 }
 
-export interface UpdateSucject {
+export interface UpdateSubject {
   displayName: string
 }

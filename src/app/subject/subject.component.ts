@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSucject } from './subject.service';
+import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject} from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
@@ -23,7 +23,7 @@ export class SubjectComponent implements OnInit {
   answerSessionId!: AnswerSession;
   courseId!: number;
   addSubject: boolean = false;
-  newSubject: CreateSucject = {
+  newSubject: CreateSubject = {
     displayName: "",
   }
   openEdit!: boolean;

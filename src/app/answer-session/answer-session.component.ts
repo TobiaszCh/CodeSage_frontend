@@ -40,7 +40,6 @@ export class AnswerSessionComponent implements OnInit {
 
   public nextQuestion(answerSessionId: number) {
     this.informAboutResponse = "";
-    this.getPoints(answerSessionId);
     this.answerSessionService.getQuestions(answerSessionId).subscribe(question => {
       if (question !== null) {
         this.question = question;
@@ -48,13 +47,16 @@ export class AnswerSessionComponent implements OnInit {
         this.blockNext = false;
         this.blockCheck = true;
         this.blockAnswer = false;
+        this.getPoints(answerSessionId);
       }
       else {
-        this.blockNext = false;
-        this.blockCheck = false;
-        this.openOutcometDialog();
-        this.showMeInform = false;
-
+        this.answerSessionService.getPoints(answerSessionId).subscribe(allPointsAnswerSession => {
+          this.allPointsAnswerSession = allPointsAnswerSession;
+          this.blockNext = false;
+          this.blockCheck = false;
+          this.showMeInform = false;
+          this.openOutcometDialog();
+        });
       }
     });
   }
@@ -99,7 +101,7 @@ export class AnswerSessionComponent implements OnInit {
   }
 
   public updateAnswerSessionStatus(answerSessionId: number): void {
-    this.answerSessionService.updateAnswerSessionStatus(answerSessionId);
+    this.answerSessionService.updateAnswerSessionStatus(answerSessionId).subscribe();
   }
 
   public getPoints(answerSessionId:number) {
@@ -115,8 +117,10 @@ export class AnswerSessionComponent implements OnInit {
     return this.allPointsAnswerSession.allAnswers/10 * 100;
   }
 
-  public backToCourses(): void {
-    this.router.navigate(["/courses"]);
+  public backToSubjects(answerSessionId: number): void {
+    this.answerSessionService.getCoursId(answerSessionId).subscribe(result => {
+      this.router.navigate(["/courses", result]);
+    });
   }
 
   public openExitDialog(): void {
@@ -124,8 +128,8 @@ export class AnswerSessionComponent implements OnInit {
       width: '550px'
     }).afterClosed().subscribe(result => {
       if(result) {
-        this.backToCourses();
         this.updateAnswerSessionStatus(this.answerSessionId);
+        this.backToSubjects(this.answerSessionId);
       }
     });
   }
@@ -138,7 +142,7 @@ export class AnswerSessionComponent implements OnInit {
     }).afterClosed().subscribe(result => {
       if(result) {
         this.updateAnswerSessionStatus(this.answerSessionId);
-        this.backToCourses();
+        this.backToSubjects(this.answerSessionId);
       }
     });
   }

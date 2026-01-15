@@ -1,9 +1,12 @@
 
-<div class="add">
-    <button mat-raised-button color = "primary" (click)="createQuestions(newQuestions)"> Opublikuj zestaw pytań </button>
+<div class="buttons">
+    <button mat-raised-button class = "publish-button" color = "primary" (click)="createQuestions(newQuestions)"> Opublikuj zestaw pytań </button>
+    <button mat-raised-button class = "back-button" (click)="backToCourses()"> Wróć do tematów </button>
 </div>
 <mat-card class="card" *ngFor="let createQuestion of newQuestions; let j = index">
-    <mat-form-field>
+    <h3>Pytanie {{j + 1}}</h3>
+
+    <mat-form-field appearance="outline">
         <mat-label>Pytanie</mat-label>
         <input matInput [(ngModel)] = "createQuestion.displayName"/>
     </mat-form-field>
@@ -11,31 +14,33 @@
     <mat-divider></mat-divider>
 
     <div class="answers">
-        <div *ngFor="let answer of createQuestion.answers; let i = index">
-            <mat-radio-button disabled></mat-radio-button>
-            <mat-form-field>
-                <mat-label>Odpowiedź {{i + 1}}</mat-label>
-                <input matInput [(ngModel)] = "answer.displayName">
-            </mat-form-field>
+        <div class="section-title">
+            <h4>Odpowiedzi</h4>
+            <span class="helper">Uzupełnij wszystkie pola</span>
         </div>
+    </div>
+
+    <div class = "answer-row" *ngFor="let answer of createQuestion.answers; let i = index">
+        <mat-form-field  class = "input" appearance="outline">
+            <mat-label [ngClass]="{'correct-answer-backround': answer.isCorrect}">Odpowiedź {{i + 1}}</mat-label>
+            <input matInput [(ngModel)] = "answer.displayName">
+        </mat-form-field>
     </div>
 
     <mat-divider></mat-divider>
 
-    <div class="correct">
+    <div>
         <h3 class="correct-title">Wskaż dobrą odpowiedź</h3>
     </div>
 
-    <div>
-        <mat-radio-group class="correct-group"
+        <mat-radio-group class="group-answers"
         [(ngModel)] = "correctAnswerIndex"
         (change)="correctAnswer(j)"
          >
-            <mat-radio-button class="correct-option"
+            <mat-radio-button 
                 *ngFor="let answer of createQuestion.answers; let i = index"
                 [value] = "i">
                 Odpowiedź {{i + 1}}
             </mat-radio-button>
         </mat-radio-group>
-    </div>
 </mat-card>

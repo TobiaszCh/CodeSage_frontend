@@ -6,12 +6,17 @@ header {
     padding: 8px 8px;
 }
 
-a, h2 {
+a {
     grid-column-start: 2;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
     color: white;
     margin: 0px;
     cursor: pointer;
+    width: 150px;
 }
 
 header div {
