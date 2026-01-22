@@ -32,7 +32,7 @@ ul {
 .subject-button {
   padding: 0;
   height: 100px; 
-  width: 100%;  
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +92,8 @@ section:hover .add-subject {
 }
 
 .subject-wrapper { 
-  width: 100%;  
+  width: 100%;
+  max-width: 340px;  
   position: relative;
 }
 

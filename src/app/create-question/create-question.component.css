@@ -58,5 +58,18 @@ h3 {
     background-color: #A5D6A7 !important;
 }
 
+@media (max-width: 768px) {
+    .buttons {
+        margin: 20px auto;
+        display: grid;
+        justify-content:space-around;
+        max-width: 720px;
+    }
+
+    .back-button  {
+        margin-top: 15px;
+    }
+}
+
 
 

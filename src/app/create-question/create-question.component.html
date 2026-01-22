@@ -1,7 +1,7 @@
 
 <div class="buttons">
     <button mat-raised-button class = "publish-button" color = "primary" (click)="createQuestions(newQuestions)"> Opublikuj zestaw pytań </button>
-    <button mat-raised-button class = "back-button" (click)="backToCourses()"> Wróć do tematów </button>
+    <button mat-raised-button class = "back-button" (click)="backToSubjects(subjectId)"> Wróć do tematów </button>
 </div>
 <mat-card class="card" *ngFor="let createQuestion of newQuestions; let j = index">
     <h3>Pytanie {{j + 1}}</h3>

@@ -40,8 +40,10 @@ export class EditQuestionComponent implements OnInit {
     });
   }
 
-  public backToCourses(): void {
-    this.router.navigate(["/courses"]);
+  public backToSubjects(subjectId: number): void {
+    this.editQuestionService.getCoursId(subjectId).subscribe(result => {
+      this.router.navigate(["courses", result]);
+    })
   }
 
   public showSuccess(messageToToastr: string) {

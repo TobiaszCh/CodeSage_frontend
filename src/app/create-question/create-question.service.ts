@@ -17,6 +17,10 @@ export class CreateQuestionService {
   public createQuestions(questions: Questions[]): Observable<number> {
     return this.httpClient.post<number>(`${this.baseUrl}/questions`, questions);
   }
+
+  public getCoursId(subjectId: number): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/subjects/${subjectId}/course-id`);
+  }
 }
 
 export interface Questions {

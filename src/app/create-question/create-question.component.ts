@@ -39,8 +39,10 @@ export class CreateQuestionComponent implements OnInit {
     })
   }
 
-  public backToCourses(): void {
-    this.router.navigate(["/courses"]);
+  public backToSubjects(subjectId: number): void {
+    this.createQuestionService.getCoursId(subjectId).subscribe(result => {
+      this.router.navigate(["courses", result]);
+    })
   }
 
   public createEmptyQuestion(): Questions {
