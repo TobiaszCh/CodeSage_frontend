@@ -26,7 +26,6 @@ export class SubjectComponent implements OnInit {
   newSubject: CreateSubject = {
     displayName: "",
   }
-  openEdit!: boolean;
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
@@ -83,15 +82,10 @@ export class SubjectComponent implements OnInit {
   }
 
   public createSubject(displayName: string, courseId: number): void {
-    this.subjectService.createSucject(displayName, courseId).subscribe(() => {
-        this.getSubjects(courseId);
-        this.escapeFromInput();
+    this.subjectService.createSucject(displayName, courseId).subscribe((result) => {
+      this.goToCreateQuestion(result);
       }
     );
-  }
-
-  public escapeFromInput(): void {
-    this.addSubject = false;
   }
 
   public goToCreateQuestion(subjectId: number): void {
@@ -123,11 +117,6 @@ export class SubjectComponent implements OnInit {
     this.subjectService.updateSubject(subjectId, displayName).subscribe(() => {
       this.getSubjects(this.courseId);
     });
-  }
-
-  public disabledEdit(subjectId: number): void {
-    this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result =>
-      this.openEdit = result);
   }
 
   public openDeleteDialog(subjectId: number): void {
@@ -169,7 +158,7 @@ export class SubjectComponent implements OnInit {
     })
   }
 
-    public openStartSessionDialog(subjectId: number): void {
+  public openStartSessionDialog(subjectId: number): void {
     this.dialog.open(SubjectStartSessionDialogComponent, {
       width: '550px',
     }).afterClosed().subscribe(result => {

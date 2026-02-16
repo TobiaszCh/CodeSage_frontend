@@ -41,9 +41,6 @@ import { SubjectStartSessionDialogComponent } from './subject/dialogs/start-sess
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { EditQuestionComponent } from './edit-question/edit-question.component';
-import { QuestionEditDialogComponent } from './edit-question/dialogs/edit/question-edit-dialog.component';
-
 
 
 @NgModule({
@@ -56,7 +53,6 @@ import { QuestionEditDialogComponent } from './edit-question/dialogs/edit/questi
     RegistrationComponent,
     NavbarComponent,
     AuthComponent,
-    EditQuestionComponent,
     CreateQuestionComponent,
 
 
@@ -69,8 +65,7 @@ import { QuestionEditDialogComponent } from './edit-question/dialogs/edit/questi
     AnswerSessionDeleteDialogComponent,
     AnswerSessionOutcomeDialogComponent,
     SubjectInfoDialogComponent,
-    SubjectStartSessionDialogComponent,
-    QuestionEditDialogComponent
+    SubjectStartSessionDialogComponent
     
     
   ],

@@ -12,9 +12,7 @@
             <mat-icon class="user-icon">account_circle</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu">
-            <button mat-menu-item disabled>
-                <span>{{ username }}</span>
-            </button>
+            <span class="email" mat-menu-item>{{ username }}</span>
             <mat-divider></mat-divider>
             <button mat-menu-item (click)="logout()">
                 <mat-icon>logout</mat-icon>

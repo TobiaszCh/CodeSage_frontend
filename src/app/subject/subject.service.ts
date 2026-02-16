@@ -34,12 +34,12 @@ export class SubjectService {
     return this.httpClient.get<Course>(`${this.baseUrl}/courses/${courseId}`);
   }
 
-  public createSucject(displayName:string, courseId:number,): Observable<any> {
+  public createSucject(displayName:string, courseId:number,): Observable<number> {
     const createSubject: CreateSubject = {
       courseId: courseId,
       displayName:displayName
     }
-    return this.httpClient.post(`${this.baseUrl}/subjects`, createSubject)
+    return this.httpClient.post<number>(`${this.baseUrl}/subjects`, createSubject)
   }
 
   public updateSubject(subjectId: number, displayName: string): Observable<any> {
