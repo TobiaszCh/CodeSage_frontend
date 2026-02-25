@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateQuestionService {
+export class ManageQuestionService {
 
   private baseUrl = environment.apiUrl;
 

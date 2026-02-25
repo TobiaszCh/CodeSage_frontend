@@ -1,15 +1,17 @@
-
 <div class="buttons">
     <button mat-raised-button class = "publish-button" color = "primary" (click)="createOrUpdateQuestions(newQuestions)"> Zapisz </button>
-    <button mat-raised-button class = "back-button" (click)="backToSubjects(subjectId)"> Wróć do tematów </button>
+    <button mat-raised-button class = "back-button" (click)="openExitDialog(subjectId)"> Wróć do tematów </button>
 </div>
 <mat-card class="card" *ngFor="let newQuestion of newQuestions; let j = index">
     <h3>Pytanie {{j + 1}}</h3>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field class="input" appearance="outline">
         <mat-label>Pytanie</mat-label>
         <input matInput [(ngModel)] = "newQuestion.displayName"/>
     </mat-form-field>
+    <span class="counter">
+        {{newQuestion.displayName.length || 0}} / 150
+    </span>
 
     <mat-divider></mat-divider>
 
@@ -25,6 +27,9 @@
             <mat-label [ngClass]="{'correct-answer-backround': answer.isCorrect}">Odpowiedź {{i + 1}}</mat-label>
             <input matInput [(ngModel)] = "answer.displayName">
         </mat-form-field>
+        <span class="counter">
+            {{answer.displayName.length || 0}} / 200
+        </span>
     </div>
 
     <mat-divider></mat-divider>
@@ -37,10 +42,11 @@
         [(ngModel)] = "newQuestion.indexCorrectAnswer"
         (change)="correctAnswer(j, newQuestion.indexCorrectAnswer)"
          >
-            <mat-radio-button 
+            <mat-radio-button class="radio-button"
                 *ngFor="let answer of newQuestion.answers; let i = index"
                 [value] = "i">
                 Odpowiedź {{i + 1}}
             </mat-radio-button>
         </mat-radio-group>
+
 </mat-card>

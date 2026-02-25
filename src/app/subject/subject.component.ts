@@ -3,10 +3,10 @@ import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, A
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
-import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.component';
-import { SubjectEditDialogComponent } from './dialogs/edit/subject-edit-dialog.component';
 import { SubjectInfoDialogComponent } from './dialogs/info/subject-info-dialog.component';
 import { SubjectStartSessionDialogComponent } from './dialogs/start-session/subject-start-session-dialog.component';
+import { SubjectEditDialogComponent } from './dialogs/edit/subject-edit-dialog.component';
+import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.component';
 
 
 @Component({

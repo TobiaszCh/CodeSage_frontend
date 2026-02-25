@@ -85,17 +85,6 @@ export class AnswerSessionComponent implements OnInit {
     return this.informAboutResponse;
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  public beforeUnloadHandler(event: BeforeUnloadEvent): void {
-    this.updateAnswerSessionStatus(this.answerSessionId).subscribe();
-  }
-
-  @HostListener('window:popstate')
-  public stoppedBackAndForth(): void {
-    confirm("Sesja trwa. Ta operacja może spowodować jej niezapisanie :(")
-    this.updateAnswerSessionStatus(this.answerSessionId).subscribe();
-  }
-
   public updateAnswerSessionStatus(answerSessionId: number): Observable<any> {
     return this.answerSessionService.updateAnswerSessionStatus(answerSessionId);
   }

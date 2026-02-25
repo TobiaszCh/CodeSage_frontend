@@ -54,7 +54,6 @@ export class CourseComponent implements OnInit {
   public openDeleteDialog(courseId: number): void {
     this.dialog.open(CourseDeleteDialogComponent, {
       width: '550px',
-      height: "300"
     }).afterClosed().subscribe(result => {
       if(result) {
         this.deleteCourseById(courseId);
@@ -65,7 +64,6 @@ export class CourseComponent implements OnInit {
   public openAddDialog(): void {
     this.dialog.open(CourseAddDialogComponent, {
       width: '550px',
-      height: "300"
     }).afterClosed().subscribe(result => {
       if(result) {
         this.createCourse(result);
@@ -76,7 +74,6 @@ export class CourseComponent implements OnInit {
   public openEditDialog(courseId: number, displayName: string): void {
     this.dialog.open(CourseEditDialogComponent, {
       width: '550px',
-      height: "300",
       data: {
         name: displayName
       }

@@ -14,13 +14,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
-import { CreateQuestionComponent } from './create-question/create-question.component';
 import { CourseDeleteDialogComponent } from './course/dialogs/delete/course-delete-dialog.component';
 import { CourseEditDialogComponent } from './course/dialogs/edit/course-edit-dialog.component';
 import { CourseAddDialogComponent } from './course/dialogs/add/course-add-dialog.component';
-import { SubjectAddDialogComponent } from './subject/dialogs/add/subject-add-dialog.component';
 import { SubjectDeleteDialogComponent } from './subject/dialogs/delete/subject-delete-dialog.component';
-import { SubjectEditDialogComponent } from './subject/dialogs/edit/subject-edit-dialog.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
@@ -41,6 +38,10 @@ import { SubjectStartSessionDialogComponent } from './subject/dialogs/start-sess
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SubjectEditDialogComponent } from './subject/dialogs/edit/subject-edit-dialog.component';
+import { SubjectAddDialogComponent } from './subject/dialogs/add/subject-add-dialog.component';
+import { ManageQuestionComponent } from './question-management/question-management.component';
+import { ManageQuestionExitDialogComponent } from './question-management/dialogs/exit/question-management-exit-dialog.component';
 
 
 @NgModule({
@@ -53,19 +54,20 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     RegistrationComponent,
     NavbarComponent,
     AuthComponent,
-    CreateQuestionComponent,
+    ManageQuestionComponent,
 
 
     CourseDeleteDialogComponent,
     CourseAddDialogComponent,
     CourseEditDialogComponent,
-    SubjectAddDialogComponent,
     SubjectDeleteDialogComponent,
-    SubjectEditDialogComponent,
     AnswerSessionDeleteDialogComponent,
     AnswerSessionOutcomeDialogComponent,
     SubjectInfoDialogComponent,
-    SubjectStartSessionDialogComponent
+    SubjectStartSessionDialogComponent,
+    ManageQuestionExitDialogComponent,
+    SubjectEditDialogComponent,
+    SubjectAddDialogComponent
     
     
   ],

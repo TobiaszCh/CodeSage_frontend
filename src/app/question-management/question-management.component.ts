@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateQuestionService, Questions } from './create-question.service';
+import { ManageQuestionService, Questions } from './question-management.service';
 import { ActivatedRoute, Router  } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, switchMap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ManageQuestionExitDialogComponent } from './dialogs/exit/question-management-exit-dialog.component';
 
 @Component({
   selector: 'app-create-question',
-  templateUrl: './create-question.component.html',
-  styleUrls: ['./create-question.component.css']
+  templateUrl: './question-management.component.html',
+  styleUrls: ['./question-management.component.css']
 })
-export class CreateQuestionComponent implements OnInit {
+export class ManageQuestionComponent implements OnInit {
   
   newQuestions!: Questions[];
   error!: string;
   correctAnswerIndex?: number;
   subjectId!: number;
   
-  constructor(private createQuestionService: CreateQuestionService, private activatedRoute: ActivatedRoute,
-    private router: Router, private toastr: ToastrService) {
+  constructor(private manageQuestionService: ManageQuestionService, private activatedRoute: ActivatedRoute,
+    private router: Router, private toastr: ToastrService, private dialog: MatDialog) {
   }
   
   ngOnInit(): void {
@@ -30,10 +32,10 @@ export class CreateQuestionComponent implements OnInit {
   }
   
   public createOrUpdateQuestions(newQuestions: Questions[]): void {
-    this.createQuestionService.hasQuestionsInSubject(this.subjectId).pipe(switchMap(result => 
+    this.manageQuestionService.hasQuestionsInSubject(this.subjectId).pipe(switchMap(result => 
       result  
-      ? this.createQuestionService.updateQuestions(newQuestions)
-      : this.createQuestionService.createQuestions(newQuestions)
+      ? this.manageQuestionService.updateQuestions(newQuestions)
+      : this.manageQuestionService.createQuestions(newQuestions)
     )).subscribe({
         next: (courseId) => {
           this.router.navigate(["courses", courseId]);
@@ -46,14 +48,14 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   public backToSubjects(subjectId: number): void {
-    this.createQuestionService.getCoursId(subjectId).subscribe(result => {
+    this.manageQuestionService.getCoursId(subjectId).subscribe(result => {
       this.router.navigate(["courses", result]);
     })
   }
 
   public showOuestions(subjectId: number): Observable<Questions[]> {
-    return this.createQuestionService.hasQuestionsInSubject(subjectId).pipe(switchMap(result => 
-      result ? this.createQuestionService.getQuestionsBySubjectId(subjectId)
+    return this.manageQuestionService.hasQuestionsInSubject(subjectId).pipe(switchMap(result => 
+      result ? this.manageQuestionService.getQuestionsBySubjectId(subjectId)
        : of(Array.from({length: 10}, () => ({
           displayName: "", 
           subjectId: subjectId,
@@ -86,6 +88,16 @@ export class CreateQuestionComponent implements OnInit {
 
   public showError(messageToToastr: string) {
     this.toastr.error(messageToToastr, "Błąd!");
+  }
+
+  public openExitDialog(subjectId: number): void {
+    this.dialog.open(ManageQuestionExitDialogComponent, {
+      width: '550px'
+    }).afterClosed().subscribe(result => {
+      if(result) {
+        this.backToSubjects(subjectId);
+      }
+    });
   }
  
 }

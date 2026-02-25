@@ -1,9 +1,17 @@
-<h1 mat-dialog-title>Edytuj kurs</h1>
-  <mat-form-field class="example-full-width">
+<div mat-dialog-content>
+  <h1 mat-dialog-title >Edytuj kurs</h1>
+  <mat-form-field class="input" appearance="outline">
     <mat-label>Nazwa kursu</mat-label>
-    <input matInput [(ngModel)] = "displayName">
+    <input matInput
+      [(ngModel)] = "displayName"
+      maxlength="25"
+      >
   </mat-form-field>
-<div mat-dialog-actions class="buttons">
-  <button mat-raised-button [mat-dialog-close] = "false">Anuluj</button>
-  <button mat-raised-button color = "primary" [mat-dialog-close] = "displayName" cdkFocusInitial>Zapisz</button>
+  <span class="counter">
+  {{ displayName.length || 0 }} / 25
+  </span>
+  <div mat-dialog-actions class="buttons">
+    <button mat-raised-button [mat-dialog-close] = "false">Anuluj</button>
+    <button mat-raised-button color = "primary" [mat-dialog-close] = "displayName" [disabled]="!displayName">Zapisz</button>
+  </div>
 </div>
