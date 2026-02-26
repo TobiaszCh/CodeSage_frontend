@@ -8,9 +8,9 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
-    private baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiUrl;
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public sendDatesLogs(username: string, password: string): Observable<any> {
     const userDto: LoginDto = {

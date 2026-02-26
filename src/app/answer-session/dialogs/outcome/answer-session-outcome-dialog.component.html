@@ -1,11 +1,11 @@
-<div>
-  <h1>
+<div mat-dialog-content>
+  <h1 mat-dialog-title>
     Wynik {{outcome() ? '😀' : '😢'}}
   </h1>
   <mat-divider></mat-divider>
   <p>{{outcome() ? "Gratulacje! Odpowiedziałeś poprawnie na wymaganą ilość pytań" : 
-      "Niestety nie odpowiedziałeś poprawnie na wymaganą liczbę pytań" }}. Twój wynik to:</p>
-  <h2>{{data.correctAnswers + "/" + data.allAnswers}}</h2>
+      "Niestety, nie odpowiedziałeś poprawnie na wymaganą liczbę pytań" }}. Twój procent poprawnych odpowiedzi to:</p>
+  <h3>{{data.correctAnswers / data.allAnswers * 100 + "%"}}</h3>
   <mat-divider></mat-divider>
   <div mat-dialog-actions>
     <button mat-raised-button color = "primary" [mat-dialog-close] = "true" cdkFocusInitial>Wróć do tematów</button>

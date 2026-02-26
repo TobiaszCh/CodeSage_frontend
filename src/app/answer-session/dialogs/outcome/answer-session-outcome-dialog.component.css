@@ -2,3 +2,16 @@ div {
   display: block;
   text-align: center;
 }
+
+p {
+  margin-bottom: 6px;
+}
+
+h3 {
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+
+div button {
+  margin-top: 15px;
+}

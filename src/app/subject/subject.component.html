@@ -3,12 +3,12 @@
         <button mat-icon-button (click)="backToCourses()" aria-label="Wróć do kursów">
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <h2>{{titleFromCourse?.displayName}} - podstawy</h2>
+        <h2>{{titleFromCourse?.displayName}}</h2>
     </div>
-    <button mat-flat-button color="primary" (click)="openAddDialog()">
-        <mat-icon>add</mat-icon>
-        Dodaj temat
-    </button>
+        <button mat-flat-button color="primary" (click)="openAddDialog()" class="button-back">
+            <mat-icon>add</mat-icon>
+            Dodaj temat
+        </button>
 </header>
 <main>
     <section>
@@ -26,7 +26,7 @@
                         mat-icon-button
                         [matMenuTriggerFor]="menu"
                         class="more-horiz"                  
-                        (click)="$event.stopPropagation(); disabledEdit(subject.id)"  
+                        (click)="$event.stopPropagation();"  
                     >
                         <mat-icon>more_horiz</mat-icon>
                     </button>
@@ -34,20 +34,16 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item (click)="openEditDialog(subject.id, subject.displayName)">
                         <mat-icon>edit</mat-icon>
-                        Edytuj temat
+                        Edytuj
                     </button>
                     <button mat-menu-item (click)="openDeleteDialog(subject.id)">
                         <mat-icon>delete</mat-icon>
-                        Usuń temat
+                        Usuń
                     </button>
-                    <button mat-menu-item [disabled]="openEdit" (click)="goToCreateQuestion(subject.id)">
-                        <mat-icon>add</mat-icon>
-                        Utwórz pytania do tematu
-                    </button>
-                    <button mat-menu-item [disabled]="!openEdit" (click)="goToEditQuestion(subject.id)">
-                        <mat-icon>edit</mat-icon>
-                        Edytuj pytania do tematu
-                    </button>                    
+                    <button mat-menu-item (click)="goToCreateQuestion(subject.id)">
+                        <mat-icon>quiz</mat-icon>
+                        Zarządzaj pytaniami
+                    </button>               
                 </mat-menu>                 
             </li>
         </ul>

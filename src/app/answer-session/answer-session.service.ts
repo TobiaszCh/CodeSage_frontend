@@ -27,7 +27,7 @@ export class AnswerSessionService {
   }
 
   public updateAnswerSessionStatus(answerSessionId: number, answerSessionStatusIdDto?: AnswerSessionStatusIdDto): Observable<any> {
-    return this.httpClient.put<number>(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto);
+    return this.httpClient.put(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto);
 
   }
 
@@ -49,7 +49,6 @@ export interface Question {
 export interface Answer {
   id: number;
   displayName: string;
-  correct: boolean;
 }
 
 export interface QuestionAnswerSelectDto {
