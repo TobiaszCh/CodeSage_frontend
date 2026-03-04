@@ -7,7 +7,7 @@
 
     <mat-form-field class="input" appearance="outline">
         <mat-label>Pytanie</mat-label>
-        <input matInput [(ngModel)] = "newQuestion.displayName"/>
+        <input matInput [(ngModel)] = "newQuestion.displayName" maxlength="150"/>
     </mat-form-field>
     <span class="counter">
         {{newQuestion.displayName.length || 0}} / 150
@@ -25,7 +25,7 @@
     <div class = "answer-row" *ngFor="let answer of newQuestion.answers; let i = index">
         <mat-form-field  class = "input" appearance="outline">
             <mat-label [ngClass]="{'correct-answer-backround': answer.isCorrect}">Odpowiedź {{i + 1}}</mat-label>
-            <input matInput [(ngModel)] = "answer.displayName">
+            <input matInput [(ngModel)] = "answer.displayName" maxlength="200">
         </mat-form-field>
         <span class="counter">
             {{answer.displayName.length || 0}} / 200
