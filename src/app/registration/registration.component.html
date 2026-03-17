@@ -1,7 +1,6 @@
 <main>
     <form autocomplete="off">
-        <h1>Rejestracja</h1>
-        <div class="error" *ngIf="error">{{error}}</div>
+        <h2>Stwórz swoje konto</h2>
         <div>
             <label>Email</label>
             <input type="email" name="username" [(ngModel)]="username" />
@@ -10,18 +9,27 @@
             <label>Hasło</label>
             <input type="password" name="password" [(ngModel)]="password" />
         </div>
-        <div>
+        <div class="repeat-password-div">
             <label>Powtórz hasło</label>
             <input type="password" name="password" [(ngModel)]="repeatedPassword" />
         </div>
-        <div><span>{{signsNoMoreThenHundredInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 8
+        <div class="error" *ngIf="error">
+            <mat-icon>warning</mat-icon>
+            {{ error}}
+        </div>
+        <div><span>{{signsNoMoreThenHundredInPassword() ? "✔" : "✖"}}</span> Hasło musi mieć przynajmniej 8
             znaków.</div>
-        <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✅" : "❌"}}</span> Hasło musi mieć przynajmniej 1 dużą
+        <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✔" : "✖"}}</span> Hasło musi mieć przynajmniej 1 dużą
             literę i znak specjalny.</div>
-        <div><span>{{isItEmail() ? "✅" : "❌"}}</span> Email musi mieć przynajmniej 1 znak przed i po małpie.</div>
-        <div><span>{{activeRegistration() ? "✅" : "❌"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
+        <div><span>{{isItEmail() ? "✔" : "✖"}}</span> Email musi mieć przynajmniej 1 znak przed i po małpie.</div>
+        <div><span>{{activeRegistration() ? "✔" : "✖"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
             powtórzeniu hasła pojawi się przycisk rejestracji.</div>
-        <button [disabled]="!activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
-        <button (click) = "goToLogin()"> Logowanie </button>
+        <button mat-raised-button color="primary" [disabled]="!activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
+        <footer class="login-footer">
+            <p>
+                Masz już konto?
+                <a (click)="goToLogin()">Logowanie</a>
+            </p>
+        </footer>
     </form>
 </main>

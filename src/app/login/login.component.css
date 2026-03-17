@@ -1,72 +1,81 @@
 form {
     background-color: white;
     border-radius: 10px;
-    border: 1px solid;
-    max-width: 300px;
+    max-width: 400px;
     margin: auto;
     padding: 20px 60px 40px 60px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.141);
-}
-
-form h1 {
-    border-bottom: 1px solid black;
-    padding-bottom: 5px;
 }
 
 form div {
     margin-bottom: 10px;
 }
 
+label {
+    font-size: 14px;
+}
+
+p {
+    margin-bottom: 0px;
+}
+
 .email-input {
     width: 100%;
-    border-radius: 10px;
-    border: 2px solid black;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 15px;
+    margin: 10px 0px;
+    height: 40px;
+    padding: 0px;
     outline: none;
-    padding: 9px 0px 9px 0px;
-    background-color: rgb(216, 211, 211);     
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
-.login-and-registration-button {
+.login-button {
+    font-size: 15px;
     width: 100%;
-    color: white;
-    margin-top: 20px;
+    margin: 20px 0px 0px 0px;
     padding: 7px 0px 7px 0px;
-    background-color: black;
-    cursor: pointer;
-    border-radius: 10px; 
-}
-
-.login-and-registration-button:hover{
-    background-color: rgb(28, 59, 59);
+    border-radius: 5px; 
+    height: 40px;
 }
 
 .error {
+    display: flex;
+    font-size: 14px;
     color: red;
+}
+
+.error mat-icon {
+    cursor: default;
 }
 
 .mat-icon {
     height: 18px;
-    width: 24px;
+    width: 24px; 
     font-size: 18px;
     cursor: pointer;
 }
 
-.div-visibility {
+.password-div {
     display: flex;
     align-items: center;
     width: 100%; 
-    border-radius: 10px;
-    border: 2px solid black;
-    background-color: rgb(216, 211, 211);
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px 0px;
 }
 
 .password-input {
+    border-radius: 5px;
     width: 100%;
-    border-radius: 10px;
+    font-size: 15px;
+    height: 40px;
     border: none;
     outline: none;
-    padding: 9px 0px 9px 0px;
-    background-color: rgb(216, 211, 211);     
+    padding: 0px;
+    padding-left: 10px;
 }
 
 main {
@@ -75,40 +84,67 @@ main {
     padding-right: 6px;
 }
 
-.goolge-button {
-    border-radius: 10px; 
-    cursor: pointer;
+.google-button {
     width: 100%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    background-color: white;
+    height: 44px;
+    margin: 0px 0px 20px 0;
+    font-size: 15px;
 }
 
 .google-icon {
-    margin: 4px 4px 4px 4px;
-    width: 20px;
+    margin-right: 8px;
 }
 
-span {
-    display: flex;
-    align-items: center;
+.google-icon img {
+    width: 18px;
+    height: 18px;
 }
 
 .goolge-button:hover {
     background-color: rgba(202, 202, 202, 0.841);
 }
 
-.demo-link {
-    display: block;
-    margin-top: 30px;
+
+.line {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px !important;
+}
+
+.line mat-divider {
+    width: 45%;
+
+}
+
+.line span {
+    opacity: 0.3;
+}
+
+.checkbox {
+    margin-left: -10px;
+}
+
+.login-footer {
     text-align: center;
-    color: rgb(28, 59, 59);
-    text-decoration: underline;
-    font-size: 32px;
+}
+
+.login-footer p {
+    font-size: 14px;
+    color: #666;
+}
+
+.login-footer a {
+    color: #3f51b5;
     cursor: pointer;
 }
 
-.demo-link:hover {
-    color: black;
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.demo-link {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
 }

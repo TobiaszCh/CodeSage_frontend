@@ -42,6 +42,7 @@ import { SubjectEditDialogComponent } from './subject/dialogs/edit/subject-edit-
 import { SubjectAddDialogComponent } from './subject/dialogs/add/subject-add-dialog.component';
 import { ManageQuestionComponent } from './question-management/question-management.component';
 import { ManageQuestionExitDialogComponent } from './question-management/dialogs/exit/question-management-exit-dialog.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { ManageQuestionExitDialogComponent } from './question-management/dialogs
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
