@@ -41,9 +41,9 @@ export class AnswerSessionComponent implements OnInit {
 
   public nextQuestion(answerSessionId: number) {
     this.informAboutResponse = "";
-    this.answerSessionService.getQuestions(answerSessionId).subscribe(question => {
-      if (question !== null) {
-        this.question = question;
+    this.answerSessionService.getQuestions(answerSessionId).subscribe(questionResponse => {
+      if(!questionResponse.finished) {
+        this.question = questionResponse.question;
         this.showMeInform = false;
         this.blockNext = false;
         this.blockCheck = true;
@@ -110,8 +110,7 @@ export class AnswerSessionComponent implements OnInit {
       width: '550px'
     }).afterClosed().subscribe(result => {
       if(result) {
-        this.updateAnswerSessionStatus(this.answerSessionId).subscribe(() => 
-        this.backToSubjects(this.answerSessionId));
+        this.backToSubjects(this.answerSessionId);
       }
     });
   }

@@ -22,7 +22,7 @@
         <div><span>{{atLeastOneUpperLetterAndSpecialInPassword() ? "✔" : "✖"}}</span> Hasło musi mieć przynajmniej 1 dużą
             literę i znak specjalny.</div>
         <div><span>{{isItEmail() ? "✔" : "✖"}}</span> Email musi mieć przynajmniej 1 znak przed i po małpie.</div>
-        <div><span>{{activeRegistration() ? "✔" : "✖"}}</span> Po odpowiednim wypełnieniu formularza oraz właściwym
+        <div><span>{{activeRegistration() ? "✔" : "✖"}}</span> Po właściwym wypełnieniu formularza i
             powtórzeniu hasła pojawi się przycisk rejestracji.</div>
         <button mat-raised-button color="primary" [disabled]="!activeRegistration()" (click)="sendRegisterDetails()"> Zarejestruj </button>
         <footer class="login-footer">
