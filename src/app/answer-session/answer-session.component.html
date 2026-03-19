@@ -3,11 +3,11 @@
 </header>
 <main>
     <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
-    <h1>{{question.displayName}}</h1>
-    <mat-radio-group class="e" [(ngModel)]="checkAnswer">
+    <h1>{{question?.displayName}}</h1>
+    <mat-radio-group [(ngModel)]="checkAnswer">
         <div
             class="radio-button"
-            *ngFor="let answer of question!.answers"
+            *ngFor="let answer of question?.answers"
             (click)="blockCheck && checkAnswer = answer.id"
             [ngClass]="{
                 'correct-answer': showResult && answer.id == correctAnswerId, 
@@ -24,8 +24,9 @@
     </mat-radio-group>
     <div>
         <button mat-raised-button color = "primary"
-            (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer);"
-            *ngIf="blockCheck">
+            (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer!)"
+            *ngIf="blockCheck"
+            [disabled]="!checkAnswer">
             Sprawdź
         </button>
         <button mat-raised-button color = "primary" (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">

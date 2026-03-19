@@ -11,5 +11,4 @@ displayName: string = this.data.name;
   constructor(public dialogRef: MatDialogRef<SubjectEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string }
   ) {}
-
 }

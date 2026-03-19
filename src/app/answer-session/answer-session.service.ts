@@ -14,8 +14,8 @@ export class AnswerSessionService {
 
   }
 
-  public getQuestions(answerSessionId: number): Observable<Question> {
-    return this.httpClient.get<Question>(`${this.baseUrl}/questions/answerSessionId/${answerSessionId}`);
+  public getQuestions(answerSessionId: number): Observable<QuestionResponse> {
+    return this.httpClient.get<QuestionResponse>(`${this.baseUrl}/questions/answerSessionId/${answerSessionId}`);
   }
 
   public selectQuestionAnswer(answerSessionId: number, questionId: number, answerId: number): Observable<number> {
@@ -27,7 +27,7 @@ export class AnswerSessionService {
   }
 
   public updateAnswerSessionStatus(answerSessionId: number, answerSessionStatusIdDto?: AnswerSessionStatusIdDto): Observable<any> {
-    return this.httpClient.put<number>(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto);
+    return this.httpClient.put(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto);
 
   }
 
@@ -40,6 +40,11 @@ export class AnswerSessionService {
     }
 }
 
+export interface QuestionResponse {
+  finished: boolean;
+  question: Question;
+}
+
 export interface Question {
   id: number;
   displayName: string;
@@ -49,7 +54,6 @@ export interface Question {
 export interface Answer {
   id: number;
   displayName: string;
-  correct: boolean;
 }
 
 export interface QuestionAnswerSelectDto {

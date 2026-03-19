@@ -3,10 +3,10 @@ import { Subject, CheckCompletedSessions, SubjectService, SubjectCompletedAge, A
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
-import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.component';
-import { SubjectEditDialogComponent } from './dialogs/edit/subject-edit-dialog.component';
 import { SubjectInfoDialogComponent } from './dialogs/info/subject-info-dialog.component';
 import { SubjectStartSessionDialogComponent } from './dialogs/start-session/subject-start-session-dialog.component';
+import { SubjectEditDialogComponent } from './dialogs/edit/subject-edit-dialog.component';
+import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.component';
 
 
 @Component({
@@ -26,7 +26,6 @@ export class SubjectComponent implements OnInit {
   newSubject: CreateSubject = {
     displayName: "",
   }
-  openEdit!: boolean;
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
@@ -83,15 +82,10 @@ export class SubjectComponent implements OnInit {
   }
 
   public createSubject(displayName: string, courseId: number): void {
-    this.subjectService.createSucject(displayName, courseId).subscribe(() => {
-        this.getSubjects(courseId);
-        this.escapeFromInput();
+    this.subjectService.createSucject(displayName, courseId).subscribe((result) => {
+      this.goToCreateQuestion(result);
       }
     );
-  }
-
-  public escapeFromInput(): void {
-    this.addSubject = false;
   }
 
   public goToCreateQuestion(subjectId: number): void {
@@ -123,11 +117,6 @@ export class SubjectComponent implements OnInit {
     this.subjectService.updateSubject(subjectId, displayName).subscribe(() => {
       this.getSubjects(this.courseId);
     });
-  }
-
-  public disabledEdit(subjectId: number): void {
-    this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result =>
-      this.openEdit = result);
   }
 
   public openDeleteDialog(subjectId: number): void {
@@ -169,7 +158,7 @@ export class SubjectComponent implements OnInit {
     })
   }
 
-    public openStartSessionDialog(subjectId: number): void {
+  public openStartSessionDialog(subjectId: number): void {
     this.dialog.open(SubjectStartSessionDialogComponent, {
       width: '550px',
     }).afterClosed().subscribe(result => {

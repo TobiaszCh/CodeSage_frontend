@@ -16,7 +16,7 @@ h2 {
     color: white;
     margin: 0px;
     cursor: pointer;
-    width: 150px;
+    white-space: nowrap;
 }
 
 header div {
@@ -37,4 +37,7 @@ header div {
     width: 32px;
 }
 
+.email {
+    cursor: default;
+}
 

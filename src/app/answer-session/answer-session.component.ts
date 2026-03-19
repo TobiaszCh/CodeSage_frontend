@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AnswerSessionDeleteDialogComponent } from './dialogs/exit/answer-session-exit-dialog.component';
 import { AnswerSessionOutcomeDialogComponent } from './dialogs/outcome/answer-session-outcome-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-answer-session',
@@ -13,9 +14,9 @@ import { AnswerSessionOutcomeDialogComponent } from './dialogs/outcome/answer-se
 
 export class AnswerSessionComponent implements OnInit {
 
-  question!: Question;
+  question?: Question;
   allPointsAnswerSession!: AllPointsAnswerSession;
-  checkAnswer!: number;
+  checkAnswer?: number;
   answerSessionId!: number;
   correctAnswerId!: number;
   informAboutResponse: string = "";
@@ -40,13 +41,14 @@ export class AnswerSessionComponent implements OnInit {
 
   public nextQuestion(answerSessionId: number) {
     this.informAboutResponse = "";
-    this.answerSessionService.getQuestions(answerSessionId).subscribe(question => {
-      if (question !== null) {
-        this.question = question;
+    this.answerSessionService.getQuestions(answerSessionId).subscribe(questionResponse => {
+      if(!questionResponse.finished) {
+        this.question = questionResponse.question;
         this.showMeInform = false;
         this.blockNext = false;
         this.blockCheck = true;
         this.blockAnswer = false;
+        this.checkAnswer = undefined;
         this.getPoints(answerSessionId);
       }
       else {
@@ -73,12 +75,6 @@ export class AnswerSessionComponent implements OnInit {
     });
   }
 
-  public nextTemplete(): void {
-    console.log("Updating answer session status for ID:", this.answerSessionId);
-    this.updateAnswerSessionStatus(this.answerSessionId);
-    this.router.navigate(['/courses']);
-  }
-
   public informForUser(): string {
     if (this.checkAnswer === this.correctAnswerId) {
       this.informAboutResponse = "Ta odpowiedź jest prawidłowa :)";
@@ -89,31 +85,17 @@ export class AnswerSessionComponent implements OnInit {
     return this.informAboutResponse;
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  public beforeUnloadHandler(event: BeforeUnloadEvent): void {
-    this.updateAnswerSessionStatus(this.answerSessionId);
+  public updateAnswerSessionStatus(answerSessionId: number): Observable<any> {
+    return this.answerSessionService.updateAnswerSessionStatus(answerSessionId);
   }
 
-  @HostListener('window:popstate')
-  public stoppedBackAndForth(): void {
-    confirm("Sesja trwa. Ta operacja może spowodować jej niezapisanie :(")
-    this.updateAnswerSessionStatus(this.answerSessionId);
-  }
-
-  public updateAnswerSessionStatus(answerSessionId: number): void {
-    this.answerSessionService.updateAnswerSessionStatus(answerSessionId).subscribe();
-  }
-
-  public getPoints(answerSessionId:number) {
+  public getPoints(answerSessionId: number) {
     return this.answerSessionService.getPoints(answerSessionId).subscribe(allPointsAnswerSession =>
        this.allPointsAnswerSession = allPointsAnswerSession);
   }
 
-  public outcome(): boolean {
-    return this.allPointsAnswerSession?.correctAnswers/this.allPointsAnswerSession?.allAnswers >= 0.8;
-  }
-
   public progress(): number {
+    if(this.allPointsAnswerSession == undefined) return 0;
     return this.allPointsAnswerSession.allAnswers/10 * 100;
   }
 
@@ -128,7 +110,6 @@ export class AnswerSessionComponent implements OnInit {
       width: '550px'
     }).afterClosed().subscribe(result => {
       if(result) {
-        this.updateAnswerSessionStatus(this.answerSessionId);
         this.backToSubjects(this.answerSessionId);
       }
     });
@@ -141,11 +122,12 @@ export class AnswerSessionComponent implements OnInit {
       data: this.allPointsAnswerSession
     }).afterClosed().subscribe(result => {
       if(result) {
-        this.updateAnswerSessionStatus(this.answerSessionId);
-        this.backToSubjects(this.answerSessionId);
+        this.updateAnswerSessionStatus(this.answerSessionId).subscribe(() =>
+        this.backToSubjects(this.answerSessionId));
       }
     });
   }
+  
 }
 
 
