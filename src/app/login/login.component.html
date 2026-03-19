@@ -1,26 +1,42 @@
 <main>
     <form autocomplete="on">
-        <h1>Login</h1> 
-        <div class="error" *ngIf="error">{{error}}</div>
+        <h2>Zaloguj się na swoje konto</h2>
         <div>
             <label>Email</label>
             <input class="email-input" type="email" name="username" [(ngModel)] = "username"/>
         </div>
         <div>
             <label>Hasło</label>
-            <div class="div-visibility">
-                <input class = "password-input" [type]="hide ? 'password': 'text'" name ="password" [(ngModel)] = "password"/>
+            <div class="password-div">
+                <input autocomplete="off" class = "password-input" [type]="hide ? 'password': 'text'" name ="password" [(ngModel)] = "password"/>
                 <mat-icon class="mat-icon" (click) = "showPassword()">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             </div>
         </div>
-        <button class = "login-and-registration-button" (click) = login()> Zaloguj </button>
-        <button class = "login-and-registration-button" (click) = "goToRegistration()"> Rejestracja </button>
-        <button class="goolge-button" (click) = "loginByGoogle()">
-            <img class="google-icon" src="assets\icons8-google-48.png">
-            <span>Google</span>
+        <div class="error" *ngIf="error">
+            <mat-icon>warning</mat-icon>
+            {{error}}
+        </div>
+        <button mat-raised-button color="primary" class = "login-button" (click) = login()>Zaloguj</button>
+        <div class="line">
+            <mat-divider></mat-divider> 
+            <span>OR</span> 
+            <mat-divider></mat-divider>
+        </div>
+        <button mat-raised-button color="basic" class="google-button" (click)="loginByGoogle()">
+            <mat-icon class="google-icon">
+                <img src="assets/icons8-google-48.png">
+            </mat-icon>
+            Zaloguj się z Google
         </button>
-        <a class="demo-link" (click)="createRandomUser()">
-            Wersja demonstracyjna
-        </a>
+        <footer class="login-footer">
+            <p>
+                Nie masz konta?
+                <a (click)="goToRegistration()">Załóż konto</a>
+            </p>
+
+            <a class="demo-link" (click)="createRandomUser()">
+                Wersja demonstracyjna
+            </a>
+        </footer>
     </form>
 </main>
