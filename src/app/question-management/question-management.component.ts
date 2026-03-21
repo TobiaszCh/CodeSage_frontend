@@ -26,8 +26,8 @@ export class ManageQuestionComponent implements OnInit {
     this.activatedRoute.params.subscribe(param => {
       this.subjectId = param["subjectId"];
       this.showOuestions(this.subjectId).subscribe(result => {
-        this.newQuestions = this.addIndexCorrectAnswer(result); console.log(this.newQuestions[1]);console.log(this.newQuestions[1].answers); });
-            
+        this.newQuestions = this.addIndexCorrectAnswer(result);
+      });         
     })
   }
   
