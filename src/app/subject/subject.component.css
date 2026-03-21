@@ -1,7 +1,7 @@
 header {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px 16px 0;
+  padding: 24px 12px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,6 +84,11 @@ section:hover .add-subject {
 }
 
 @media (max-width: 768px) {
+  main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
   li {
     max-width: none;
     width: 100%;
