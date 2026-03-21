@@ -22,7 +22,6 @@ export class SubjectService {
     const subjectIdToAnswerSessionDto: SubjectIdToAnswerSessionDto = {
       id: subjectId
     }
-    console.log(subjectIdToAnswerSessionDto.id)
     return this.httpClient.post<number>(`${this.baseUrl}/answer-session/subjectId`, subjectIdToAnswerSessionDto);
   }
 

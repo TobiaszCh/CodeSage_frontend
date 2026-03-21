@@ -12,10 +12,6 @@ import { ManageQuestionComponent } from "./question-management/question-manageme
 
 
 const routes: Routes = [
-    //CourseComopnent -> CoursesComponent
-    //SubjectComponent -> CourseDetailsComponent url: chcemy id
-    // /course/5
-    // /answersession/315
     {
       path: '',
       component: AuthComponent,
@@ -23,7 +19,8 @@ const routes: Routes = [
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegistrationComponent},
         { path: '' , redirectTo: 'login', pathMatch: 'full'}
-      ]},
+      ]
+    },
     {         
       path: '',
       component: NavbarComponent,
@@ -31,8 +28,11 @@ const routes: Routes = [
         { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
         { path: 'courses/:courseId', component: SubjectComponent},
         { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent}
-      ]},
-      { path: 'answer-session/:answerSessionId', component: AnswerSessionComponent}
+      ]
+    },
+    { 
+      path: 'answer-session/:answerSessionId', component: AnswerSessionComponent
+    }
   ];
   
   @NgModule({
