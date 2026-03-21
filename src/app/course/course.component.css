@@ -45,3 +45,12 @@ ul {
     position: absolute;
     right: 0px;    
 }
+
+@media (max-width: 768px) {
+
+    main, header {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+}
