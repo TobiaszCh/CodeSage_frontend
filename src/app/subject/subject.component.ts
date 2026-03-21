@@ -14,7 +14,6 @@ import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.comp
   templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.css']
 })
-//CourseDetailsComponent
 export class SubjectComponent implements OnInit {
 
   subjects: Subject[] = [];
@@ -56,9 +55,8 @@ export class SubjectComponent implements OnInit {
     this.subjectService.getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId).subscribe(
       value => {
         this.checkCompletedSessions = value;
-        console.log(value);
-
-      });
+      }
+    );
   }
 
   public color(idSubject: number): string {
