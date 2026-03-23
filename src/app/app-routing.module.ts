@@ -12,13 +12,15 @@ import { ManageQuestionComponent } from "./question-management/question-manageme
 
 
 const routes: Routes = [
+    { 
+      path: '' , redirectTo: 'courses', pathMatch: 'full'
+    },
     {
       path: '',
       component: AuthComponent,
       children: [
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegistrationComponent},
-        { path: '' , redirectTo: 'login', pathMatch: 'full'}
       ]
     },
     {         
