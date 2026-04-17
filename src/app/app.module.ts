@@ -38,7 +38,6 @@ import { SubjectStartSessionDialogComponent } from './subject/dialogs/start-sess
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { SubjectEditDialogComponent } from './subject/dialogs/edit/subject-edit-dialog.component';
 import { SubjectAddDialogComponent } from './subject/dialogs/add/subject-add-dialog.component';
 import { ManageQuestionComponent } from './question-management/question-management.component';
 import { ManageQuestionExitDialogComponent } from './question-management/dialogs/exit/question-management-exit-dialog.component';
@@ -67,7 +66,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     SubjectInfoDialogComponent,
     SubjectStartSessionDialogComponent,
     ManageQuestionExitDialogComponent,
-    SubjectEditDialogComponent,
     SubjectAddDialogComponent
     
     
