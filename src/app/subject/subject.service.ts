@@ -19,14 +19,14 @@ export class SubjectService {
   }
 
   public sendSubjectIdToAnswerSession(subjectId: number): Observable<number> {
-    const subjectIdToAnswerSessionDto: SubjectIdToAnswerSessionDto = {
+    const subjectIdToAnswerSession: SubjectIdToAnswerSession = {
       id: subjectId
     }
-    return this.httpClient.post<number>(`${this.baseUrl}/answer-session/subjectId`, subjectIdToAnswerSessionDto);
+    return this.httpClient.post<number>(`${this.baseUrl}/answer-session/subjectId`, subjectIdToAnswerSession);
   }
 
-  public getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId: number): Observable<CheckCompletedSessions[]> {
-    return this.httpClient.get<CheckCompletedSessions[]>(`${this.baseUrl}/subjects/correct-answers-at-least-80/${courseId}`);
+  public getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId: number): Observable<SubjectCompletionStatus[]> {
+    return this.httpClient.get<SubjectCompletionStatus[]>(`${this.baseUrl}/subjects/correct-answers-at-least-80/${courseId}`);
   }
 
   public getCourseById(courseId: number): Observable<Course> {
@@ -39,13 +39,6 @@ export class SubjectService {
       displayName:displayName
     }
     return this.httpClient.post<number>(`${this.baseUrl}/subjects`, createSubject)
-  }
-
-  public updateSubject(subjectId: number, displayName: string): Observable<any> {
-    const subject: UpdateSubject = {
-      displayName: displayName
-    }
-    return this.httpClient.patch(`${this.baseUrl}/subjects/${subjectId}`, subject);
   }
 
   public deleteSubjectById(subjectId: number): Observable<any> {
@@ -63,13 +56,13 @@ export interface Subject {
   courseId: number
 }
 
-export interface CheckCompletedSessions {
+export interface SubjectCompletionStatus {
   id: number,
   answerSessionId: number,
   subjectCompletedAge: SubjectCompletedAge
 }
 
-export interface SubjectIdToAnswerSessionDto {
+export interface SubjectIdToAnswerSession {
   id: number
 }
 
@@ -90,8 +83,4 @@ export interface Course {
 export interface CreateSubject {
   displayName: string,
   courseId?: number
-}
-
-export interface UpdateSubject {
-  displayName: string
 }

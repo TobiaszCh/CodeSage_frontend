@@ -14,28 +14,32 @@ export class ManageQuestionService {
     
   }
 
-  public createQuestions(questions: Questions[]): Observable<number> {
+  public createQuestions(questions: Question[]): Observable<number> {
     return this.httpClient.post<number>(`${this.baseUrl}/questions`, questions);
   }
 
-  public updateQuestions(questions: Questions[]): Observable<number> {
-    return this.httpClient.patch<number>(`${this.baseUrl}/questions`, questions);
+  public updateSubjectDetails(subjectId: number, subjectDetails: SubjectDetails): Observable<number> {
+    return this.httpClient.patch<number>(`${this.baseUrl}/subjects/${subjectId}`, subjectDetails);
   }
 
   public getCoursId(subjectId: number): Observable<number> {
     return this.httpClient.get<number>(`${this.baseUrl}/subjects/${subjectId}/course-id`);
   }
 
-  public getQuestionsBySubjectId(subjectId: number): Observable<Questions[]> {
-    return this.httpClient.get<Questions[]>(`${this.baseUrl}/questions/${subjectId}`);
+  public getQuestionsBySubjectId(subjectId: number): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(`${this.baseUrl}/questions/${subjectId}`);
   }
 
   public hasQuestionsInSubject(subjectId: number): Observable<boolean> {
     return this.httpClient.get<boolean>(`${this.baseUrl}/questions/subjectId/${subjectId}`);
   }
+
+  public getSubjectById(subjectId: number): Observable<Subject> {
+    return this.httpClient.get<Subject>(`${this.baseUrl}/subjects/${subjectId}`);
+  }
 }
 
-export interface Questions {
+export interface Question {
   id?: number;
   displayName: string;
   subjectId: number;
@@ -47,4 +51,14 @@ export interface Answer {
   id?: number;
   displayName: string;
   isCorrect: boolean;
+}
+
+export interface Subject {
+  id: number;
+  displayName: string;
+}
+
+export interface SubjectDetails {
+  displayName: String;
+  questions: Question[];
 }

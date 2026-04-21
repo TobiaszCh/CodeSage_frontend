@@ -5,11 +5,13 @@
         </button>
         <h2>{{titleFromCourse?.displayName}}</h2>
     </div>
-        <button mat-flat-button color="primary" (click)="openAddDialog()" class="button-back">
-            <mat-icon>add</mat-icon>
-            Dodaj temat
-        </button>
+
+    <button mat-flat-button color="primary" (click)="openAddDialog()" class="button-back">
+        <mat-icon>add</mat-icon>
+        Dodaj temat
+    </button>
 </header>
+
 <main>
     <section>
         <ul>
@@ -22,28 +24,28 @@
                         (click)="startAnswerSession(subject.id)">
                         {{subject.displayName}} 
                     </button>
+
                     <button
                         mat-icon-button
                         [matMenuTriggerFor]="menu"
                         class="more-horiz"                  
                         (click)="$event.stopPropagation();"  
                     >
+
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                 </div>
+
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="openEditDialog(subject.id, subject.displayName)">
+                    <button mat-menu-item (click)="goToCreateQuestion(subject.id)">
                         <mat-icon>edit</mat-icon>
                         Edytuj
-                    </button>
+                    </button> 
+
                     <button mat-menu-item (click)="openDeleteDialog(subject.id)">
                         <mat-icon>delete</mat-icon>
                         Usuń
-                    </button>
-                    <button mat-menu-item (click)="goToCreateQuestion(subject.id)">
-                        <mat-icon>quiz</mat-icon>
-                        Zarządzaj pytaniami
-                    </button>               
+                    </button>             
                 </mat-menu>                 
             </li>
         </ul>
