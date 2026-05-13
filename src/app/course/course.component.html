@@ -4,7 +4,7 @@
 <main>
     <section>
         <ul>
-            <li *ngFor="let course of courses">
+            <li *ngFor="let course of displayNameCourse">
                 <div class="course-wrapper"> 
                     <button
                         mat-raised-button
@@ -23,7 +23,7 @@
                     </button>
                 </div>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="openEditDialog(course.id, course.displayName)">
+                    <button mat-menu-item (click)="goToCourseForm()">
                         <mat-icon>edit</mat-icon>
                         Edytuj
                     </button>
@@ -33,10 +33,11 @@
                     </button>
                 </mat-menu>  
             </li>
-            <button mat-flat-button class="create-button" (click)="openAddDialog()">
+            <button mat-flat-button class="create-button" (click)="goToCourseForm()">
                 <mat-icon>add</mat-icon>
                  Dodaj kurs
             </button>
         </ul>
     </section>
 </main>
+

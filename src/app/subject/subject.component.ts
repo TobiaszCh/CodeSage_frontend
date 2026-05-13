@@ -16,7 +16,7 @@ import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.comp
 export class SubjectComponent implements OnInit {
 
   subjects: Subject[] = [];
-  titleFromCourse?: Course;
+  course!: Course;
   subjectCompletionStatus: SubjectCompletionStatus[] = [];
   answerSessionId!: AnswerSession;
   courseId!: number;
@@ -24,6 +24,7 @@ export class SubjectComponent implements OnInit {
   newSubject: CreateSubject = {
     displayName: "",
   }
+  shared: boolean = false;
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
@@ -34,7 +35,7 @@ export class SubjectComponent implements OnInit {
       this.courseId = param["courseId"];
       this.getSubjects(this.courseId);
       this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
-      this.subjectService.getCourseById(this.courseId).subscribe(value => this.titleFromCourse = value);
+      this.subjectService.getCourseById(this.courseId).subscribe(value => this.course = value);
     })
   }
 

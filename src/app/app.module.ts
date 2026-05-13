@@ -15,8 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth/auth.component';
 import { CourseDeleteDialogComponent } from './course/dialogs/delete/course-delete-dialog.component';
-import { CourseEditDialogComponent } from './course/dialogs/edit/course-edit-dialog.component';
-import { CourseAddDialogComponent } from './course/dialogs/add/course-add-dialog.component';
 import { SubjectDeleteDialogComponent } from './subject/dialogs/delete/subject-delete-dialog.component';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -30,7 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule} from '@angular/material/list';
 import { AnswerSessionDeleteDialogComponent } from './answer-session/dialogs/exit/answer-session-exit-dialog.component';
 import { AnswerSessionOutcomeDialogComponent } from './answer-session/dialogs/outcome/answer-session-outcome-dialog.component';
 import { SubjectInfoDialogComponent } from './subject/dialogs/info/subject-info-dialog.component';
@@ -41,7 +39,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SubjectAddDialogComponent } from './subject/dialogs/add/subject-add-dialog.component';
 import { ManageQuestionComponent } from './question-management/question-management.component';
 import { ManageQuestionExitDialogComponent } from './question-management/dialogs/exit/question-management-exit-dialog.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import { CourseFormComponent } from './course-form/course-form.component';
 
 
 @NgModule({
@@ -55,20 +54,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     NavbarComponent,
     AuthComponent,
     ManageQuestionComponent,
-
-
     CourseDeleteDialogComponent,
-    CourseAddDialogComponent,
-    CourseEditDialogComponent,
     SubjectDeleteDialogComponent,
     AnswerSessionDeleteDialogComponent,
     AnswerSessionOutcomeDialogComponent,
     SubjectInfoDialogComponent,
     SubjectStartSessionDialogComponent,
     ManageQuestionExitDialogComponent,
-    SubjectAddDialogComponent
-    
-    
+    SubjectAddDialogComponent,
+    CourseFormComponent
   ],
   imports: [
     HttpClientModule,

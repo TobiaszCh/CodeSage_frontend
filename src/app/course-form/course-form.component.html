@@ -1,0 +1,59 @@
+<div class="buttons">
+    <button mat-raised-button class = "publish-button" color = "primary" (click)="createCourse(course, selectedFile)"> Zapisz </button>
+    <button mat-raised-button class = "back-button" (click)="backToCourses()"> Wróć do kursów </button>
+</div>
+
+<mat-card class="card-course-form">
+    <h2>Szczegóły kursu</h2>
+    <div class = "first-line">
+        <div class="form-field-name-div">
+            <h3>Nazwa kursu</h3>
+            <mat-form-field appearance="outline" class="name-input">
+                <mat-label>Kurs</mat-label>
+                <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="50"/>
+            </mat-form-field>
+            <span class="counter">
+                {{course.displayName.length}} / 50
+            </span>
+        </div>
+        <div class="form-field-available-div">
+            <h3>Dostępność</h3>
+            <mat-form-field class="available-input">
+                <mat-label>Dostępność</mat-label>
+                <mat-select>
+                    <mat-option [value]="course.visibility">
+                    {{course.visibility}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <h3>Opis</h3>
+    <div class="form-field-desciption-div">
+        <mat-form-field appearance="outline" class="description-input">
+            <mat-label>Opis</mat-label>
+            <textarea 
+                matInput [(ngModel)] = "course.description"
+                cdkTextareaAutosize
+                maxlength="700" 
+                rows="10" >
+            </textarea>
+        </mat-form-field>
+        <span class="counter">
+            {{course.description.length}} / 700
+        </span>
+    </div>
+    <h3>Obraz</h3>
+    <div class="image-div">
+        <img class="file-img" [src]="image">
+        <div class="buttons-img-div">
+            <button mat-raised-button mat-dialog-close color = "primary" (click)="formFile.click()">Dodaj obraz</button>
+            <button mat-raised-button mat-dialog-close color (click)="deleteImage()">Usuń obraz</button>
+            <input type="file"
+            #formFile
+            hidden 
+            accept="image/*" 
+            (change)="onFileSelected($event)">
+        </div>
+    </div>
+</mat-card>
