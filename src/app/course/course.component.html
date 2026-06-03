@@ -14,6 +14,7 @@
                         {{ course.displayName }}
                     </button>
                     <button
+                        *ngIf="course.accessToModifyCourse"
                         mat-icon-button
                         [matMenuTriggerFor]="menu"
                         class="more-horiz"                  
@@ -23,7 +24,7 @@
                     </button>
                 </div>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="goToCourseForm()">
+                    <button mat-menu-item (click)="goToEditCourseForm(course.id)">
                         <mat-icon>edit</mat-icon>
                         Edytuj
                     </button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ManageQuestionService, Question, Subject, SubjectDetails } from './question-management.service';
+import { ManageQuestionService, Question, Questions, Subject, SubjectDetails } from './question-management.service';
 import { ActivatedRoute, Router  } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of, switchMap } from 'rxjs';
@@ -33,11 +33,11 @@ export class ManageQuestionComponent implements OnInit {
     })
   }
   
-  public createOrUpdateQuestions(newQuestions: Question[]): void {
+  public createOrUpdateQuestions(): void {
     this.manageQuestionService.hasQuestionsInSubject(this.subjectId).pipe(switchMap(result => 
       result  
       ? this.manageQuestionService.updateSubjectDetails(this.subjectId, this.subjectDeatils())
-      : this.manageQuestionService.createQuestions(newQuestions)
+      : this.manageQuestionService.createQuestions(this.createQuestions())
     )).subscribe({
         next: courseId => {
           this.router.navigate(["courses", courseId]);
@@ -101,6 +101,13 @@ export class ManageQuestionComponent implements OnInit {
       displayName: this.subject.displayName
     }
     return subjectDeatils;
+  }
+
+  public createQuestions(): Questions {
+    const questions: Questions = {
+      questions: this.questions
+    }
+    return questions;
   }
 
   public getSubjectById(subjectId: number): void {

@@ -1,5 +1,5 @@
 <div class="buttons">
-    <button mat-raised-button class = "publish-button" color = "primary" (click)="createCourse(course, selectedFile)"> Zapisz </button>
+    <button mat-raised-button class = "publish-button" color = "primary" (click)="createOrUpdateCourse(course, selectedFile)"> Zapisz </button>
     <button mat-raised-button class = "back-button" (click)="backToCourses()"> Wróć do kursów </button>
 </div>
 
@@ -10,20 +10,19 @@
             <h3>Nazwa kursu</h3>
             <mat-form-field appearance="outline" class="name-input">
                 <mat-label>Kurs</mat-label>
-                <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="50"/>
+                <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="25"/>
             </mat-form-field>
             <span class="counter">
-                {{course.displayName.length}} / 50
+                {{course.displayName.length}} / 25
             </span>
         </div>
         <div class="form-field-available-div">
             <h3>Dostępność</h3>
             <mat-form-field class="available-input">
                 <mat-label>Dostępność</mat-label>
-                <mat-select>
-                    <mat-option [value]="course.visibility">
-                    {{course.visibility}}
-                    </mat-option>
+                <mat-select [(value)]="course.visibility">
+                    <mat-option value="PRIVATE">Prywatny</mat-option>
+                    <mat-option value="PUBLIC">Publiczny</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -49,11 +48,12 @@
         <div class="buttons-img-div">
             <button mat-raised-button mat-dialog-close color = "primary" (click)="formFile.click()">Dodaj obraz</button>
             <button mat-raised-button mat-dialog-close color (click)="deleteImage()">Usuń obraz</button>
-            <input type="file"
-            #formFile
-            hidden 
-            accept="image/*" 
-            (change)="onFileSelected($event)">
+            <input  
+                type="file"
+                #formFile
+                hidden 
+                accept="image/*" 
+                (change)="onFileSelected($event)">
         </div>
     </div>
 </mat-card>

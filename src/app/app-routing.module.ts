@@ -30,6 +30,7 @@ const routes: Routes = [
       children: [
         { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
         { path: 'courses/form', component: CourseFormComponent},
+        { path: 'courses/:courseId/form', component: CourseFormComponent},
         { path: 'courses/:courseId', component: SubjectComponent},
         { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent}
       ]

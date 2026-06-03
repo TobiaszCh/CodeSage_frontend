@@ -32,11 +32,17 @@ export class CourseService {
     }
     return this.httpClient.post(`${this.baseUrl}/courses`, createCourse);
   }
+  
+  public privilegeToModifyCourse(courseId: number): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/courses/${courseId}/privilege`)
+  }
+
 }
 
 export interface DisplayNameCourse {
   id: number;
   displayName: string;
+  accessToModifyCourse: boolean;
 }
 
 export interface CreateCourse {

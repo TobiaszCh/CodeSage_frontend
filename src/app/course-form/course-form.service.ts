@@ -9,15 +9,26 @@ import { environment } from 'src/environments/environment';
 export class CourseFormService {
 
   private baseUrl = environment.apiUrl;
-  
-    constructor(private httpClient: HttpClient ) {
-    }
+          
+  constructor(private httpClient: HttpClient ) {
+  }
+
+  public getCourseById(courseId: number): Observable<Course> {
+    return this.httpClient.get<Course>(`${this.baseUrl}/courses/${courseId}`);
+  }
 
   public createCourse(course: Course, file: File): Observable<any> {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("courseDto", new Blob([JSON.stringify(course)], {type: "application/json"}));
     return this.httpClient.post(`${this.baseUrl}/courses`, formData);
+  }
+
+  public updateCourse(courseId: number, course: Course, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("courseDto", new Blob([JSON.stringify(course)], {type: "application/json"}));
+    return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, formData);
   }
   
 }
@@ -26,6 +37,7 @@ export interface Course {
   id?: number;
   displayName: string;
   description: string;
+  imageUrl?: string;
   visibility: Visibility;
 }
 

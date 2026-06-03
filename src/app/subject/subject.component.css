@@ -139,6 +139,10 @@ section:hover .add-subject {
   margin: 10px 0;
 }
 
+.button-back {
+  margin-left: 16px;
+}
+
 
 @media (max-width: 768px) {
   main {

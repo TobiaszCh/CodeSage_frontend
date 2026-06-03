@@ -13,6 +13,7 @@ import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dial
 export class CourseComponent implements OnInit {
 
   displayNameCourse: DisplayNameCourse[] = [];
+  accessToModifyCourse: boolean = true;
   
 
   constructor(private courseService: CourseService, private router: Router, private dialog: MatDialog
@@ -52,7 +53,15 @@ export class CourseComponent implements OnInit {
 
   public goToCourseForm() {
     this.router.navigate(["courses/form"]);
+  }
 
+  public goToEditCourseForm(courseId: number): void {
+    this.router.navigate(["courses", courseId, "form"]);
+  }
+
+  public privilegeToModifyCourse(courseId: number) {
+    this.courseService.privilegeToModifyCourse(courseId).subscribe(result =>
+      this.accessToModifyCourse  = result);
   }
 
   public openDeleteDialog(courseId: number): void {

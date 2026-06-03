@@ -14,7 +14,7 @@ export class ManageQuestionService {
     
   }
 
-  public createQuestions(questions: Question[]): Observable<number> {
+  public createQuestions(questions: Questions): Observable<number> {
     return this.httpClient.post<number>(`${this.baseUrl}/questions`, questions);
   }
 
@@ -37,6 +37,10 @@ export class ManageQuestionService {
   public getSubjectById(subjectId: number): Observable<Subject> {
     return this.httpClient.get<Subject>(`${this.baseUrl}/subjects/${subjectId}`);
   }
+}
+
+export interface Questions {
+  questions: Question[];
 }
 
 export interface Question {

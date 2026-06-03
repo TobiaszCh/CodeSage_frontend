@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, SubjectCompletionStatus, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject} from './subject.service';
+import { Subject, SubjectCompletionStatus, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject, Visibility} from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
@@ -24,7 +24,6 @@ export class SubjectComponent implements OnInit {
   newSubject: CreateSubject = {
     displayName: "",
   }
-  shared: boolean = false;
 
   constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
     private dialog: MatDialog) {
@@ -35,7 +34,9 @@ export class SubjectComponent implements OnInit {
       this.courseId = param["courseId"];
       this.getSubjects(this.courseId);
       this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
-      this.subjectService.getCourseById(this.courseId).subscribe(value => this.course = value);
+      this.subjectService.getCourseById(this.courseId).subscribe(value => {this.course = value
+        console.info(value.imageUrl)}
+      );
     })
   }
 
@@ -74,7 +75,20 @@ export class SubjectComponent implements OnInit {
     return ''
   }
 
+  public visibilty(): boolean {
+    switch(this.course.visibility) {
+      case Visibility.PRIVATE:
+        return false;
+      case Visibility.PUBLIC:
+        return true;
+    }
+  }
+
   public backToCourses(): void {
+    this.router.navigate(["/courses"]);
+  }
+
+  public goToCourses(): void {
     this.router.navigate(["/courses"]);
   }
 
@@ -91,6 +105,10 @@ export class SubjectComponent implements OnInit {
 
   public goToEditQuestion(subjectId: number): void {
       this.router.navigate(["subjects", subjectId, "questions", "edit"]);
+  }
+
+  public goToEditCourseForm(courseId: number): void {
+    this.router.navigate(["courses", courseId, "form"]);
   }
 
   public startAnswerSession(subjectId: number): void {
