@@ -1,19 +1,47 @@
 <header>
-    <div class="back">
+    <div class="back-div">
         <button mat-icon-button (click)="backToCourses()" aria-label="Wróć do kursów">
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <h2>{{titleFromCourse?.displayName}}</h2>
+        <h2>{{course.displayName}}</h2>
     </div>
-
-    <button mat-flat-button color="primary" (click)="openAddDialog()" class="button-back">
-        <mat-icon>add</mat-icon>
-        Dodaj temat
-    </button>
+    <div>
+        <button mat-raised-button color="basic" 
+            *ngIf="course.accessToModifyCourse" 
+            (click)="goToEditCourseForm(courseId)" 
+            class="button-back">
+            <mat-icon>edit</mat-icon>
+            Edytuj Kurs
+        </button>
+        <button mat-raised-button color="primary" (click)="openAddDialog()" class="button-back">
+            <mat-icon>add</mat-icon>
+            Dodaj temat
+        </button>
+    </div>
 </header>
 
 <main>
     <section>
+        <h2>O kursie</h2>
+        <mat-card mat-dialog-content>
+            <div class="card-div">
+                <div class= "image-div">
+                    <img [src]="course.imageUrl" >
+                </div>
+                <div class="content-div">
+                    <h3>Opis</h3>
+                    <p>{{course.description}}</p>
+                    <h3>Dostępność</h3>
+                    <div class="status-div" [ngClass]="visibilty() ? 'public-div' : 'private-div' ">
+                        <mat-icon class="icon-mat">{{visibilty() ? 'lock_open' : 'lock'}}</mat-icon>
+                        <p>{{visibilty() ? 'Publiczny' : 'Prywatny'}}</p>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </section>
+    <section>
+        <h2>Tematy</h2>
         <ul>
             <li *ngFor="let subject of subjects" >
                 <div class="subject-wrapper">

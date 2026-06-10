@@ -78,6 +78,15 @@ export enum SubjectCompletedAge {
 export interface Course {
   id: number;
   displayName: string;
+  description: string;
+  imageUrl: string;
+  visibility: Visibility;
+  accessToModifyCourse: boolean;
+}
+
+export enum Visibility {
+  PUBLIC = "PUBLIC",
+  PRIVATE = "PRIVATE"
 }
 
 export interface CreateSubject {
