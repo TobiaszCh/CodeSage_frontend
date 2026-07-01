@@ -11,9 +11,12 @@
             (click)="goToEditCourseForm(courseId)" 
             class="button-back">
             <mat-icon>edit</mat-icon>
-            Edytuj Kurs
+            Edytuj kurs
         </button>
-        <button mat-raised-button color="primary" (click)="openAddDialog()" class="button-back">
+        <button mat-raised-button color="primary"
+            *ngIf="course.accessToModifyCourse" 
+            (click)="openAddDialog()" 
+            class="button-back">
             <mat-icon>add</mat-icon>
             Dodaj temat
         </button>
@@ -55,6 +58,7 @@
 
                     <button
                         mat-icon-button
+                        *ngIf="course.accessToModifyCourse"
                         [matMenuTriggerFor]="menu"
                         class="more-horiz"                  
                         (click)="$event.stopPropagation();"  
