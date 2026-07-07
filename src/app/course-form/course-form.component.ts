@@ -36,11 +36,6 @@ export class CourseFormComponent implements OnInit {
     this.selectedFile = file;
   }
 
-  public deleteImage() {
-    this.image = "";
-    this.selectedFile = new File([], '');
-  }
-
   public createOrUpdateCourse(course: Course, file: File): void {
     const request = this.courseId !== undefined 
     ? this.courseFormService.updateCourse(this.courseId, course, file)
