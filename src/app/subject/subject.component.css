@@ -145,6 +145,7 @@ section:hover .add-subject {
 
 
 @media (max-width: 768px) {
+  
   main {
     padding-left: 12px;
     padding-right: 12px;
@@ -164,17 +165,24 @@ section:hover .add-subject {
   }
 
   .card-div {
-    display: block;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-div, .content-div {
+    margin: 10px;
+    width: auto;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .buttons-div {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
   }
 
-  .image-div {
-    margin: 10px;
-    max-width: 100%;
-  }
-
-  .content-div {
-      margin: 10px;
-      max-width: 100%;
-    }
 }
