@@ -1,0 +1,68 @@
+<mat-card class="card-course-form">
+    <h2>Szczegóły kursu</h2>
+    <p class = "card-course-form-p">Wypełnij informacje o swoim kursie. Wszystkie pola są wymagane.</p>
+    <div class="columns">
+        <div class="first-column">
+            <div>
+                <h3>Nazwa kursu</h3>
+                <mat-form-field appearance="outline" class="name-input">
+                    <mat-label>Kurs</mat-label>
+                    <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="25"/>
+                </mat-form-field>
+                <span class="counter">
+                    {{course.displayName.length}} / 25
+                </span>
+            </div>
+            <h3>Opis</h3>
+            <mat-form-field appearance="outline" class="description-input">
+                <mat-label>Opis</mat-label>
+                <textarea 
+                    matInput [(ngModel)] = "course.description"
+                    cdkTextareaAutosize
+                    maxlength="600"  >
+                </textarea>
+            </mat-form-field>
+            <span class="counter">
+                {{course.description.length}} / 600
+            </span>
+            <h3>Dadawanie obrazu</h3>
+            <div class="choose-image">
+                <mat-icon class="image-icon">cloud_upload</mat-icon>
+                <p>Kliknij, aby dodać nowy obraz</p>
+                <button mat-raised-button mat-dialog-close color = "primary" (click)="formFile.click()">Dodaj obraz</button>
+                <input  
+                    type="file"
+                    #formFile
+                    hidden 
+                    accept="image/*" 
+                    (change)="onFileSelected($event)">
+            </div>
+        </div>
+        <div class="second-column">
+            <div>
+                <h3>Dostępność</h3>
+                <mat-form-field class="available-input">
+                    <mat-label>Dostępność</mat-label>
+                    <mat-select [(value)]="course.visibility">
+                        <mat-option value="PRIVATE">Prywatny</mat-option>
+                        <mat-option value="PUBLIC">Publiczny</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="content-div">
+                <h3>Podgląd obrazu</h3>
+                <div *ngIf="!image" class="choose-image">
+                    <mat-icon class="image-icon">add_photo_alternate</mat-icon>
+                    <p>Wybrany obraz pojawi się tutaj</p>
+                </div>
+                <div class="image-div">
+                    <img class="file-img" [src]="image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button mat-raised-button class = "back-button" (click)="backToCourses()"> Wróć do kursów </button>
+        <button mat-raised-button class = "publish-button" color = "primary" (click)="createOrUpdateCourse(course, selectedFile)"> Zapisz kurs</button>
+    </div>
+</mat-card>

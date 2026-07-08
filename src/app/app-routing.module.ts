@@ -9,6 +9,7 @@ import { authGuard } from "./auth-guard/auth.guard";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ManageQuestionComponent } from "./question-management/question-management.component";
+import { CourseFormComponent } from "./course-form/course-form.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,8 @@ const routes: Routes = [
       component: NavbarComponent,
       children: [
         { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
+        { path: 'courses/form', component: CourseFormComponent},
+        { path: 'courses/:courseId/form', component: CourseFormComponent},
         { path: 'courses/:courseId', component: SubjectComponent},
         { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent}
       ]
