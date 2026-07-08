@@ -16,6 +16,7 @@ export class CourseFormComponent implements OnInit {
   course: Course = {
     displayName: "",
     description: "",
+    imageUrl: "",
     visibility: Visibility.PRIVATE
   };
 

@@ -36,7 +36,7 @@ export class CourseFormService {
 export interface Course {
   id?: number;
   displayName: string;
-  description: string;
+  description?: string;
   imageUrl?: string;
   visibility: Visibility;
 }

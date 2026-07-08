@@ -10,7 +10,7 @@
                     <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="25"/>
                 </mat-form-field>
                 <span class="counter">
-                    {{course.displayName.length}} / 25
+                    {{course.displayName.length || 0}} / 25
                 </span>
             </div>
             <h3>Opis</h3>
@@ -23,13 +23,13 @@
                 </textarea>
             </mat-form-field>
             <span class="counter">
-                {{course.description.length}} / 600
+                {{course.description?.length || 0}} / 600
             </span>
             <h3>Dadawanie obrazu</h3>
             <div class="choose-image">
                 <mat-icon class="image-icon">cloud_upload</mat-icon>
                 <p>Kliknij, aby dodać nowy obraz</p>
-                <button mat-raised-button mat-dialog-close color = "primary" (click)="formFile.click()">Dodaj obraz</button>
+                <button mat-raised-button color = "primary" (click)="formFile.click()">Dodaj obraz</button>
                 <input  
                     type="file"
                     #formFile
