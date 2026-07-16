@@ -16,7 +16,11 @@ import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.comp
 export class SubjectComponent implements OnInit {
 
   subjects: Subject[] = [];
-  course!: Course;
+  course: Course = {
+      displayName: "",
+      description: "",
+      visibility: Visibility.PRIVATE
+    };
   subjectCompletionStatus: SubjectCompletionStatus[] = [];
   answerSessionId!: AnswerSession;
   courseId!: number;
@@ -34,8 +38,8 @@ export class SubjectComponent implements OnInit {
       this.courseId = param["courseId"];
       this.getSubjects(this.courseId);
       this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
-      this.subjectService.getCourseById(this.courseId).subscribe(value => {this.course = value
-        console.info(value.imageUrl)}
+      this.subjectService.getCourseById(this.courseId).subscribe(value => 
+        this.course = value
       );
     })
   }

@@ -76,12 +76,12 @@ export enum SubjectCompletedAge {
 }
 
 export interface Course {
-  id: number;
+  id?: number;
   displayName: string;
-  description: string;
-  imageUrl: string;
+  description?: string;
+  imageUrl?: string;
   visibility: Visibility;
-  accessToModifyCourse: boolean;
+  accessToModifyCourse?: boolean;
 }
 
 export enum Visibility {
