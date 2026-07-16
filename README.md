@@ -1,27 +1,46 @@
-# EducatorFrontend
+<h1 style="display: flex; align-items: center; gap: 10px">
+    <img src="src\assets\readme\logo.png" alt="CodeSage Logo" width = "30px">
+    <a href="https://www.codesage.pl">CodeSage</a> Backend 
+</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+A learning platform where users can create, share, and study programming courses.
 
-## Development server
+🌐 Live application: [codesage.pl](https://www.codesage.pl)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The complete application consists of:
+- CodeSage Backend (Spring Boot)
+- CodeSage Frontend (Angular)
 
-## Code scaffolding
+## Screenshots 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Desktop view
+<div style="display: flex; justify-content: space-around; margin: 10px">
+    <img src="src\assets\readme\course-details.JPG" width="45%">
+    <img src="src\assets\readme\answer-session.JPG" width="45%">
+</div>
 
-## Build
+### Mobile view
+<div style="display: flex; justify-content: space-around; margin: 10px">
+    <img src="src\assets\readme\courses.JPG" width="20%">
+    <img src="src\assets\readme\login.jpg" width="20%">
+</div>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Features
 
-## Running unit tests
+- Authentication
+- Course management
+- Learning sessions
+- Progress tracking
+- Responsive UI
+- HTTP interceptors
+- Routing
+- File upload support
+- Google OAuth2 integration
+- Environment configuration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Technology Stack
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Angular
+- TypeScript
+- Angular Material
+- RxJS
