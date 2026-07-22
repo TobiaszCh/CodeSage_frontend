@@ -1,6 +1,6 @@
 <h1 align="center">
     <img src="src\assets\readme\logo.png" alt="CodeSage Logo" width = "30px">
-    <a href="https://www.codesage.pl">CodeSage</a> Backend 
+    <a href="https://www.codesage.pl">CodeSage</a> Frontend 
 </h1>
 
 A learning platform where users can create, share, and study programming courses.
