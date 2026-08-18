@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, DisplayNameCourse} from './course.service';
-import { MatDialog} from '@angular/material/dialog';
+import { CourseService, DisplayNameCourse } from './course.service';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
 
@@ -14,12 +14,12 @@ export class CourseComponent implements OnInit {
 
   displayNameCourse: DisplayNameCourse[] = [];
   accessToModifyCourse: boolean = true;
-  
+
 
   constructor(private courseService: CourseService, private router: Router, private dialog: MatDialog
-  ) {}
+  ) { }
 
-  public ngOnInit(): void { 
+  public ngOnInit(): void {
     this.getNameCourses();
   }
 
@@ -59,16 +59,11 @@ export class CourseComponent implements OnInit {
     this.router.navigate(["courses", courseId, "form"]);
   }
 
-  public privilegeToModifyCourse(courseId: number) {
-    this.courseService.privilegeToModifyCourse(courseId).subscribe(result =>
-      this.accessToModifyCourse  = result);
-  }
-
   public openDeleteDialog(courseId: number): void {
     this.dialog.open(CourseDeleteDialogComponent, {
       width: '550px',
     }).afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.deleteCourseById(courseId);
       }
     });

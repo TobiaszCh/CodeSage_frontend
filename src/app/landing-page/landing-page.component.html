@@ -1,0 +1,153 @@
+<header class="navbar">
+    <a class="logo" routerLink="/landing-page">
+        <img src="assets/logo-app.png" alt="Podgląd Code Sage">
+        <h1>Code Sage</h1>
+    </a>
+
+    <nav class="navigation">
+        <a class="nav-link" routerLink="/login">
+            Zaloguj się
+        </a>
+        <a mat-raised-button color="primary" routerLink="/register">
+            Zacznij za darmo
+        </a>
+    </nav>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu użytkownika" class="navbar-menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <a routerLink="/login" mat-menu-item>
+            <mat-icon>person_outline</mat-icon>
+            <span mat-menu-item>Zaloguj się</span>
+        </a>
+        <mat-divider></mat-divider>
+
+        <a class="register-button" mat-menu-item routerLink="/register">
+            <mat-icon>card_giftcard</mat-icon>
+            <span>Zacznij za darmo</span>
+        </a>
+
+    </mat-menu>
+</header>
+
+<main>
+    <section class="description">
+        <div class="description-left">
+
+            <h1>
+                Twórz własne kursy
+                <span>i ucz się skuteczniej</span>
+            </h1>
+
+            <p class="description-details">
+                Code Sage to platforma do nauki programowania,
+                która pozwala tworzyć własne kursy i uczyć się
+                poprzez pytania i powtórki.
+            </p>
+
+            <div class="description-actions">
+                <a mat-raised-button color="primary" class="first-button" routerLink="/register">
+                    Zacznij za darmo
+                </a>
+
+                <button mat-raised-button (click)="createRandomUser()" color="basic" class="second-button"
+                    routerLink="#features">
+                    <mat-icon>play_arrow</mat-icon>
+                    Testuj wersje demo
+                </button>
+            </div>
+
+        </div>
+
+        <div class="description-img">
+            <img src="assets/screen-course-details.png" alt="Podgląd Code Sage">
+        </div>
+
+    </section>
+
+    <section class="features-section">
+        <div class="features-container">
+
+            <h2>
+                Dlaczego Code Sage działa?
+            </h2>
+
+            <div class="features-grid">
+                <article class="feature">
+
+                    <div class="feature-icon feature-icon-blue">
+                        <mat-icon>track_changes</mat-icon>
+                    </div>
+
+                    <div>
+                        <h3>Ucz się we własnym tempie</h3>
+
+                        <p>
+                            Twórz własne kursy oraz zestawy pytań
+                            dopasowane do tego, czego chcesz się nauczyć.
+                        </p>
+                    </div>
+
+                </article>
+
+                <article class="feature">
+
+                    <div class="feature-icon feature-icon-red">
+                        <mat-icon>trending_up</mat-icon>
+                    </div>
+
+                    <div>
+                        <h3>Śledź postępy</h3>
+
+                        <p>
+                            Sprawdzaj swoje wyniki i obserwuj,
+                            jak rozwija się Twoja wiedza.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon feature-icon-green">
+                        <mat-icon>storage</mat-icon>
+                    </div>
+
+                    <div>
+                        <h3>Utrwalaj wiedzę</h3>
+
+                        <p>
+                            Pytania oraz regularne powtórki pomagają
+                            zapamiętać materiał na dłużej.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon feature-icon-purple">
+                        <mat-icon>devices</mat-icon>
+                    </div>
+
+                    <div>
+                        <h3>Ucz się wszędzie</h3>
+
+                        <p>
+                            Code Sage działa w przeglądarce na
+                            komputerze, tablecie i telefonie.
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+        </div>
+
+    </section>
+
+</main>

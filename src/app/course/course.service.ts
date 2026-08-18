@@ -10,7 +10,7 @@ export class CourseService {
 
   private baseUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient ) {
+  constructor(private httpClient: HttpClient) {
   }
 
   public getNameCourses(): Observable<DisplayNameCourse[]> {
@@ -26,15 +26,11 @@ export class CourseService {
     return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, course);
   }
 
-  public createCourse(displayName:string): Observable<any> {
+  public createCourse(displayName: string): Observable<any> {
     const createCourse: CreateCourse = {
-      displayName:displayName
+      displayName: displayName
     }
     return this.httpClient.post(`${this.baseUrl}/courses`, createCourse);
-  }
-  
-  public privilegeToModifyCourse(courseId: number): Observable<boolean> {
-    return this.httpClient.get<boolean>(`${this.baseUrl}/courses/${courseId}/privilege`)
   }
 
 }

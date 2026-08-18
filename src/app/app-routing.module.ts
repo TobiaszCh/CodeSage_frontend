@@ -10,6 +10,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ManageQuestionComponent } from "./question-management/question-management.component";
 import { CourseFormComponent } from "./course-form/course-form.component";
+import { LandingPageComponent } from "./landing-page/landing-page.component";
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       children: [
         { path: 'login', component: LoginComponent},
         { path: 'register', component: RegistrationComponent},
+        { path: 'landing-page', component: LandingPageComponent}
       ]
     },
     {         
