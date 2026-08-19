@@ -1,0 +1,304 @@
+* {
+    box-sizing: border-box;
+}
+
+.navbar {
+    width: 100%;
+    height: 65px;
+    background: #021334;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 35px;
+    height: 35px;
+    font-size: 35px;
+}
+
+.logo h1 {
+    white-space: nowrap;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+}
+
+.navbar-menu {
+    display: none;
+}
+
+a {
+    color: #f3f4f6;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 2px;
+    background: #4f6ef7;
+    transition: 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 55px 65px 48px;
+    background: white;
+}
+
+.description-left {
+    max-width: 510px;
+}
+
+.description-left h1 {
+    margin-top: 0px;
+    font-size: 55px;
+}
+
+.description-left h1 span {
+    display: block;
+    margin-top: 5px;
+    color: #4166dd;
+}
+
+.description-details {
+    margin: 28px 0 36px;
+    color: #5e626b;
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.description-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.first-button,
+.second-button {
+    min-height: 48px;
+    padding: 0 28px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.second-button {
+    color: #3d58bd !important;
+}
+
+.second-button mat-icon {
+    margin-right: 8px;
+}
+
+.description-img {
+    perspective: 1200px;
+}
+
+.description-img img {
+    width: 100%;
+    max-width: 620px;
+    border-radius: 8px;
+    box-shadow: 0 30px 70px rgba(40, 48, 70, 0.15);
+    transform:
+        rotateY(-6deg) rotateX(2deg) rotateZ(1deg);
+    transition: transform 0.5s;
+}
+
+.description-img img:hover {
+    transform:
+        rotateY(0) rotateZ(0);
+}
+
+
+.features-section {
+    border-top: 1px solid #e6e8ec;
+    padding: 30px 0;
+    background: rgb(243, 243, 243);
+    ;
+}
+
+.features-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+}
+
+.features-container h2 {
+    margin: 0 0 50px;
+    color: #17191d;
+    font-weight: 500;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.feature {
+    display: flex;
+    gap: 10px;
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.feature-icon mat-icon {
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+}
+
+.feature-icon-blue {
+    background: #e8edff;
+    color: #4265e0;
+}
+
+.feature-icon-red {
+    background: #ffeaea;
+    color: #ef6268;
+}
+
+.feature-icon-green {
+    background: #e4f8ec;
+    color: #20aa63;
+}
+
+.feature-icon-purple {
+    background: #e9eeff;
+    color: #526ddd;
+}
+
+.feature h3 {
+    margin: 3px 0 7px;
+    color: #1c1d21;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.feature p {
+    margin: 0;
+    color: #70747c;
+    font-size: 13px;
+}
+
+
+@media (max-width: 1100px) {
+    .navbar {
+        height: 60px;
+        padding: 0 5px 0 20px;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .navbar-menu {
+        display: block;
+        color: white;
+    }
+
+    .register-button mat-icon,
+    .register-button span {
+        color: #3d58bd;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    .description {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 40px;
+    }
+
+    .description-left {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .description-left h1 {
+        font-size: 36px;
+    }
+
+    .description-details {
+        font-size: 16px;
+        margin: 20px 0 28px;
+    }
+
+    .description-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .first-button,
+    .second-button {
+        width: 100%;
+    }
+
+    .description-img {
+        width: 100%;
+        perspective: none;
+    }
+
+    .description-img img {
+        max-width: 100%;
+        transform: none;
+    }
+
+    .features-section {
+        padding: 35px 0;
+    }
+
+    .features-container {
+        padding: 0 20px;
+    }
+
+    .features-container h2 {
+        margin-bottom: 35px;
+        font-size: 24px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .feature {
+        text-align: left;
+    }
+
+}

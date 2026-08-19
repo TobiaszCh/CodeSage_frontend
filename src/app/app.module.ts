@@ -41,6 +41,7 @@ import { ManageQuestionComponent } from './question-management/question-manageme
 import { ManageQuestionExitDialogComponent } from './question-management/dialogs/exit/question-management-exit-dialog.component';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { CourseFormComponent } from './course-form/course-form.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { CourseFormComponent } from './course-form/course-form.component';
     SubjectStartSessionDialogComponent,
     ManageQuestionExitDialogComponent,
     SubjectAddDialogComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    LandingPageComponent
   ],
   imports: [
     HttpClientModule,

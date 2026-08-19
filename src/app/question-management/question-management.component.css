@@ -77,14 +77,15 @@ h3, h2 {
 
 @media (max-width: 768px) {
     .buttons {
-        margin: 20px auto;
-        display: grid;
+        display: flex;
+        align-items: center;
         justify-content: space-around;
         max-width: 720px;
     }
 
-    .back-button  {
-        margin-top: 15px;
+    .back-button,
+    .publish-button  {
+        min-width: 120px;
     }
 
     .group-answers {

@@ -33,7 +33,7 @@
                 </div>
                 <div class="content-div">
                     <h3>Opis</h3>
-                    <p>{{course.description}}</p>
+                    <p class="description">{{course.description}}</p>
                     <h3>Dostępność</h3>
                     <div class="status-div" [ngClass]="visibilty() ? 'public-div' : 'private-div' ">
                         <mat-icon class="icon-mat">{{visibilty() ? 'lock_open' : 'lock'}}</mat-icon>

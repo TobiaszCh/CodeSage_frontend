@@ -1,7 +1,8 @@
 .buttons {
     margin: 40px 10px 0px 10px;
     display: flex;
-    justify-content:space-between;
+    justify-content:flex-end;
+    gap: 15px;
 }
 
 .card-course-form {

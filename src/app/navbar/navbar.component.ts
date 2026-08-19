@@ -42,7 +42,4 @@ export class NavbarComponent {
     this.toastr.success(messageToToastr, "Sukces!");
   }
 
-  public backToCourses(): void {
-    this.router.navigate(["/courses"]);
-  }
 }
