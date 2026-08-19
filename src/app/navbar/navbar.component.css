@@ -84,6 +84,10 @@ h1 {
         padding: 0 0 0 15px;
     }
 
+    .logo h1 {
+        font-size: 20px;
+    }
+
     .user-button {
         display: none;
     }
