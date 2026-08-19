@@ -15,18 +15,20 @@
     border-top: 6px solid #c116ad;
 }
 
-.back-button, .publish-button  {
+.back-button,
+.publish-button {
     min-width: 220px;
 }
 
 .buttons {
     margin: 40px auto;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     max-width: 720px;
 }
 
-h3, h2 {
+h3,
+h2 {
     margin-bottom: 5px;
 }
 
@@ -84,7 +86,7 @@ h3, h2 {
     }
 
     .back-button,
-    .publish-button  {
+    .publish-button {
         min-width: 120px;
     }
 
@@ -95,6 +97,3 @@ h3, h2 {
     }
 
 }
-
-
-

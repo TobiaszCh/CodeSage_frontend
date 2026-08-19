@@ -14,36 +14,36 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
 
 
 const routes: Routes = [
-    { 
-      path: '' , redirectTo: 'courses', pathMatch: 'full'
+    {
+        path: '', redirectTo: 'courses', pathMatch: 'full'
     },
     {
-      path: '',
-      component: AuthComponent,
-      children: [
-        { path: 'home', component: LandingPageComponent},
-        { path: 'login', component: LoginComponent},
-        { path: 'register', component: RegistrationComponent}
-      ]
+        path: '',
+        component: AuthComponent,
+        children: [
+            { path: 'home', component: LandingPageComponent },
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegistrationComponent }
+        ]
     },
-    {         
-      path: '',
-      component: NavbarComponent,
-      children: [
-        { path: 'courses', component: CourseComponent, canActivate: [authGuard]},
-        { path: 'courses/form', component: CourseFormComponent},
-        { path: 'courses/:courseId/form', component: CourseFormComponent},
-        { path: 'courses/:courseId', component: SubjectComponent},
-        { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent}
-      ]
+    {
+        path: '',
+        component: NavbarComponent,
+        children: [
+            { path: 'courses', component: CourseComponent, canActivate: [authGuard] },
+            { path: 'courses/form', component: CourseFormComponent },
+            { path: 'courses/:courseId/form', component: CourseFormComponent },
+            { path: 'courses/:courseId', component: SubjectComponent },
+            { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent }
+        ]
     },
-    { 
-      path: 'answer-session/:answerSessionId', component: AnswerSessionComponent
+    {
+        path: 'answer-session/:answerSessionId', component: AnswerSessionComponent
     }
-  ];
-  
-  @NgModule({
+];
+
+@NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
-  })
-  export class AppRoutingModule { }
+})
+export class AppRoutingModule { }

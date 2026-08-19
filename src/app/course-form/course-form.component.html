@@ -1,13 +1,13 @@
 <mat-card class="card-course-form">
     <h2>Szczegóły kursu</h2>
-    <p class = "card-course-form-p">Wypełnij informacje o swoim kursie. Wszystkie pola są wymagane.</p>
+    <p class="card-course-form-p">Wypełnij informacje o swoim kursie. Wszystkie pola są wymagane.</p>
     <div class="columns">
         <div class="first-column">
             <div>
                 <h3>Nazwa kursu</h3>
                 <mat-form-field appearance="outline" class="name-input">
                     <mat-label>Kurs</mat-label>
-                    <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="50"/>
+                    <input *ngIf="course" matInput [(ngModel)]="course.displayName" maxlength="50" />
                 </mat-form-field>
                 <span class="counter">
                     {{course.displayName.length || 0}} / 50
@@ -16,10 +16,7 @@
             <h3>Opis</h3>
             <mat-form-field appearance="outline" class="description-input">
                 <mat-label>Opis</mat-label>
-                <textarea 
-                    matInput [(ngModel)] = "course.description"
-                    cdkTextareaAutosize
-                    maxlength="600"  >
+                <textarea matInput [(ngModel)]="course.description" cdkTextareaAutosize maxlength="600">
                 </textarea>
             </mat-form-field>
             <span class="counter">
@@ -29,13 +26,8 @@
             <div class="choose-image">
                 <mat-icon class="image-icon">cloud_upload</mat-icon>
                 <p>Kliknij, aby dodać nowy obraz</p>
-                <button mat-raised-button color = "primary" (click)="formFile.click()">Dodaj obraz</button>
-                <input  
-                    type="file"
-                    #formFile
-                    hidden 
-                    accept="image/*" 
-                    (change)="onFileSelected($event)">
+                <button mat-raised-button color="primary" (click)="formFile.click()">Dodaj obraz</button>
+                <input type="file" #formFile hidden accept="image/*" (change)="onFileSelected($event)">
             </div>
         </div>
         <div class="second-column">
@@ -62,7 +54,8 @@
         </div>
     </div>
     <div class="buttons">
-        <button mat-raised-button class = "back-button" (click)="backToCourses()"> Wróć do kursów </button>
-        <button mat-raised-button class = "publish-button" color = "primary" (click)="createOrUpdateCourse(course, selectedFile)"> Zapisz kurs</button>
+        <button mat-raised-button class="back-button" (click)="backToCourses()"> Wróć do kursów </button>
+        <button mat-raised-button class="publish-button" color="primary"
+            (click)="createOrUpdateCourse(course, selectedFile)"> Zapisz kurs</button>
     </div>
 </mat-card>
