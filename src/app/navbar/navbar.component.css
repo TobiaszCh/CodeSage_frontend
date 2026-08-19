@@ -30,7 +30,7 @@
 h1 {
     white-space: nowrap;
     color: white;
-    margin: 0;   
+    margin: 0;
 }
 
 .navigation {
@@ -53,13 +53,14 @@ h1 {
 }
 
 .user-logout {
-  border-left: 1px solid #334155;
-  padding-left: 24px;
-  margin-left: 24px;
+    border-left: 1px solid #334155;
+    padding-left: 24px;
+    margin-left: 24px;
 }
+
 .user-button mat-icon,
 .user-button span,
-.user-button-mobile span, 
+.user-button-mobile span,
 .user-button-mobile mat-icon,
 .user-logout mat-icon,
 .user-logout span {
