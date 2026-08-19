@@ -13,7 +13,7 @@
                     {{course.displayName.length || 0}} / 50
                 </span>
             </div>
-            <h3>Opis</h3>
+            <h3 class="description">Opis</h3>
             <mat-form-field appearance="outline" class="description-input">
                 <mat-label>Opis</mat-label>
                 <textarea matInput [(ngModel)]="course.description" cdkTextareaAutosize maxlength="600">
@@ -22,7 +22,7 @@
             <span class="counter">
                 {{course.description?.length || 0}} / 600
             </span>
-            <h3>Dodawanie obrazu</h3>
+            <h3 class="image-add">Dodawanie obrazu</h3>
             <div class="choose-image">
                 <mat-icon class="image-icon">cloud_upload</mat-icon>
                 <p>Kliknij, aby dodać nowy obraz</p>
