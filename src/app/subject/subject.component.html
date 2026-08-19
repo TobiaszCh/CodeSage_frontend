@@ -6,16 +6,12 @@
         <h2>{{course.displayName}}</h2>
     </div>
     <div class="buttons-div">
-        <button mat-raised-button color="basic" 
-            *ngIf="course.accessToModifyCourse" 
-            (click)="goToEditCourseForm(courseId)" 
-            class="button-back">
+        <button mat-raised-button color="basic" *ngIf="course.accessToModifyCourse"
+            (click)="goToEditCourseForm(courseId)" class="button-back">
             <mat-icon>edit</mat-icon>
             Edytuj kurs
         </button>
-        <button mat-raised-button color="primary"
-            *ngIf="course.accessToModifyCourse" 
-            (click)="openAddDialog()" 
+        <button mat-raised-button color="primary" *ngIf="course.accessToModifyCourse" (click)="openAddDialog()"
             class="button-back">
             <mat-icon>add</mat-icon>
             Dodaj temat
@@ -28,12 +24,12 @@
         <h2>O kursie</h2>
         <mat-card mat-dialog-content>
             <div class="card-div">
-                <div class= "image-div">
-                    <img [src]="course.imageUrl" >
+                <div class="image-div">
+                    <img [src]="course.imageUrl">
                 </div>
                 <div class="content-div">
                     <h3>Opis</h3>
-                    <p>{{course.description}}</p>
+                    <p class="description">{{course.description}}</p>
                     <h3>Dostępność</h3>
                     <div class="status-div" [ngClass]="visibilty() ? 'public-div' : 'private-div' ">
                         <mat-icon class="icon-mat">{{visibilty() ? 'lock_open' : 'lock'}}</mat-icon>
@@ -46,23 +42,15 @@
     <section>
         <h2>Tematy</h2>
         <ul>
-            <li *ngFor="let subject of subjects" >
+            <li *ngFor="let subject of subjects">
                 <div class="subject-wrapper">
-                    <button 
-                        mat-raised-button 
-                        class="subject-button" 
-                        [ngClass]="color(subject.id)" 
+                    <button mat-raised-button class="subject-button" [ngClass]="color(subject.id)"
                         (click)="startAnswerSession(subject.id)">
-                        {{subject.displayName}} 
+                        {{subject.displayName}}
                     </button>
 
-                    <button
-                        mat-icon-button
-                        *ngIf="course.accessToModifyCourse"
-                        [matMenuTriggerFor]="menu"
-                        class="more-horiz"                  
-                        (click)="$event.stopPropagation();"  
-                    >
+                    <button mat-icon-button *ngIf="course.accessToModifyCourse" [matMenuTriggerFor]="menu"
+                        class="more-horiz" (click)="$event.stopPropagation();">
 
                         <mat-icon>more_horiz</mat-icon>
                     </button>
@@ -72,13 +60,13 @@
                     <button mat-menu-item (click)="goToCreateQuestion(subject.id)">
                         <mat-icon>edit</mat-icon>
                         Edytuj
-                    </button> 
+                    </button>
 
                     <button mat-menu-item (click)="openDeleteDialog(subject.id)">
                         <mat-icon>delete</mat-icon>
                         Usuń
-                    </button>             
-                </mat-menu>                 
+                    </button>
+                </mat-menu>
             </li>
         </ul>
     </section>

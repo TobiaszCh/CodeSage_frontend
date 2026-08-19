@@ -1,188 +1,194 @@
 header {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 12px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 main {
-  padding-left: 6px;
-  padding-right: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 p {
-  overflow-wrap: anywhere;
+    overflow-wrap: anywhere;
 }
 
 section {
-  max-width: 1100px;
-  margin: auto;
+    max-width: 1100px;
+    margin: auto;
 }
 
 .card-div {
-  display: flex;
+    display: flex;
 }
 
 img {
-  width: 100%;
-  border-radius: 10px;
-  max-height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    max-height: 300px;
 }
 
 .back-div {
-  display: flex;
-  align-items: center;
-  max-width: 400px;
-  overflow-wrap: anywhere;
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    overflow-wrap: anywhere;
 }
 
 .image-div {
-  margin: 10px;
-  width: 50%;
+    margin: 10px;
+    width: 50%;
 }
 
 .content-div {
-  margin: 10px;
-  width: 50%;
+    margin: 10px;
+    width: 50%;
 }
 
 .status-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px;
-  width: 110px;
-  height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    width: 110px;
+    height: 35px;
 }
 
 .private-div {
-  background-color: rgb(255, 150, 150);
+    background-color: rgb(255, 150, 150);
 }
 
 .public-div {
-  background-color: rgb(176, 255, 176);
+    background-color: rgb(176, 255, 176);
 }
 
 .icon-mat {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-  padding: 0px 5px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    padding: 0px 5px;
 }
 
 li {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 75px;              
-  padding: 0;
-  list-style: none;  
-  max-width: 1100px;
-  margin: 10px auto;
-  justify-content: center;
-             
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 75px;
+    padding: 0;
+    list-style: none;
+    max-width: 1100px;
+    margin: 10px auto;
+    justify-content: center;
+
 }
 
 .subject-button {
-  padding: 0px 50px;
-  height: 100px; 
-  width: 100%;
-  border: 1px solid black;
-  border-radius: 10px;
-  cursor: pointer;
-  overflow-wrap: anywhere;
+    padding: 0px 50px;
+    height: 100px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow-wrap: anywhere;
 }
 
 .green {
-  border: 1px solid  black;
-  background-color: #43A047 !important;
+    border: 1px solid black;
+    background-color: #43A047 !important;
 }
 
 .yellow {
-  border: 1px solid  black;
-  background-color: #FFD166 !important;
+    border: 1px solid black;
+    background-color: #FFD166 !important;
 }
 
 input {
-  text-align: center;
-  border: 1px solid black;
-  cursor: text;
+    text-align: center;
+    border: 1px solid black;
+    cursor: text;
 }
 
 .add-subject {
-  opacity: 0;
+    opacity: 0;
 }
 
 section:hover .add-subject {
-  opacity: 1;
+    opacity: 1;
 }
 
-.subject-wrapper { 
-  width: 100%;
-  max-width: 380px;  
-  position: relative;
+.subject-wrapper {
+    width: 100%;
+    max-width: 380px;
+    position: relative;
 }
 
-.more-horiz {               
-  position: absolute;
-  left: 85%;
-  top: 25%;
+.more-horiz {
+    position: absolute;
+    left: 85%;
+    top: 25%;
 }
 
 .content-div h3 {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .button-back {
-  margin-left: 16px;
+    margin-left: 16px;
+}
+
+.description {
+    min-height: 60px;
 }
 
 
 @media (max-width: 768px) {
-  
-  main {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
 
-  li {
-    max-width: none;
-    width: 100%;
-  }
+    main {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 
-  .button-back {
-    min-width: 130px;
-  }
+    li {
+        max-width: none;
+        width: 100%;
+    }
 
-  h2 {
-    font-size: 20px;
-  }
+    .button-back {
+        min-width: 130px;
+    }
 
-  .card-div {
-    display: flex;
-    flex-direction: column;
-  }
+    h2 {
+        font-size: 20px;
+    }
 
-  .image-div, .content-div {
-    margin: 10px;
-    width: auto;
-  }
+    .card-div {
+        display: flex;
+        flex-direction: column;
+    }
 
-  header {
-    flex-direction: column;
-    align-items: start;
-  }
+    .image-div,
+    .content-div {
+        margin: 10px;
+        width: auto;
+    }
 
-  .buttons-div {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-  }
+    header {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .buttons-div {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 10px 0;
+    }
 
 }

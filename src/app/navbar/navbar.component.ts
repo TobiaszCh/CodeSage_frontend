@@ -9,12 +9,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  
+
   username: String = ""
 
   constructor(private navbarService: NavbarService, private router: Router, private toastr: ToastrService) {
   }
-  
+
   ngOnInit(): void {
     this.navbarService.getUserName().subscribe({
       next: (result) => {
@@ -42,7 +42,4 @@ export class NavbarComponent {
     this.toastr.success(messageToToastr, "Sukces!");
   }
 
-  public backToCourses(): void {
-    this.router.navigate(["/courses"]);
-  }
 }

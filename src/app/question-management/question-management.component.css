@@ -15,18 +15,20 @@
     border-top: 6px solid #c116ad;
 }
 
-.back-button, .publish-button  {
+.back-button,
+.publish-button {
     min-width: 220px;
 }
 
 .buttons {
     margin: 40px auto;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     max-width: 720px;
 }
 
-h3, h2 {
+h3,
+h2 {
     margin-bottom: 5px;
 }
 
@@ -77,14 +79,15 @@ h3, h2 {
 
 @media (max-width: 768px) {
     .buttons {
-        margin: 20px auto;
-        display: grid;
+        display: flex;
+        align-items: center;
         justify-content: space-around;
         max-width: 720px;
     }
 
-    .back-button  {
-        margin-top: 15px;
+    .back-button,
+    .publish-button {
+        min-width: 120px;
     }
 
     .group-answers {
@@ -94,6 +97,3 @@ h3, h2 {
     }
 
 }
-
-
-

@@ -1,7 +1,8 @@
 .buttons {
     margin: 40px 10px 0px 10px;
     display: flex;
-    justify-content:space-between;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
 .card-course-form {
@@ -23,16 +24,19 @@ h3 {
     margin-bottom: 15px;
 }
 
-h2, .card-course-form-p {
+h2,
+.card-course-form-p {
     margin-left: 10px;
     margin-bottom: 0px;
 }
+
 .columns {
     display: flex;
     justify-content: space-around;
 }
 
-.first-column, .second-column {
+.first-column,
+.second-column {
     width: 100%;
     margin: 10px;
 }
@@ -94,11 +98,12 @@ h2, .card-course-form-p {
         flex-direction: column;
     }
 
-    .first-column, .second-column {
+    .first-column,
+    .second-column {
         margin: 0px;
     }
 
     .image-div {
         width: auto;
-    } 
+    }
 }
