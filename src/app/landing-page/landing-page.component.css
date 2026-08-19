@@ -46,6 +46,10 @@ a {
     font-size: 15px;
 }
 
+.nav-link {
+    position: relative;
+}
+
 .nav-link::after {
     content: "";
     position: absolute;
@@ -123,8 +127,7 @@ a {
     max-width: 620px;
     border-radius: 8px;
     box-shadow: 0 30px 70px rgba(40, 48, 70, 0.15);
-    transform:
-        rotateY(-6deg) rotateX(2deg) rotateZ(1deg);
+    transform: rotateY(-7deg) rotateX(3deg) rotateZ(1deg);
     transition: transform 0.5s;
 }
 
