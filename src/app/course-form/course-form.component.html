@@ -7,10 +7,10 @@
                 <h3>Nazwa kursu</h3>
                 <mat-form-field appearance="outline" class="name-input">
                     <mat-label>Kurs</mat-label>
-                    <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="25"/>
+                    <input *ngIf = "course" matInput [(ngModel)] = "course.displayName" maxlength="50"/>
                 </mat-form-field>
                 <span class="counter">
-                    {{course.displayName.length || 0}} / 25
+                    {{course.displayName.length || 0}} / 50
                 </span>
             </div>
             <h3>Opis</h3>
@@ -25,7 +25,7 @@
             <span class="counter">
                 {{course.description?.length || 0}} / 600
             </span>
-            <h3>Dadawanie obrazu</h3>
+            <h3>Dodawanie obrazu</h3>
             <div class="choose-image">
                 <mat-icon class="image-icon">cloud_upload</mat-icon>
                 <p>Kliknij, aby dodać nowy obraz</p>

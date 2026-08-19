@@ -1,43 +1,111 @@
-header {
-    background-color: #1f2937;
+* {
+    box-sizing: border-box;
+}
+
+.navbar {
+    width: 100%;
+    height: 65px;
+    background: #021334;
+    padding: 0 48px;
     display: flex;
     align-items: center;
-    justify-content:space-between;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 8px 8px;
+    justify-content: space-between;
+    font-size: 15px;
 }
 
-
-a {
+.logo {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    height: 100%;
 }
 
-h2 {
-    color: white;
-    margin: 0px;
-    cursor: pointer;
+.logo img {
+    width: 35px;
+    height: 35px;
+    font-size: 35px;
+}
+
+h1 {
     white-space: nowrap;
-}
-
-header div {
-    display: flex;
-    justify-content: right;
     color: white;
+    margin: 0;   
 }
 
-.button-icon {
+.navigation {
+    height: 100%;
     display: flex;
     align-items: center;
-    padding-right: 0px;
+}
+
+
+.user-button-mobile,
+.user-logout,
+.user-button {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 100%;
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.user-logout {
+  border-left: 1px solid #334155;
+  padding-left: 24px;
+  margin-left: 24px;
+}
+.user-button mat-icon,
+.user-button span,
+.user-button-mobile span, 
+.user-button-mobile mat-icon,
+.user-logout mat-icon,
+.user-logout span {
+    color: white;
 }
 
 .user-icon {
-    font-size: 32px;
-    height: 32px;
-    width: 32px;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 30px !important;
 }
 
-.email {
-    cursor: default;
+.user-button-mobile {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        height: 60px;
+        padding: 0 0 0 15px;
+    }
+
+    .user-button {
+        display: none;
+    }
+
+    .email {
+        display: flex;
+        min-width: 120px;
+        cursor: default;
+    }
+
+    .email:hover {
+        background: white;
+    }
+
+    .user-logout-mobile {
+        min-width: 120px;
+    }
+
+    .user-logout {
+        display: none;
+    }
+
+    .user-button-mobile {
+        display: flex;
+    }
 }

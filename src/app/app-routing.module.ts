@@ -21,9 +21,9 @@ const routes: Routes = [
       path: '',
       component: AuthComponent,
       children: [
+        { path: 'home', component: LandingPageComponent},
         { path: 'login', component: LoginComponent},
-        { path: 'register', component: RegistrationComponent},
-        { path: 'landing-page', component: LandingPageComponent}
+        { path: 'register', component: RegistrationComponent}
       ]
     },
     {         
