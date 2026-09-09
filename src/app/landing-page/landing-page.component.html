@@ -23,16 +23,15 @@
             <span mat-menu-item>Zaloguj się</span>
         </a>
         <mat-divider></mat-divider>
-
         <a class="register-button" mat-menu-item routerLink="/register">
             <mat-icon>card_giftcard</mat-icon>
             <span>Zacznij za darmo</span>
         </a>
-
     </mat-menu>
 </header>
 
 <main>
+
     <section class="description">
         <div class="description-left">
 
@@ -75,8 +74,8 @@
             </h2>
 
             <div class="features-grid">
-                <article class="feature">
 
+                <article class="feature">
                     <div class="feature-icon feature-icon-blue">
                         <mat-icon>track_changes</mat-icon>
                     </div>
@@ -89,11 +88,9 @@
                             dopasowane do tego, czego chcesz się nauczyć.
                         </p>
                     </div>
-
                 </article>
 
                 <article class="feature">
-
                     <div class="feature-icon feature-icon-red">
                         <mat-icon>trending_up</mat-icon>
                     </div>
@@ -106,12 +103,10 @@
                             jak rozwija się Twoja wiedza.
                         </p>
                     </div>
-
                 </article>
 
 
                 <article class="feature">
-
                     <div class="feature-icon feature-icon-green">
                         <mat-icon>storage</mat-icon>
                     </div>
@@ -124,12 +119,10 @@
                             zapamiętać materiał na dłużej.
                         </p>
                     </div>
-
                 </article>
 
 
                 <article class="feature">
-
                     <div class="feature-icon feature-icon-purple">
                         <mat-icon>devices</mat-icon>
                     </div>
@@ -142,12 +135,37 @@
                             komputerze, tablecie i telefonie.
                         </p>
                     </div>
-
                 </article>
 
             </div>
         </div>
-
     </section>
 
+    <footer class="footer">
+        <div class="footer-container">
+
+            <a class="footer-logo" routerLink="/landing-page" (click)="scrollToTop()" >
+                <img src="assets/logo-app.png" alt="Logo Code Sage">
+                <span>Code Sage</span>
+            </a>
+
+            <div class="footer-links">
+
+                <a href="https://github.com/TobiaszCh" >
+                    <img class="social-icon" src="assets/github.png" alt="github">
+                </a>
+                <a href="https://www.linkedin.com/in/tobiasz-chmielecki-04b291242">
+                    <img class="social-icon" src="assets/linkedin.png" alt="linkedin">
+                </a>
+                <a href="https://www.facebook.com/tobiasz.chmielecki">
+                    <img class="social-icon" src="assets/facebook.png" alt="facebook">
+                </a>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Code Sage
+        </div>
+    </footer>
 </main>
