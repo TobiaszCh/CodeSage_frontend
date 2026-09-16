@@ -18,11 +18,11 @@ export class RegistrationComponent {
 
   constructor(private registrationService: RegistrationService, private router: Router, private loginService: LoginService,
     private toastr: ToastrService) {
-      
+
   }
 
   public sendRegisterDetails(): void {
-    if(this.createUserPending) {
+    if (this.createUserPending) {
       return;
     }
     this.createUserPending = true;
@@ -69,7 +69,7 @@ export class RegistrationComponent {
       && this.isItEmail()
       && this.password == this.repeatedPassword;
   }
-  
+
   public showSuccess(messageToToastr: string) {
     this.toastr.success(messageToToastr + ". Sprawdź skrzynkę mailową!", "Sukces!");
   }

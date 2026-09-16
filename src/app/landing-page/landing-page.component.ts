@@ -17,10 +17,10 @@ export class LandingPageComponent {
   constructor(private loginService: LoginService, private router: Router,
     private toastr: ToastrService) {
 
-  } 
+  }
 
   public createRandomUser(): void {
-    if(this.createRandomUserPending) {
+    if (this.createRandomUserPending) {
       return;
     }
     this.createRandomUserPending = true;

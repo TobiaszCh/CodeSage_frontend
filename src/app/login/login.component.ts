@@ -29,7 +29,7 @@ export class LoginComponent {
         this.error = error.error.message;
         this.password = "";
       },
-    }); 
+    });
   }
 
   public loginByGoogle() {
@@ -49,7 +49,7 @@ export class LoginComponent {
   }
 
   public createRandomUser(): void {
-    if(this.createRandomUserPending) {
+    if (this.createRandomUserPending) {
       return;
     }
     this.createRandomUserPending = true;

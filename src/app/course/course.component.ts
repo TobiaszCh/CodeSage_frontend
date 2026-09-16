@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, CourseSummaryDto} from './course.service';
+import { CourseService, CourseSummaryDto } from './course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
