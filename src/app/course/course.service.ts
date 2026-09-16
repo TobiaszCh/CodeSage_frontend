@@ -13,16 +13,16 @@ export class CourseService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getNameCourses(): Observable<DisplayNameCourse[]> {
+  public getNameCourses(): Observable<CourseSummaryDto[]> {
     console.log(this.baseUrl);
-    return this.httpClient.get<DisplayNameCourse[]>(`${this.baseUrl}/courses`);
+    return this.httpClient.get<CourseSummaryDto[]>(`${this.baseUrl}/courses`);
   }
 
   public deleteCourseById(courseId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/courses/${courseId}`);
   }
 
-  public updateCourse(courseId: number, course: DisplayNameCourse): Observable<any> {
+  public updateCourse(courseId: number, course: CourseSummaryDto): Observable<any> {
     return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, course);
   }
 
@@ -35,7 +35,7 @@ export class CourseService {
 
 }
 
-export interface DisplayNameCourse {
+export interface CourseSummaryDto {
   id: number;
   displayName: string;
   accessToModifyCourse: boolean;

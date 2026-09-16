@@ -20,10 +20,10 @@ export class LandingPageComponent {
   } 
 
   public createRandomUser(): void {
-    this.createRandomUserPending = true;
     if(this.createRandomUserPending) {
       return;
     }
+    this.createRandomUserPending = true;
     this.loginService.createRandomUser().subscribe({
       next: response => {
         this.showSuccess(response.message + ". Witam w wersji demo :)");

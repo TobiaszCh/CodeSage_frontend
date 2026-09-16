@@ -14,6 +14,7 @@ export class RegistrationComponent {
   password: string = "";
   repeatedPassword: string = "";
   error: string = "";
+  createUserPending = false;
 
   constructor(private registrationService: RegistrationService, private router: Router, private loginService: LoginService,
     private toastr: ToastrService) {
@@ -21,6 +22,10 @@ export class RegistrationComponent {
   }
 
   public sendRegisterDetails(): void {
+    if(this.createUserPending) {
+      return;
+    }
+    this.createUserPending = true;
     this.registrationService.sendRegisterDetails(this.username.trim(), this.password, this.repeatedPassword).subscribe({
       next: response => {
         const messageToToastr = response.message;
@@ -28,9 +33,11 @@ export class RegistrationComponent {
         this.loginService.sendDatesLogs(this.username, this.password).subscribe({
           next: () => {
             this.router.navigate(["/courses"]);
+            this.createUserPending = false;
           },
           error: (error) => {
             this.error = error.error.message;
+            this.createUserPending = false;
           }
         });
       },
