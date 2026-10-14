@@ -22,7 +22,7 @@ export class CourseComponent implements OnInit {
   }
 
   public getNameCourses(): void {
-    this.courseService.getNameCourses().subscribe(value =>
+    this.courseService.getCourses().subscribe(value =>
       this.courseSummaryDto = value)
   }
 

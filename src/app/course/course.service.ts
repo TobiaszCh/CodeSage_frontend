@@ -13,7 +13,7 @@ export class CourseService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getNameCourses(): Observable<CourseSummaryDto[]> {
+  public getCourses(): Observable<CourseSummaryDto[]> {
     console.log(this.baseUrl);
     return this.httpClient.get<CourseSummaryDto[]>(`${this.baseUrl}/courses`);
   }
@@ -21,28 +21,20 @@ export class CourseService {
   public deleteCourseById(courseId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/courses/${courseId}`);
   }
-
-  public updateCourse(courseId: number, course: CourseSummaryDto): Observable<any> {
-    return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, course);
-  }
-
-  public createCourse(displayName: string): Observable<any> {
-    const createCourse: CreateCourse = {
-      displayName: displayName
-    }
-    return this.httpClient.post(`${this.baseUrl}/courses`, createCourse);
-  }
-
 }
 
 export interface CourseSummaryDto {
   id: number;
   displayName: string;
+  imageUrl?: string;
+  visibility: Visibility;
+  countOfSubjectsInCourse: number;
   accessToModifyCourse: boolean;
 }
 
-export interface CreateCourse {
-  displayName: string;
+export enum Visibility {
+  PUBLIC = "PUBLIC",
+  PRIVATE = "PRIVATE"
 }
 
 
