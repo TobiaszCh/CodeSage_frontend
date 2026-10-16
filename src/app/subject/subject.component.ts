@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, SubjectCompletionStatus, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject, Visibility} from './subject.service';
+import { Subject, SubjectCompletionStatus, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject, Visibility } from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
@@ -14,13 +14,14 @@ import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.comp
   styleUrls: ['./subject.component.css']
 })
 export class SubjectComponent implements OnInit {
+  [x: string]: any;
 
   subjects: Subject[] = [];
   course: Course = {
-      displayName: "",
-      description: "",
-      visibility: Visibility.PRIVATE
-    };
+    displayName: "",
+    description: "",
+    visibility: Visibility.PRIVATE
+  };
   subjectCompletionStatus: SubjectCompletionStatus[] = [];
   answerSessionId!: AnswerSession;
   courseId!: number;
@@ -29,7 +30,7 @@ export class SubjectComponent implements OnInit {
     displayName: "",
   }
 
-  constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router, 
+  constructor(private subjectService: SubjectService, private activatedRoute: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
   }
 
@@ -38,7 +39,7 @@ export class SubjectComponent implements OnInit {
       this.courseId = param["courseId"];
       this.getSubjects(this.courseId);
       this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
-      this.subjectService.getCourseById(this.courseId).subscribe(value => 
+      this.subjectService.getCourseById(this.courseId).subscribe(value =>
         this.course = value
       );
     })
@@ -46,7 +47,7 @@ export class SubjectComponent implements OnInit {
 
   public getSubjects(courseId: number) {
     this.subjectService.getSubjects(courseId).subscribe(value =>
-        this.subjects = value);
+      this.subjects = value);
   }
 
   public sendSubjectIdToAnswerSession(subjectId: number): void {
@@ -80,11 +81,11 @@ export class SubjectComponent implements OnInit {
   }
 
   public visibilty(): boolean {
-    switch(this.course.visibility) {
+    switch (this.course.visibility) {
       case Visibility.PRIVATE:
-        return false;
-      case Visibility.PUBLIC:
         return true;
+      case Visibility.PUBLIC:
+        return false;
     }
   }
 
@@ -99,16 +100,16 @@ export class SubjectComponent implements OnInit {
   public createSubject(displayName: string, courseId: number): void {
     this.subjectService.createSucject(displayName, courseId).subscribe((result) => {
       this.goToCreateQuestion(result);
-      }
+    }
     );
   }
 
   public goToCreateQuestion(subjectId: number): void {
-      this.router.navigate(["subjects", subjectId, "questions", "new"]);
+    this.router.navigate(["subjects", subjectId, "questions", "new"]);
   }
 
   public goToEditQuestion(subjectId: number): void {
-      this.router.navigate(["subjects", subjectId, "questions", "edit"]);
+    this.router.navigate(["subjects", subjectId, "questions", "edit"]);
   }
 
   public goToEditCourseForm(courseId: number): void {
@@ -117,7 +118,7 @@ export class SubjectComponent implements OnInit {
 
   public startAnswerSession(subjectId: number): void {
     this.subjectService.hasQuestionsInSubject(subjectId).subscribe(result => {
-      if(result) {
+      if (result) {
         this.openStartSessionDialog(subjectId);
       }
       else {
@@ -136,7 +137,7 @@ export class SubjectComponent implements OnInit {
     this.dialog.open(SubjectDeleteDialogComponent, {
       width: '550px',
     }).afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.deleteSubjectById(subjectId);
       }
     });
@@ -146,7 +147,7 @@ export class SubjectComponent implements OnInit {
     this.dialog.open(SubjectAddDialogComponent, {
       width: '550px',
     }).afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.createSubject(result, this.courseId);
       }
     });
@@ -162,10 +163,9 @@ export class SubjectComponent implements OnInit {
     this.dialog.open(SubjectStartSessionDialogComponent, {
       width: '550px',
     }).afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.sendSubjectIdToAnswerSession(subjectId);
       }
     });
   }
 }
- 

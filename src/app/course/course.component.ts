@@ -13,6 +13,7 @@ import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dial
 export class CourseComponent implements OnInit {
 
   courseSummaryDto: CourseSummaryDto[] = [];
+  accessToModifyCourse: boolean = true;
 
   constructor(private courseService: CourseService, private router: Router, private dialog: MatDialog
   ) { }

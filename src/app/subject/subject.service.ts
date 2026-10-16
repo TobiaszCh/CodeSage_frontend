@@ -33,10 +33,10 @@ export class SubjectService {
     return this.httpClient.get<Course>(`${this.baseUrl}/courses/${courseId}`);
   }
 
-  public createSucject(displayName:string, courseId:number,): Observable<number> {
+  public createSucject(displayName: string, courseId: number,): Observable<number> {
     const createSubject: CreateSubject = {
       courseId: courseId,
-      displayName:displayName
+      displayName: displayName
     }
     return this.httpClient.post<number>(`${this.baseUrl}/subjects`, createSubject)
   }
@@ -81,7 +81,6 @@ export interface Course {
   description?: string;
   imageUrl?: string;
   visibility: Visibility;
-  accessToModifyCourse?: boolean;
 }
 
 export enum Visibility {

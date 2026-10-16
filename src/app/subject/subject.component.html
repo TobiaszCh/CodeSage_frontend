@@ -6,13 +6,12 @@
         <h2>{{course.displayName}}</h2>
     </div>
     <div class="buttons-div">
-        <button mat-raised-button color="basic" *ngIf="course.accessToModifyCourse"
-            (click)="goToEditCourseForm(courseId)" class="button-back">
+        <button mat-raised-button color="basic" *ngIf="visibilty()" (click)="goToEditCourseForm(courseId)"
+            class="button-back">
             <mat-icon>edit</mat-icon>
             Edytuj kurs
         </button>
-        <button mat-raised-button color="primary" *ngIf="course.accessToModifyCourse" (click)="openAddDialog()"
-            class="button-back">
+        <button mat-raised-button color="primary" *ngIf="visibilty()" (click)="openAddDialog()" class="button-back">
             <mat-icon>add</mat-icon>
             Dodaj temat
         </button>
@@ -25,15 +24,15 @@
         <mat-card mat-dialog-content>
             <div class="card-div">
                 <div class="image-div">
-                    <img [src]="course.imageUrl">
+                    <img [src]="course.imageUrl  || 'assets/default-course-banner.png'" alt="Ilustracja kursu">
                 </div>
                 <div class="content-div">
                     <h3>Opis</h3>
                     <p class="description">{{course.description}}</p>
                     <h3>Dostępność</h3>
-                    <div class="status-div" [ngClass]="visibilty() ? 'public-div' : 'private-div' ">
-                        <mat-icon class="icon-mat">{{visibilty() ? 'lock_open' : 'lock'}}</mat-icon>
-                        <p>{{visibilty() ? 'Publiczny' : 'Prywatny'}}</p>
+                    <div class="status-div" [ngClass]="visibilty() ? 'private-div' : 'public-div' ">
+                        <mat-icon class="icon-mat">{{visibilty() ? 'lock' : 'lock_open'}}</mat-icon>
+                        <p>{{visibilty() ? 'Prywatny' : 'Publiczny'}}</p>
                     </div>
                 </div>
             </div>
@@ -49,8 +48,8 @@
                         {{subject.displayName}}
                     </button>
 
-                    <button mat-icon-button *ngIf="course.accessToModifyCourse" [matMenuTriggerFor]="menu"
-                        class="more-horiz" (click)="$event.stopPropagation();">
+                    <button mat-icon-button *ngIf="visibilty()" [matMenuTriggerFor]="menu" class="more-horiz"
+                        (click)="$event.stopPropagation()">
 
                         <mat-icon>more_horiz</mat-icon>
                     </button>

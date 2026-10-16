@@ -21,6 +21,7 @@ export class CourseService {
   public deleteCourseById(courseId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/courses/${courseId}`);
   }
+
 }
 
 export interface CourseSummaryDto {
