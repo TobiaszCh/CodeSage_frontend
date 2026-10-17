@@ -27,6 +27,7 @@ h3 {
 h2,
 .card-course-form-p {
     margin-bottom: 0px;
+    margin-left: 10px;
 }
 
 .columns {
@@ -112,5 +113,10 @@ h2,
 
     .image-add {
         margin-top: 5px;
+    }
+
+    h2,
+    .card-course-form-p {
+        margin-left: 0px;
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, DisplayNameCourse } from './course.service';
+import { CourseService, CourseSummaryDto } from './course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
@@ -12,9 +12,7 @@ import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dial
 //zmiana na Courses 
 export class CourseComponent implements OnInit {
 
-  displayNameCourse: DisplayNameCourse[] = [];
-  accessToModifyCourse: boolean = true;
-
+  courseSummaryDto: CourseSummaryDto[] = [];
 
   constructor(private courseService: CourseService, private router: Router, private dialog: MatDialog
   ) { }
@@ -24,8 +22,8 @@ export class CourseComponent implements OnInit {
   }
 
   public getNameCourses(): void {
-    this.courseService.getNameCourses().subscribe(value =>
-      this.displayNameCourse = value)
+    this.courseService.getCourses().subscribe(value =>
+      this.courseSummaryDto = value)
   }
 
   public nextTemplete(courseId: number): void {
@@ -35,19 +33,7 @@ export class CourseComponent implements OnInit {
 
   public deleteCourseById(courseId: number) {
     this.courseService.deleteCourseById(courseId).subscribe(() => {
-      this.displayNameCourse = this.displayNameCourse.filter(displayNameCourse => displayNameCourse.id != courseId);
-    });
-  }
-
-  public updateCourse(courseId: number, displayNameCourse: DisplayNameCourse) {
-    this.courseService.updateCourse(courseId, displayNameCourse).subscribe(() => {
-      this.getNameCourses();
-    });
-  }
-
-  public createCourse(displayName: string): void {
-    this.courseService.createCourse(displayName).subscribe(() => {
-      this.getNameCourses();
+      this.courseSummaryDto = this.courseSummaryDto.filter(courseSummaryDto => courseSummaryDto.id != courseId);
     });
   }
 

@@ -4,22 +4,13 @@
 <main>
     <section>
         <ul>
-            <li *ngFor="let course of displayNameCourse">
-                <div class="course-wrapper"> 
-                    <button
-                        mat-raised-button
-                        class="course-button"
-                        (click)="nextTemplete(course.id)" 
-                    >
+            <li *ngFor="let course of courseSummaryDto">
+                <div class="course-wrapper">
+                    <button mat-raised-button class="course-button" (click)="nextTemplete(course.id)">
                         {{ course.displayName }}
                     </button>
-                    <button
-                        *ngIf="course.accessToModifyCourse"
-                        mat-icon-button
-                        [matMenuTriggerFor]="menu"
-                        class="more-horiz"                  
-                        (click)="$event.stopPropagation()"  
-                    >
+                    <button *ngIf="course.accessToModifyCourse" mat-icon-button [matMenuTriggerFor]="menu"
+                        class="more-horiz" (click)="$event.stopPropagation()">
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                 </div>
@@ -32,13 +23,12 @@
                         <mat-icon>delete</mat-icon>
                         Usuń
                     </button>
-                </mat-menu>  
+                </mat-menu>
             </li>
             <button mat-flat-button class="create-button" (click)="goToCourseForm()">
                 <mat-icon>add</mat-icon>
-                 Dodaj kurs
+                Dodaj kurs
             </button>
         </ul>
     </section>
 </main>
-

@@ -13,6 +13,7 @@ export class LoginComponent {
   password: string = "";
   error: string = "";
   hide: boolean = true;
+  createRandomUserPending = false;
 
   constructor(private loginService: LoginService, private router: Router, private toastr: ToastrService) {
 
@@ -28,7 +29,7 @@ export class LoginComponent {
         this.error = error.error.message;
         this.password = "";
       },
-    }); 
+    });
   }
 
   public loginByGoogle() {
@@ -48,14 +49,20 @@ export class LoginComponent {
   }
 
   public createRandomUser(): void {
+    if (this.createRandomUserPending) {
+      return;
+    }
+    this.createRandomUserPending = true;
     this.loginService.createRandomUser().subscribe({
       next: response => {
         this.showSuccess(response.message + ". Witam w wersji demo :)");
         this.router.navigate(["/courses"]);
+        this.createRandomUserPending = false;
       },
       error: error => {
         this.error = error.error.message;
         this.password = "";
+        this.createRandomUserPending = false;
       },
     })
   }
