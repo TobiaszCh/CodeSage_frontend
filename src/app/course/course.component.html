@@ -1,6 +1,11 @@
 <header>
     <h1>Kursy</h1>
+    <button mat-raised-button color="primary" (click)="goToCourseForm()">
+        <mat-icon>add</mat-icon>
+        Dodaj kurs
+    </button>
 </header>
+<mat-divider class="mat-divider"></mat-divider>
 <main>
     <section>
         <ul>
@@ -15,7 +20,7 @@
                                     {{course.countOfSubjectsInCourse}} tematów
                                 </p>
                                 <div class="status-div"
-                                    [ngClass]="course.accessToModifyCourse ? 'private-div' : 'public-div' ">
+                                    [ngClass]="course.accessToModifyCourse ? 'private-div' : 'public-div'">
                                     <p>{{course.accessToModifyCourse ? 'Prywatny' : 'Publiczny'}}</p>
                                 </div>
                             </div>

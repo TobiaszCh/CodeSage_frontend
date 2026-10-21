@@ -6,12 +6,12 @@
         <h2>{{course.displayName}}</h2>
     </div>
     <div class="buttons-div">
-        <button mat-raised-button color="basic" *ngIf="visibilty()" (click)="goToEditCourseForm(courseId)"
-            class="button-back">
+        <button mat-raised-button color="basic" *ngIf="visibility()" (click)="goToEditCourseForm(courseId)"
+            class="button-edit">
             <mat-icon>edit</mat-icon>
             Edytuj kurs
         </button>
-        <button mat-raised-button color="primary" *ngIf="visibilty()" (click)="openAddDialog()" class="button-back">
+        <button mat-raised-button color="primary" *ngIf="visibility()" (click)="openAddDialog()">
             <mat-icon>add</mat-icon>
             Dodaj temat
         </button>
@@ -30,9 +30,9 @@
                     <h3>Opis</h3>
                     <p class="description">{{course.description}}</p>
                     <h3>Dostępność</h3>
-                    <div class="status-div" [ngClass]="visibilty() ? 'private-div' : 'public-div' ">
-                        <mat-icon class="icon-mat">{{visibilty() ? 'lock' : 'lock_open'}}</mat-icon>
-                        <p>{{visibilty() ? 'Prywatny' : 'Publiczny'}}</p>
+                    <div class="status-div" [ngClass]="visibility() ? 'private-div' : 'public-div'">
+                        <mat-icon class="icon-mat">{{visibility() ? 'lock' : 'lock_open'}}</mat-icon>
+                        <p>{{visibility() ? 'Prywatny' : 'Publiczny'}}</p>
                     </div>
                 </div>
             </div>
@@ -43,14 +43,20 @@
         <ul>
             <li *ngFor="let subject of subjects">
                 <div class="subject-wrapper">
-                    <button mat-raised-button class="subject-button" [ngClass]="color(subject.id)"
-                        (click)="startAnswerSession(subject.id)">
-                        {{subject.displayName}}
+                    <button mat-raised-button class="subject-button" (click)="startAnswerSession(subject.id)">
+                        <div>
+                            <h3>{{subject.displayName}}</h3>
+                            <p>
+                                {{subject.countOfQuestionsInSubject}} pytań
+                            </p>
+                            <p class="status" [ngClass]="getStatus(subject.subjectCompletionStatus)">
+                                {{statusSubject}}
+                            </p>
+                        </div>
                     </button>
 
-                    <button mat-icon-button *ngIf="visibilty()" [matMenuTriggerFor]="menu" class="more-horiz"
+                    <button mat-icon-button *ngIf="visibility()" [matMenuTriggerFor]="menu" class="more-horiz"
                         (click)="$event.stopPropagation()">
-
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                 </div>

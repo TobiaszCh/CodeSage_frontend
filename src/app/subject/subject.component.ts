@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, SubjectCompletionStatus, SubjectService, SubjectCompletedAge, AnswerSession, Course, CreateSubject, Visibility } from './subject.service';
+import { Subject, SubjectCompletionStatus, SubjectService, Course, CreateSubject, Visibility } from './subject.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SubjectDeleteDialogComponent } from './dialogs/delete/subject-delete-dialog.component';
@@ -14,7 +14,6 @@ import { SubjectAddDialogComponent } from './dialogs/add/subject-add-dialog.comp
   styleUrls: ['./subject.component.css']
 })
 export class SubjectComponent implements OnInit {
-  [x: string]: any;
 
   subjects: Subject[] = [];
   course: Course = {
@@ -22,10 +21,9 @@ export class SubjectComponent implements OnInit {
     description: "",
     visibility: Visibility.PRIVATE
   };
-  subjectCompletionStatus: SubjectCompletionStatus[] = [];
-  answerSessionId!: AnswerSession;
   courseId!: number;
   addSubject: boolean = false;
+  statusSubject?: string;
   newSubject: CreateSubject = {
     displayName: "",
   }
@@ -37,16 +35,15 @@ export class SubjectComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
       this.courseId = param["courseId"];
-      this.getSubjects(this.courseId);
-      this.getAllNumbersOfCorrectAnswersAtLeast80Percent(this.courseId);
+      this.getSubjectsWithCompletionStatusByCourseId(this.courseId);
       this.subjectService.getCourseById(this.courseId).subscribe(value =>
         this.course = value
       );
     })
   }
 
-  public getSubjects(courseId: number) {
-    this.subjectService.getSubjects(courseId).subscribe(value =>
+  public getSubjectsWithCompletionStatusByCourseId(courseId: number) {
+    this.subjectService.getSubjectsWithCompletionStatusByCourseId(courseId).subscribe(value =>
       this.subjects = value);
   }
 
@@ -56,31 +53,24 @@ export class SubjectComponent implements OnInit {
     });
   }
 
-  public getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId: number) {
-    this.subjectService.getAllNumbersOfCorrectAnswersAtLeast80Percent(courseId).subscribe(
-      value => {
-        this.subjectCompletionStatus = value;
-      }
-    );
-  }
-
-  public color(idSubject: number): string {
-    for (const checkCompletedSession of this.subjectCompletionStatus) {
-      if (checkCompletedSession.id == idSubject) {
-        switch (checkCompletedSession.subjectCompletedAge) {
-          case SubjectCompletedAge.FRESH:
-            return 'green';
-          case SubjectCompletedAge.OLD:
-            return 'yellow';
-          default:
-            return '';
-        }
-      }
+  public getStatus(subjectCompletionStatus: SubjectCompletionStatus): string {
+    switch (subjectCompletionStatus) {
+      case SubjectCompletionStatus.FRESH:
+        this.statusSubject = "Nauczone";
+        return 'green';
+      case SubjectCompletionStatus.OLD:
+        this.statusSubject = "Do powtórki";
+        return 'orange';
+      case SubjectCompletionStatus.UNCOMPLETED:
+        this.statusSubject = "Nieukończone";
+        return 'gray';
+      default:
+        this.statusSubject = "Nieukończone";
+        return 'gray';
     }
-    return ''
   }
 
-  public visibilty(): boolean {
+  public visibility(): boolean {
     switch (this.course.visibility) {
       case Visibility.PRIVATE:
         return true;
@@ -100,8 +90,7 @@ export class SubjectComponent implements OnInit {
   public createSubject(displayName: string, courseId: number): void {
     this.subjectService.createSucject(displayName, courseId).subscribe((result) => {
       this.goToCreateQuestion(result);
-    }
-    );
+    });
   }
 
   public goToCreateQuestion(subjectId: number): void {
