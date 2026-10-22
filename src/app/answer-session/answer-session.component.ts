@@ -20,6 +20,7 @@ export class AnswerSessionComponent implements OnInit {
   answerSessionId!: number;
   correctAnswerId!: number;
   informAboutResponse: string = "";
+  informDetailsAboutResponse: string = "";
   blockAnswer = false;
   showMeInform = false;
   blockNext = false;
@@ -27,6 +28,8 @@ export class AnswerSessionComponent implements OnInit {
   blockEnd = false;
   showResult = false;
   sendedAsnwerId!: number;
+  responseStatus?:string;
+  isCorrect?:boolean;
 
   constructor(private answerSessionService: AnswerSessionService, private activatedRoute: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
@@ -40,7 +43,6 @@ export class AnswerSessionComponent implements OnInit {
   }
 
   public nextQuestion(answerSessionId: number) {
-    this.informAboutResponse = "";
     this.answerSessionService.getQuestions(answerSessionId).subscribe(questionResponse => {
       if(!questionResponse.finished) {
         this.question = questionResponse.question;
@@ -71,18 +73,24 @@ export class AnswerSessionComponent implements OnInit {
       this.blockNext = true;
       this.blockCheck = false;
       this.blockAnswer = true;
-      this.showResult = true
+      this.showResult = true;
+      this.informForUser();
     });
   }
 
-  public informForUser(): string {
+  public informForUser(): void {
     if (this.checkAnswer === this.correctAnswerId) {
-      this.informAboutResponse = "Ta odpowiedź jest prawidłowa :)";
+      this.informAboutResponse = "Poprawna odpowiedź!";
+      this.informDetailsAboutResponse = "Świetnie! Tak trzymaj!";
+      this.responseStatus = "correct";
+      this.isCorrect = true;
     }
     else {
-      this.informAboutResponse = "Przykro mi, ta odpowiedź jest błędna :("
+      this.informAboutResponse = "Niepoprawna odpowiedź";
+      this.informDetailsAboutResponse = "Poprawna odpowiedź została zaznaczona na zielono.";
+      this.responseStatus = "incorrect";
+      this.isCorrect = false;
     }
-    return this.informAboutResponse;
   }
 
   public updateAnswerSessionStatus(answerSessionId: number): Observable<any> {

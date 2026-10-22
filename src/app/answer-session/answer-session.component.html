@@ -1,7 +1,8 @@
-<header>
-    <mat-icon class="close" (click)="openExitDialog()">close</mat-icon>
-</header>
 <main>
+    <div class="session-header">
+        <mat-icon class="close" (click)="openExitDialog()">close</mat-icon>
+        <p>{{allPointsAnswerSession?.allAnswers}} / 10</p>
+    </div>
     <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
     <h1>{{question?.displayName}}</h1>
     <mat-radio-group [(ngModel)]="checkAnswer">
@@ -22,6 +23,15 @@
             {{answer?.displayName}}
         </div>
     </mat-radio-group>
+    <div class="feedback" [ngClass]="responseStatus" *ngIf="showMeInform">
+        <div class="feedback-icon">
+            <mat-icon class="mat-icon">{{isCorrect ? "check" : "close"}}</mat-icon>
+        </div>
+        <div class="feedback-content">
+            <h3>{{informAboutResponse}}</h3>
+            <p>{{informDetailsAboutResponse}}</p>
+        </div>
+    </div>
     <div>
         <button mat-raised-button color = "primary"
             (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer!)"
@@ -33,5 +43,4 @@
             Dalej
         </button>
     </div>
-    <div class="feedback" *ngIf="showMeInform">{{informForUser()}} </div>
 </main>
