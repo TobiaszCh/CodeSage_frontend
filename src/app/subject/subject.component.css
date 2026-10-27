@@ -28,7 +28,8 @@ section {
 img {
     width: 100%;
     border-radius: 10px;
-    max-height: 300px;
+    height: 100%;
+
 }
 
 .back-div {
@@ -41,6 +42,7 @@ img {
 .image-div {
     margin: 10px;
     width: 50%;
+    max-height: 320px;
 }
 
 .content-div {
@@ -89,8 +91,8 @@ ul {
 
 .subject-button {
     padding: 0px 50px;
-    height: 120px;
     width: 100%;
+    height: auto;
     border: 1px solid black;
     border-radius: 10px;
     cursor: pointer;
@@ -121,7 +123,7 @@ input {
 }
 
 .content-div h3 {
-    margin: 10px 0;
+    margin: 10px 0px 8px 0px;
 }
 
 .subject-wrapper h3 {
@@ -129,6 +131,7 @@ input {
 }
 
 .description {
+    margin: 8px 0px;
     min-height: 60px;
 }
 
@@ -181,6 +184,11 @@ input {
         gap: 40px;
     }
 
+    li {
+        display: flex;
+        justify-content: center;
+    }
+
     h2 {
         font-size: 20px;
     }
@@ -194,6 +202,10 @@ input {
     .content-div {
         margin: 10px;
         width: auto;
+    }
+
+    .image-div {
+        max-height: 50%;
     }
 
     header {

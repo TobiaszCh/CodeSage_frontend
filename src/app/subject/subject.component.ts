@@ -19,6 +19,7 @@ export class SubjectComponent implements OnInit {
   course: Course = {
     displayName: "",
     description: "",
+    imageUrl: "",
     visibility: Visibility.PRIVATE
   };
   courseId!: number;

@@ -27,7 +27,7 @@ export class CourseService {
 export interface CourseSummaryDto {
   id: number;
   displayName: string;
-  imageUrl?: string;
+  imageUrl: string;
   visibility: Visibility;
   countOfSubjectsInCourse: number;
   accessToModifyCourse: boolean;
