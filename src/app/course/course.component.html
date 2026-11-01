@@ -20,8 +20,8 @@
                                     {{course.countOfSubjectsInCourse}} tematów
                                 </p>
                                 <div class="status-div"
-                                    [ngClass]="course.accessToModifyCourse ? 'private-div' : 'public-div'">
-                                    <p>{{course.accessToModifyCourse ? 'Prywatny' : 'Publiczny'}}</p>
+                                    [ngClass]="visibility(course)? 'private-div' : 'public-div'">
+                                    <p>{{visibility(course) ? 'Prywatny' : 'Publiczny'}}</p>
                                 </div>
                             </div>
                         </div>

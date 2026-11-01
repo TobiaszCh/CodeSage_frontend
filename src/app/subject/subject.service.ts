@@ -78,6 +78,7 @@ export interface Course {
   description?: string;
   imageUrl?: string;
   visibility: Visibility;
+  accessToModifyCourseAndSubjectWithQuestions: boolean;
 }
 
 export enum Visibility {
