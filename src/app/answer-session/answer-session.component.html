@@ -1,37 +1,40 @@
-<header>
-    <mat-icon class="close" (click)="openExitDialog()">close</mat-icon>
-</header>
 <main>
+    <div class="session-header">
+        <mat-icon class="close" (click)="openExitDialog()">close</mat-icon>
+        <p>{{questionNumber}} / 10</p>
+    </div>
     <mat-progress-bar mode="determinate" [value]="progress()"></mat-progress-bar>
     <h1>{{question?.displayName}}</h1>
     <mat-radio-group [(ngModel)]="checkAnswer">
-        <div
-            class="radio-button"
-            *ngFor="let answer of question?.answers"
-            (click)="blockCheck && checkAnswer = answer.id"
-            [ngClass]="{
+        <div class="radio-button" *ngFor="let answer of question?.answers"
+            (click)="blockCheck && checkAnswer = answer.id" [ngClass]="{
                 'correct-answer': showResult && answer.id == correctAnswerId, 
                 'wrong-answer': showResult && answer.id != correctAnswerId && answer.id == sendedAsnwerId,
                 'block-cursor': blockNext 
-                }"
-            >
-            <mat-radio-button 
-                [value]="answer.id" 
-                [disabled]="blockAnswer">
+                }">
+            <mat-radio-button [value]="answer.id" [disabled]="blockAnswer">
             </mat-radio-button>
             {{answer?.displayName}}
         </div>
     </mat-radio-group>
+    <div class="feedback" [ngClass]="responseStatus" *ngIf="showMeInform">
+        <div class="feedback-icon">
+            <mat-icon class="mat-icon">{{isCorrect ? "check" : "close"}}</mat-icon>
+        </div>
+        <div class="feedback-content">
+            <h3>{{informAboutResponse}}</h3>
+            <p>{{informDetailsAboutResponse}}</p>
+        </div>
+    </div>
     <div>
-        <button mat-raised-button color = "primary"
-            (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer!)"
-            *ngIf="blockCheck"
+        <button mat-raised-button color="primary"
+            (click)="selectQuestionAnswer(answerSessionId, question!.id, checkAnswer!)" *ngIf="blockCheck"
             [disabled]="!checkAnswer">
             Sprawdź
         </button>
-        <button mat-raised-button color = "primary" (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">
+        <button mat-raised-button color="primary" (click)="checkQuestionNumber()"
+            (click)="nextQuestion(answerSessionId)" *ngIf="blockNext">
             Dalej
         </button>
     </div>
-    <div class="feedback" *ngIf="showMeInform">{{informForUser()}} </div>
 </main>

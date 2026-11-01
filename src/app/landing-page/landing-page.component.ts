@@ -12,6 +12,7 @@ export class LandingPageComponent {
 
   password: string = "";
   error: string = "";
+  createRandomUserPending = false;
 
   constructor(private loginService: LoginService, private router: Router,
     private toastr: ToastrService) {
@@ -19,20 +20,30 @@ export class LandingPageComponent {
   }
 
   public createRandomUser(): void {
+    if (this.createRandomUserPending) {
+      return;
+    }
+    this.createRandomUserPending = true;
     this.loginService.createRandomUser().subscribe({
       next: response => {
         this.showSuccess(response.message + ". Witam w wersji demo :)");
         this.router.navigate(["/courses"]);
+        this.createRandomUserPending = false;
       },
       error: error => {
         this.error = error.error.message;
         this.password = "";
+        this.createRandomUserPending = false;
       },
     })
   }
 
   public showSuccess(messageToToastr: string) {
     this.toastr.success(messageToToastr, "Sukces!");
+  }
+
+  public scrollToTop(): void {
+    window.scrollTo(0, 0);
   }
 
 }

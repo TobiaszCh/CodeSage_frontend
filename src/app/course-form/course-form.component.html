@@ -7,29 +7,40 @@
                 <h3>Nazwa kursu</h3>
                 <mat-form-field appearance="outline" class="name-input">
                     <mat-label>Kurs</mat-label>
-                    <input *ngIf="course" matInput [(ngModel)]="course.displayName" maxlength="50" />
+                    <input *ngIf="course" matInput [(ngModel)]="course.displayName" maxlength="100" />
                 </mat-form-field>
                 <span class="counter">
-                    {{course.displayName.length || 0}} / 50
+                    {{course.displayName.length || 0}} / 100
                 </span>
             </div>
+
             <h3 class="description">Opis</h3>
             <mat-form-field appearance="outline" class="description-input">
                 <mat-label>Opis</mat-label>
-                <textarea matInput [(ngModel)]="course.description" cdkTextareaAutosize maxlength="600">
+                <textarea matInput [(ngModel)]="course.description" cdkTextareaAutosize cdkAutosizeMinRows="5"
+                    maxlength="600">
                 </textarea>
             </mat-form-field>
             <span class="counter">
                 {{course.description?.length || 0}} / 600
             </span>
-            <h3 class="image-add">Dodawanie obrazu</h3>
-            <div class="choose-image">
+            <h3 class="image-add">Grafika kursu</h3>
+
+            <div *ngIf="!image" class="choose-image">
                 <mat-icon class="image-icon">cloud_upload</mat-icon>
-                <p>Kliknij, aby dodać nowy obraz</p>
-                <button mat-raised-button color="primary" (click)="formFile.click()">Dodaj obraz</button>
+                <p>Kliknij, aby dodać nową grafike</p>
+                <button mat-raised-button color="primary" (click)="formFile.click()">Dodaj grafike</button>
                 <input type="file" #formFile hidden accept="image/*" (change)="onFileSelected($event)">
             </div>
+            <div *ngIf="image" class="image-div">
+                <img class="file-img" [src]="image">
+                <button class="delete-button" mat-icon-button color="warn" aria-label="Usuń obraz"
+                    (click)="deleteImage()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
         </div>
+
         <div class="second-column">
             <div>
                 <h3>Dostępność</h3>
@@ -41,21 +52,13 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="content-div">
-                <h3>Podgląd obrazu</h3>
-                <div *ngIf="!image" class="choose-image">
-                    <mat-icon class="image-icon">add_photo_alternate</mat-icon>
-                    <p>Wybrany obraz pojawi się tutaj</p>
-                </div>
-                <div class="image-div">
-                    <img class="file-img" [src]="image">
-                </div>
-            </div>
         </div>
     </div>
+
     <div class="buttons">
         <button mat-raised-button class="back-button" (click)="backToCourses()"> Wróć do kursów </button>
         <button mat-raised-button class="publish-button" color="primary"
             (click)="createOrUpdateCourse(course, selectedFile)"> Zapisz kurs</button>
     </div>
+
 </mat-card>

@@ -21,7 +21,7 @@ export class CourseFormComponent implements OnInit {
   };
 
   constructor(private courseFormService: CourseFormService, private toastr: ToastrService,
-     private router: Router, private activatedRoute: ActivatedRoute) {
+    private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -32,34 +32,37 @@ export class CourseFormComponent implements OnInit {
   }
 
   public onFileSelected(event: any) {
-    const file = event.target.files[0] ;
+    const file = event.target.files[0];
     this.image = URL.createObjectURL(file);
     this.selectedFile = file;
   }
 
   public createOrUpdateCourse(course: Course, file: File): void {
-    const request = this.courseId !== undefined 
-    ? this.courseFormService.updateCourse(this.courseId, course, file)
-    : this.courseFormService.createCourse(course, file);
+    const request = this.courseId !== undefined
+      ? this.courseFormService.updateCourse(this.courseId, course, file)
+      : this.courseFormService.createCourse(course, file);
     request.subscribe({
       next: (courseId) => {
         this.router.navigate(["courses", courseId]);
         this.showSuccess("Zapisano zmiany");
       },
       error: (error) => {
-        console.log(error);
         this.showError(error.error.message);
       }
     });
   }
 
   public getCourseById(courseId?: number) {
-    if(courseId !== undefined) {
+    if (courseId !== undefined) {
       this.courseFormService.getCourseById(courseId).subscribe(result => {
         this.course = result;
         this.image = result.imageUrl;
       });
-    } 
+    }
+  }
+
+  public deleteImage() {
+    this.image = undefined;
   }
 
   public backToCourses(): void {
