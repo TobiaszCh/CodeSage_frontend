@@ -28,7 +28,6 @@ export class AnswerSessionService {
 
   public updateAnswerSessionStatus(answerSessionId: number, answerSessionStatusIdDto?: AnswerSessionStatusIdDto): Observable<any> {
     return this.httpClient.put(`${this.baseUrl}/answer-session/updateStatus/${answerSessionId}`, answerSessionStatusIdDto);
-
   }
 
   public getPoints(answerSessionId: number): Observable<AllPointsAnswerSession> {
@@ -36,8 +35,8 @@ export class AnswerSessionService {
   }
 
   public getCoursId(answerSessionId: number): Observable<number> {
-      return this.httpClient.get<number>(`${this.baseUrl}/answer-session/${answerSessionId}/course-id`);
-    }
+    return this.httpClient.get<number>(`${this.baseUrl}/answer-session/${answerSessionId}/course-id`);
+  }
 }
 
 export interface QuestionResponse {

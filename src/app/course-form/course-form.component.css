@@ -1,5 +1,5 @@
 .buttons {
-    margin: 40px 10px 0px 10px;
+    margin: 20px 10px 0px 10px;
     display: flex;
     justify-content: flex-end;
     gap: 15px;
@@ -67,10 +67,16 @@ h2,
 .image-div {
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.delete-button {
+    position: absolute;
+    right: 0;
 }
 
 .file-img {
-    max-height: 250px;
+    max-height: 280px;
     width: 100%;
 }
 
@@ -79,7 +85,7 @@ h2,
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 250px;
+    height: 280px;
     background-color: rgb(232, 232, 232);
 }
 
@@ -118,5 +124,10 @@ h2,
     h2,
     .card-course-form-p {
         margin-left: 0px;
+    }
+
+    .file-img {
+        max-height: 200px;
+        width: 100%;
     }
 }

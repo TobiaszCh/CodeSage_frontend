@@ -24,13 +24,20 @@
             <span class="counter">
                 {{course.description?.length || 0}} / 600
             </span>
-            <h3 class="image-add">Dodawanie obrazu</h3>
+            <h3 class="image-add">Grafika kursu</h3>
 
-            <div class="choose-image">
+            <div *ngIf="!image" class="choose-image">
                 <mat-icon class="image-icon">cloud_upload</mat-icon>
-                <p>Kliknij, aby dodać nowy obraz</p>
-                <button mat-raised-button color="primary" (click)="formFile.click()">Dodaj obraz</button>
+                <p>Kliknij, aby dodać nową grafike</p>
+                <button mat-raised-button color="primary" (click)="formFile.click()">Dodaj grafike</button>
                 <input type="file" #formFile hidden accept="image/*" (change)="onFileSelected($event)">
+            </div>
+            <div *ngIf="image" class="image-div">
+                <img class="file-img" [src]="image">
+                <button class="delete-button" mat-icon-button color="warn" aria-label="Usuń obraz"
+                    (click)="deleteImage()">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </div>
         </div>
 
@@ -44,17 +51,6 @@
                         <mat-option value="PUBLIC">Publiczny</mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
-
-            <div class="content-div">
-                <h3>Podgląd obrazu</h3>
-                <div *ngIf="!image" class="choose-image">
-                    <mat-icon class="image-icon">add_photo_alternate</mat-icon>
-                    <p>Wybrany obraz pojawi się tutaj</p>
-                </div>
-                <div class="image-div">
-                    <img class="file-img" [src]="image">
-                </div>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 header {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 24px 12px 0;
+    padding: 24px 12px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,7 +28,8 @@ section {
 img {
     width: 100%;
     border-radius: 10px;
-    max-height: 300px;
+    height: 100%;
+
 }
 
 .back-div {
@@ -41,6 +42,7 @@ img {
 .image-div {
     margin: 10px;
     width: 50%;
+    max-height: 320px;
 }
 
 .content-div {
@@ -72,55 +74,41 @@ img {
     padding: 0px 5px;
 }
 
-li {
-    display: flex;
-    justify-content: center;
-}
-
 ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 75px;
     padding: 0;
     list-style: none;
     max-width: 1100px;
     margin: 10px auto;
-    justify-content: center;
+}
 
+::ng-deep .subject-button .mdc-button__label {
+    width: 100%;
+    height: 100%;
 }
 
 .subject-button {
     padding: 0px 50px;
-    height: 100px;
     width: 100%;
+    height: auto;
     border: 1px solid black;
     border-radius: 10px;
     cursor: pointer;
     overflow-wrap: anywhere;
+    text-align: left;
+    padding-left: 8px;
 }
 
-.green {
-    border: 1px solid black;
-    background-color: #43A047 !important;
-}
-
-.yellow {
-    border: 1px solid black;
-    background-color: #FFD166 !important;
+.button-edit {
+    margin-right: 24px;
 }
 
 input {
     text-align: center;
     border: 1px solid black;
     cursor: text;
-}
-
-.add-subject {
-    opacity: 0;
-}
-
-section:hover .add-subject {
-    opacity: 1;
 }
 
 .subject-wrapper {
@@ -131,22 +119,58 @@ section:hover .add-subject {
 
 .more-horiz {
     position: absolute;
-    left: 85%;
-    top: 25%;
+    right: 0;
 }
 
 .content-div h3 {
-    margin: 10px 0;
+    margin: 10px 0px 8px 0px;
 }
 
-.button-back {
-    margin-left: 16px;
+.subject-wrapper h3 {
+    margin-top: 12px;
 }
 
 .description {
+    margin: 8px 0px;
     min-height: 60px;
 }
 
+.status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.green::before {
+    background-color: #16A34A;
+}
+
+.orange::before {
+    background-color: #B45309;
+}
+
+.gray::before {
+    background-color: #6B7280;
+}
+
+.green {
+    color: #16A34A;
+}
+
+.orange {
+    color: #B45309;
+}
+
+.gray {
+    color: #6B7280;
+}
 
 @media (max-width: 768px) {
 
@@ -155,13 +179,14 @@ section:hover .add-subject {
         padding-right: 12px;
     }
 
-    li {
-        max-width: none;
-        width: 100%;
+    ul {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 40px;
     }
 
-    .button-back {
-        min-width: 130px;
+    li {
+        display: flex;
+        justify-content: center;
     }
 
     h2 {
@@ -179,9 +204,18 @@ section:hover .add-subject {
         width: auto;
     }
 
+    .image-div {
+        max-height: 50%;
+    }
+
     header {
         flex-direction: column;
         align-items: start;
+        padding: 24px 0px 0px;
+    }
+
+    .button-edit {
+        margin-right: 0px;
     }
 
     .buttons-div {

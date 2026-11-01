@@ -21,12 +21,13 @@ export class CourseService {
   public deleteCourseById(courseId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/courses/${courseId}`);
   }
+
 }
 
 export interface CourseSummaryDto {
   id: number;
   displayName: string;
-  imageUrl?: string;
+  imageUrl: string;
   visibility: Visibility;
   countOfSubjectsInCourse: number;
   accessToModifyCourse: boolean;

@@ -14,7 +14,7 @@ export class SubjectService {
 
   }
 
-  public getSubjects(courseId: number): Observable<Subject[]> {
+  public getSubjectsWithCompletionStatusByCourseId(courseId: number): Observable<Subject[]> {
     return this.httpClient.get<Subject[]>(`${this.baseUrl}/subjects/by-course/${courseId}`);
   }
 
@@ -33,10 +33,10 @@ export class SubjectService {
     return this.httpClient.get<Course>(`${this.baseUrl}/courses/${courseId}`);
   }
 
-  public createSucject(displayName:string, courseId:number,): Observable<number> {
+  public createSucject(displayName: string, courseId: number,): Observable<number> {
     const createSubject: CreateSubject = {
       courseId: courseId,
-      displayName:displayName
+      displayName: displayName
     }
     return this.httpClient.post<number>(`${this.baseUrl}/subjects`, createSubject)
   }
@@ -53,13 +53,9 @@ export class SubjectService {
 export interface Subject {
   id: number;
   displayName: string;
-  courseId: number
-}
-
-export interface SubjectCompletionStatus {
-  id: number,
-  answerSessionId: number,
-  subjectCompletedAge: SubjectCompletedAge
+  courseId: number;
+  countOfQuestionsInSubject: number;
+  subjectCompletionStatus: SubjectCompletionStatus;
 }
 
 export interface SubjectIdToAnswerSession {
@@ -70,9 +66,10 @@ export interface AnswerSession {
   id: number
 }
 
-export enum SubjectCompletedAge {
+export enum SubjectCompletionStatus {
   FRESH = "FRESH",
-  OLD = "OLD"
+  OLD = "OLD",
+  UNCOMPLETED = "UNCOMPLETED"
 }
 
 export interface Course {
@@ -81,7 +78,6 @@ export interface Course {
   description?: string;
   imageUrl?: string;
   visibility: Visibility;
-  accessToModifyCourse?: boolean;
 }
 
 export enum Visibility {

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Question, AnswerSessionService, AllPointsAnswerSession } from './answer-session.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,6 +20,7 @@ export class AnswerSessionComponent implements OnInit {
   answerSessionId!: number;
   correctAnswerId!: number;
   informAboutResponse: string = "";
+  informDetailsAboutResponse: string = "";
   blockAnswer = false;
   showMeInform = false;
   blockNext = false;
@@ -27,6 +28,9 @@ export class AnswerSessionComponent implements OnInit {
   blockEnd = false;
   showResult = false;
   sendedAsnwerId!: number;
+  responseStatus?: string;
+  isCorrect?: boolean;
+  questionNumber: number = 1;
 
   constructor(private answerSessionService: AnswerSessionService, private activatedRoute: ActivatedRoute, private router: Router,
     private dialog: MatDialog) {
@@ -40,9 +44,8 @@ export class AnswerSessionComponent implements OnInit {
   }
 
   public nextQuestion(answerSessionId: number) {
-    this.informAboutResponse = "";
     this.answerSessionService.getQuestions(answerSessionId).subscribe(questionResponse => {
-      if(!questionResponse.finished) {
+      if (!questionResponse.finished) {
         this.question = questionResponse.question;
         this.showMeInform = false;
         this.blockNext = false;
@@ -71,18 +74,24 @@ export class AnswerSessionComponent implements OnInit {
       this.blockNext = true;
       this.blockCheck = false;
       this.blockAnswer = true;
-      this.showResult = true
+      this.showResult = true;
+      this.informForUser();
     });
   }
 
-  public informForUser(): string {
+  public informForUser(): void {
     if (this.checkAnswer === this.correctAnswerId) {
-      this.informAboutResponse = "Ta odpowiedź jest prawidłowa :)";
+      this.informAboutResponse = "Poprawna odpowiedź!";
+      this.informDetailsAboutResponse = "Świetnie! Tak trzymaj!";
+      this.responseStatus = "correct";
+      this.isCorrect = true;
     }
     else {
-      this.informAboutResponse = "Przykro mi, ta odpowiedź jest błędna :("
+      this.informAboutResponse = "Niepoprawna odpowiedź";
+      this.informDetailsAboutResponse = "Poprawna odpowiedź została zaznaczona na zielono.";
+      this.responseStatus = "incorrect";
+      this.isCorrect = false;
     }
-    return this.informAboutResponse;
   }
 
   public updateAnswerSessionStatus(answerSessionId: number): Observable<any> {
@@ -91,12 +100,13 @@ export class AnswerSessionComponent implements OnInit {
 
   public getPoints(answerSessionId: number) {
     return this.answerSessionService.getPoints(answerSessionId).subscribe(allPointsAnswerSession =>
-       this.allPointsAnswerSession = allPointsAnswerSession);
+      this.allPointsAnswerSession = allPointsAnswerSession);
   }
 
   public progress(): number {
-    if(this.allPointsAnswerSession == undefined) return 0;
-    return this.allPointsAnswerSession.allAnswers/10 * 100;
+    if (this.allPointsAnswerSession == undefined)
+      return 0;
+    return (this.allPointsAnswerSession.allAnswers + 1) / 11 * 100;
   }
 
   public backToSubjects(answerSessionId: number): void {
@@ -105,11 +115,21 @@ export class AnswerSessionComponent implements OnInit {
     });
   }
 
+  public checkQuestionNumber(): void {
+    const result = this.allPointsAnswerSession.allAnswers + 2;
+    if (result > 10) {
+      this.questionNumber = 10;
+    }
+    else {
+      this.questionNumber = result;
+    }
+  }
+
   public openExitDialog(): void {
     this.dialog.open(AnswerSessionDeleteDialogComponent, {
       width: '550px'
     }).afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.backToSubjects(this.answerSessionId);
       }
     });
@@ -121,13 +141,13 @@ export class AnswerSessionComponent implements OnInit {
       disableClose: true,
       data: this.allPointsAnswerSession
     }).afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.updateAnswerSessionStatus(this.answerSessionId).subscribe(() =>
-        this.backToSubjects(this.answerSessionId));
+          this.backToSubjects(this.answerSessionId));
       }
     });
   }
-  
+
 }
 
 
