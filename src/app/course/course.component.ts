@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService, CourseSummaryDto } from './course.service';
+import { CourseService, CourseSummaryDto, Visibility} from './course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CourseDeleteDialogComponent } from './dialogs/delete/course-delete-dialog.component';
@@ -44,6 +44,15 @@ export class CourseComponent implements OnInit {
 
   public goToEditCourseForm(courseId: number): void {
     this.router.navigate(["courses", courseId, "form"]);
+  }
+
+  public visibility(courseSummaryDto: CourseSummaryDto): boolean {
+    switch (courseSummaryDto.visibility) {
+      case Visibility.PRIVATE:
+        return true;
+      case Visibility.PUBLIC:
+        return false;
+    }
   }
 
   public openDeleteDialog(courseId: number): void {
