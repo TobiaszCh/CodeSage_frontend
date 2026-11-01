@@ -20,7 +20,8 @@ export class SubjectComponent implements OnInit {
     displayName: "",
     description: "",
     imageUrl: "",
-    visibility: Visibility.PRIVATE
+    visibility: Visibility.PRIVATE,
+    accessToModifyCourseAndSubjectWithQuestions: false
   };
   courseId!: number;
   addSubject: boolean = false;

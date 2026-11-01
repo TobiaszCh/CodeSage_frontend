@@ -6,12 +6,12 @@
         <h2>{{course.displayName}}</h2>
     </div>
     <div class="buttons-div">
-        <button mat-raised-button color="basic" *ngIf="visibility()" (click)="goToEditCourseForm(courseId)"
+        <button mat-raised-button color="basic" *ngIf="course.accessToModifyCourseAndSubjectWithQuestions" (click)="goToEditCourseForm(courseId)"
             class="button-edit">
             <mat-icon>edit</mat-icon>
             Edytuj kurs
         </button>
-        <button mat-raised-button color="primary" *ngIf="visibility()" (click)="openAddDialog()">
+        <button mat-raised-button color="primary" *ngIf="course.accessToModifyCourseAndSubjectWithQuestions" (click)="openAddDialog()">
             <mat-icon>add</mat-icon>
             Dodaj temat
         </button>
@@ -55,7 +55,7 @@
                         </div>
                     </button>
 
-                    <button mat-icon-button *ngIf="visibility()" [matMenuTriggerFor]="menu" class="more-horiz">
+                    <button mat-icon-button *ngIf="course.accessToModifyCourseAndSubjectWithQuestions" [matMenuTriggerFor]="menu" class="more-horiz">
                         <mat-icon>more_horiz</mat-icon>
                     </button>
                 </div>
