@@ -14,7 +14,7 @@ export class NavbarService {
   }
 
   public getUserName(): Observable<UsernameDto> {
-    return this.httpClient.get<UsernameDto>(`${this.baseUrl}/username`);
+    return this.httpClient.get<UsernameDto>(`${this.baseUrl}/me/info`);
   }
 
   public logout(): Observable<any> {

@@ -30,6 +30,10 @@ export class CourseFormService {
     formData.append("courseDto", new Blob([JSON.stringify(course)], {type: "application/json"}));
     return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, formData);
   }
+
+  public getUserInfo(): Observable<UserInfo> {
+    return this.httpClient.get<UserInfo>(`${this.baseUrl}/me/info`);
+  }
   
 }
 
@@ -44,4 +48,14 @@ export interface Course {
 export enum Visibility {
   PUBLIC = "PUBLIC",
   PRIVATE = "PRIVATE"
+}
+
+export interface UserInfo {
+  username: string;
+  role: Role;
+}
+
+export enum Role {
+    USER = "USER",
+    DEMO = "DEMO"
 }
