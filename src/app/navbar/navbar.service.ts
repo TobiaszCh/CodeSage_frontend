@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class NavbarService {
-  
+
   private baseUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) {
