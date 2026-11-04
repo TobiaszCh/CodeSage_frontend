@@ -7,14 +7,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class NavbarService {
-  
+
   private baseUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) {
   }
 
   public getUserName(): Observable<UsernameDto> {
-    return this.httpClient.get<UsernameDto>(`${this.baseUrl}/username`);
+    return this.httpClient.get<UsernameDto>(`${this.baseUrl}/me/info`);
   }
 
   public logout(): Observable<any> {
