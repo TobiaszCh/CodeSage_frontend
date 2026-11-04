@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course, CourseFormService, Visibility } from './course-form.service';
+import { Course, CourseFormService, Role, UserInfo, Visibility } from './course-form.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./course-form.component.css']
 })
 export class CourseFormComponent implements OnInit {
-
+  canSetPublic: boolean = true;
   image?: string;
   courseId?: number;
   selectedFile: File = new File([], '');
@@ -29,6 +29,7 @@ export class CourseFormComponent implements OnInit {
       this.courseId = param["courseId"];
       this.getCourseById(this.courseId);
     });
+    this.getUserInfo();
   }
 
   public onFileSelected(event: any) {
@@ -59,6 +60,12 @@ export class CourseFormComponent implements OnInit {
         this.image = result.imageUrl;
       });
     }
+  }
+
+  public getUserInfo(): void {
+    this.courseFormService.getUserInfo().subscribe(result => {
+      this.canSetPublic = result.role != Role.DEMO;
+    });
   }
 
   public deleteImage() {

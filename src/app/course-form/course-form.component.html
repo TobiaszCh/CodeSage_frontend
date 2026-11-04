@@ -48,7 +48,7 @@
                     <mat-label>Dostępność</mat-label>
                     <mat-select [(value)]="course.visibility">
                         <mat-option value="PRIVATE">Prywatny</mat-option>
-                        <mat-option value="PUBLIC">Publiczny</mat-option>
+                        <mat-option *ngIf="canSetPublic" value="PUBLIC">Publiczny</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

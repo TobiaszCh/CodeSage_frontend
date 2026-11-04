@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class CourseFormService {
 
   private baseUrl = environment.apiUrl;
-          
-  constructor(private httpClient: HttpClient ) {
+
+  constructor(private httpClient: HttpClient) {
   }
 
   public getCourseById(courseId: number): Observable<Course> {
@@ -20,17 +20,21 @@ export class CourseFormService {
   public createCourse(course: Course, file: File): Observable<any> {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("courseDto", new Blob([JSON.stringify(course)], {type: "application/json"}));
+    formData.append("courseDto", new Blob([JSON.stringify(course)], { type: "application/json" }));
     return this.httpClient.post(`${this.baseUrl}/courses`, formData);
   }
 
   public updateCourse(courseId: number, course: Course, file: File): Observable<any> {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("courseDto", new Blob([JSON.stringify(course)], {type: "application/json"}));
+    formData.append("courseDto", new Blob([JSON.stringify(course)], { type: "application/json" }));
     return this.httpClient.patch(`${this.baseUrl}/courses/${courseId}`, formData);
   }
-  
+
+  public getUserInfo(): Observable<UserInfo> {
+    return this.httpClient.get<UserInfo>(`${this.baseUrl}/me/info`);
+  }
+
 }
 
 export interface Course {
@@ -44,4 +48,14 @@ export interface Course {
 export enum Visibility {
   PUBLIC = "PUBLIC",
   PRIVATE = "PRIVATE"
+}
+
+export interface UserInfo {
+  username: string;
+  role: Role;
+}
+
+export enum Role {
+  USER = "USER",
+  DEMO = "DEMO"
 }
