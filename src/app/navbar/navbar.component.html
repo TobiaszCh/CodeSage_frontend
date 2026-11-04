@@ -4,21 +4,35 @@
         <h1>Code Sage</h1>
     </a>
     <nav class="navigation">
-        <button mat-button disabled="true" aria-label="Menu użytkownika" class="user-button">
+        <div class="user-div">
             <mat-icon class="user-icon">account_circle</mat-icon>
-            <span>{{ username }}</span>
-        </button>
+            <span class="user-email">{{ username }}</span>
+            <button mat-button [matMenuTriggerFor]="userMenuDesktop" aria-label="Menu użytkownika">
+                <mat-icon class="user-icon">expand_more</mat-icon>
+            </button>
+            <mat-menu class="user-menu" #userMenuDesktop = "matMenu" xPosition="before">
+                <button mat-menu-item routerLink="/profile">
+                    <mat-icon>person_outline</mat-icon>
+                    <span class="user-profile">Profil użytkownika</span>
+                </button>
+            </mat-menu>
+        </div>
         <button class="user-logout" mat-button (click)="logout()">
             <mat-icon>logout</mat-icon>
             <span>Wyloguj</span>
         </button>
-        <button mat-button [matMenuTriggerFor]="userMenu" aria-label="Menu użytkownika" class="user-button-mobile">
+        <button mat-button [matMenuTriggerFor]="userMenuMobile" aria-label="Menu użytkownika" class="user-button-mobile">
             <mat-icon class="user-icon">account_circle</mat-icon>
         </button>
-        <mat-menu class="user-menu" #userMenu="matMenu">
+        <mat-menu class="user-menu" #userMenuMobile="matMenu">
             <span class="email" mat-menu-item>{{ username }}</span>
             <mat-divider></mat-divider>
-            <button class="user-logout-mobile" mat-menu-item (click)="logout()">
+            <button mat-menu-item routerLink="/profile">
+                <mat-icon>person_outline</mat-icon>
+                <span class="user-profile">Profil użytkownika</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 <span>Wyloguj</span>
             </button>
