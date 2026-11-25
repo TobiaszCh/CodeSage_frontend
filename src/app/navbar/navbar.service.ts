@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class NavbarService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getUserName(): Observable<UsernameDto> {
-    return this.httpClient.get<UsernameDto>(`${this.baseUrl}/me/info`);
+  public getUserProfile(): Observable<UserProfile> {
+    return this.httpClient.get<UserProfile>(this.baseUrl)
   }
 
   public logout(): Observable<any> {
@@ -22,6 +22,8 @@ export class NavbarService {
   }
 }
 
-export interface UsernameDto {
-  username: string;
+export class UserProfile {
+  username!: string;
+  role?: string;
+  createdAt?: string;
 }

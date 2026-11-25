@@ -20,15 +20,16 @@
         <main class="profile-content">
             <mat-card class="profile-card" *ngIf="activeSection === 'profile'">
                 <mat-card-content>
-                    <section class="account-summary" aria-label="Profil uźytkownika">
+                    <section class="account-summary" aria-label="Profil użytkownika">
                         <div class="user-avatar"><mat-icon>person</mat-icon></div>
                         <div class="user-details">
-                            <h2>{{ email || 'Loading profile...' }}</h2>
-                            <p>Użytkownik Code Sage</p>
+                            <h2>{{ username || (isLoadingProfile ? 'Ładowanie profilu…' : 'Brak nazwy użytkownika') }}
+                            </h2>
+                            <p>Profil Code Sage</p>
                         </div>
                         <div class="role-badge">
                             <mat-icon>group</mat-icon>
-                            <span>Użytkownik</span>
+                            <span>{{ roleLabel }}</span>
                         </div>
                     </section>
 
@@ -38,16 +39,18 @@
                         <h2>Informacje o koncie</h2>
                         <div class="account-detail-list">
                             <div class="account-detail">
+                                <div class="detail-icon"><mat-icon>person_outline</mat-icon></div>
+                                <div><span>Nazwa użytkownika</span><strong>{{ username || 'Brak danych' }}</strong>
+                                </div>
+                            </div>
+                            <div class="account-detail">
                                 <div class="detail-icon"><mat-icon>verified_user</mat-icon></div>
-                                <div><span>Rola</span><strong>Uźytkownik</strong></div>
+                                <div><span>Rola</span><strong>{{ roleLabel }}</strong></div>
                             </div>
                             <div class="account-detail">
                                 <div class="detail-icon"><mat-icon>calendar_today</mat-icon></div>
-                                <div><span>Data utworzenia konta</span><strong>12 października 2026</strong></div>
-                            </div>
-                            <div class="account-detail">
-                                <div class="detail-icon"><mat-icon>lock_outline</mat-icon></div>
-                                <div><span>Metoda logowania</span><strong>E-mail i hasło</strong></div>
+                                <div><span>Data utworzenia konta</span><strong>{{ createdAt ? (createdAt |
+                                        date:'dd.MM.yyyy') : 'Brak danych' }}</strong></div>
                             </div>
                         </div>
                     </section>
@@ -74,7 +77,7 @@
                     <mat-divider></mat-divider>
 
                     <div class="profile-actions">
-                        <button mat-raised-button class="save-button" (click)="saveChanges()">
+                        <button mat-raised-button class="save-button" disabled="true" (click)="saveChanges()">
                             Zapisz zmiany
                         </button>
                     </div>
