@@ -32,7 +32,7 @@ export class CourseFormService {
   }
 
   public getUserInfo(): Observable<UserInfo> {
-    return this.httpClient.get<UserInfo>(`${this.baseUrl}/me/info`);
+    return this.httpClient.get<UserInfo>(this.baseUrl);
   }
 
 }

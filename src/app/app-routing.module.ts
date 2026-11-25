@@ -11,6 +11,7 @@ import { AuthComponent } from "./auth/auth.component";
 import { ManageQuestionComponent } from "./question-management/question-management.component";
 import { CourseFormComponent } from "./course-form/course-form.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
             { path: 'courses/form', component: CourseFormComponent },
             { path: 'courses/:courseId/form', component: CourseFormComponent },
             { path: 'courses/:courseId', component: SubjectComponent },
-            { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent }
+            { path: 'subjects/:subjectId/questions/new', component: ManageQuestionComponent },
+            { path: 'profile', component: ProfileComponent }
         ]
     },
     {

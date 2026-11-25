@@ -1,0 +1,88 @@
+<div class="profile-container">
+    <h1>Profil użytkownika</h1>
+
+    <mat-divider></mat-divider>
+
+    <div class="profile-layout">
+        <aside class="profile-sidebar" aria-label="Menu profilu">
+            <button class="sidebar-item" [class.active]="activeSection === 'profile'"
+                (click)="selectSection('profile')">
+                <mat-icon>person_outline</mat-icon>
+                <span>Mój profil</span>
+            </button>
+            <button class="sidebar-item" [class.active]="activeSection === 'settings'"
+                (click)="selectSection('settings')">
+                <mat-icon>settings</mat-icon>
+                <span>Ustawienia</span>
+            </button>
+        </aside>
+
+        <main class="profile-content">
+            <mat-card class="profile-card" *ngIf="activeSection === 'profile'">
+                <mat-card-content>
+                    <section class="account-summary" aria-label="Profil użytkownika">
+                        <div class="user-avatar"><mat-icon>person</mat-icon></div>
+                        <div class="user-details">
+                            <h2>{{ username || (isLoadingProfile ? 'Ładowanie profilu…' : 'Brak nazwy użytkownika') }}
+                            </h2>
+                            <p>Profil Code Sage</p>
+                        </div>
+                        <div class="role-badge">
+                            <mat-icon>group</mat-icon>
+                            <span>{{ roleLabel }}</span>
+                        </div>
+                    </section>
+
+                    <mat-divider></mat-divider>
+
+                    <section class="account-details">
+                        <h2>Informacje o koncie</h2>
+                        <div class="account-detail-list">
+                            <div class="account-detail">
+                                <div class="detail-icon"><mat-icon>person_outline</mat-icon></div>
+                                <div><span>Nazwa użytkownika</span><strong>{{ username || 'Brak danych' }}</strong>
+                                </div>
+                            </div>
+                            <div class="account-detail">
+                                <div class="detail-icon"><mat-icon>verified_user</mat-icon></div>
+                                <div><span>Rola</span><strong>{{ roleLabel }}</strong></div>
+                            </div>
+                            <div class="account-detail">
+                                <div class="detail-icon"><mat-icon>calendar_today</mat-icon></div>
+                                <div><span>Data utworzenia konta</span><strong>{{ createdAt ? (createdAt |
+                                        date:'dd.MM.yyyy') : 'Brak danych' }}</strong></div>
+                            </div>
+                        </div>
+                    </section>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="profile-card" *ngIf="activeSection === 'settings'">
+                <mat-card-content>
+                    <section class="notifications-section">
+                        <h2>Ustawienia powiadomień</h2>
+                        <div class="notification-row">
+                            <div class="notification-icon"><mat-icon>mail_outline</mat-icon></div>
+                            <div class="notification-description">
+                                <h3>Powiadomienia e-mail</h3>
+                                <p>Otrzymuj wiadomości z aplikacji Code Sage (np. informacje o koncie, nowych
+                                    funkcjach).</p>
+                            </div>
+                            <mat-slide-toggle color="primary" [(ngModel)]="emailNotifications"
+                                aria-label="Powiadomienia e-mail">
+                            </mat-slide-toggle>
+                        </div>
+                    </section>
+
+                    <mat-divider></mat-divider>
+
+                    <div class="profile-actions">
+                        <button mat-raised-button class="save-button" disabled="true" (click)="saveChanges()">
+                            Zapisz zmiany
+                        </button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </main>
+    </div>
+</div>

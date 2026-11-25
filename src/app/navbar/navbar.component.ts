@@ -16,7 +16,7 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
-    this.navbarService.getUserName().subscribe({
+    this.navbarService.getUserProfile().subscribe({
       next: (result) => {
         this.username = result.username;
       },
